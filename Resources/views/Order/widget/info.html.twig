@@ -1,0 +1,32 @@
+{% import 'OroUIBundle::macros.html.twig' as ui %}
+{% import 'OroAddressBundle::macros.html.twig' as address %}
+
+<div class="widget-content">
+    <div class="row-fluid form-horizontal">
+        <div class="responsive-block">
+            {{ ui.renderProperty('Status'|trans, entity.orderStatus|trans) }}
+            {{ ui.renderProperty('Currency'|trans, entity.currencyId|trans) }}
+            {{ ui.renderProperty('Tax percent'|trans, entity.salesTaxPercent|trans) }}
+            {{ ui.renderProperty('Tax amount'|trans, entity.salesTaxAmount|oro_format_currency({'currency': entity.currencyId})) }}
+            {{ ui.renderProperty('Shipping service'|trans, entity.shippingService|trans) }}
+            {{ ui.renderProperty('Shipping amount'|trans, entity.shippingServiceCost|trans|oro_format_currency({'currency': entity.currencyId})) }}
+            {{ ui.renderProperty('Payment methods'|trans, entity.paymentMethods|trans) }}
+            {{ ui.renderProperty('Amount paid'|trans, entity.amountPaid|oro_format_currency({'currency': entity.currencyId})) }}
+            {{ ui.renderProperty('Seller email'|trans, entity.sellerEmail|trans) }}
+            {{ ui.renderProperty('Subtotal'|trans, entity.subtotal|oro_format_currency({'currency': entity.currencyId})) }}
+            {{ ui.renderProperty('Total'|trans, entity.total|oro_format_currency({'currency': entity.currencyId})) }}
+        </div>
+
+        <div class="responsive-block">
+            {{ ui.renderProperty('Buyer Id'|trans, entity.customer.buyerUserId) }}
+            {{ ui.renderProperty('Buyer name'|trans, entity.customer.name) }}
+            {{ ui.renderProperty('Buyer phone'|trans, entity.customer.phone) }}
+            {{ ui.renderProperty('Street 1'|trans, entity.customer.street1) }}
+            {{ ui.renderProperty('Street 2'|trans, entity.customer.street2) }}
+            {{ ui.renderProperty('City'|trans, entity.customer.city) }}
+            {{ ui.renderProperty('Country'|trans, entity.customer.countryName) }}
+            {{ ui.renderProperty('Postal code'|trans, entity.customer.postalCode) }}
+            {{ ui.renderProperty('State'|trans, entity.customer.stateOrProvince) }}
+        </div>
+    </div>
+</div>

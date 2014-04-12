@@ -1,0 +1,195 @@
+datagrid:
+    orders-grid:
+        source:
+            type: orm
+            query:
+                select:
+                    - o
+                from:
+                    - { table: %eltrino_ebay.order.entity.class%, alias: o }
+                where:
+                    and:
+                        - o.channel = :channelId
+        columns:
+            ebayOrderId:
+                label: Ebay Order Id
+            orderStatus:
+                label: Order Status
+            amountPaid:
+                label: Paid Amoint
+                type:   localized_number
+                method: formatCurrency
+                context_resolver: Eltrino\EbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
+            currencyId:
+                label: Currency
+            salesTaxPercent:
+                label: Sales Tax Percent
+            salesTaxAmount:
+                label: Sales Tax Amount
+                type:   localized_number
+                method: formatCurrency
+                context_resolver: Eltrino\EbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
+            shippingService:
+                label: Shipping Service
+            shippingServiceCost:
+                label: Shipping Service Cost
+                type:   localized_number
+                method: formatCurrency
+                context_resolver: Eltrino\EbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
+            paymentMethods:
+                label: Payment Methods
+            sellerEmail:
+                label: Seller Email
+            subtotal:
+                label: Subtotal
+                type:   localized_number
+                method: formatCurrency
+                context_resolver: Eltrino\EbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
+            total:
+                label: Total
+                type:   localized_number
+                method: formatCurrency
+                context_resolver: Eltrino\EbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
+            createdAt:
+                label: Created At
+                frontend_type: datetime
+        properties:
+            id: ~
+            view_link:
+                type: url
+                route: eltrino_ebay_order_view
+                params: [ id ]
+        sorters:
+            columns:
+                ebayOrderId:            { data_name: o.ebayOrderId }
+                orderStatus:            { data_name: o.orderStatus }
+                amountPaid:             { data_name: o.amountPaid }
+                currencyId:             { data_name: o.currencyId }
+                salesTaxPercent:        { data_name: o.salesTaxPercent }
+                salesTaxAmount:         { data_name: step.salesTaxAmount }
+                shippingService:        { data_name: o.shippingService }
+                shippingServiceCost:    { data_name: o.shippingServiceCost }
+                paymentMethods:         { data_name: o.paymentMethods }
+                sellerEmail:            { data_name: o.sellerEmail }
+                subtotal:               { data_name: o.subtotal }
+                total:                  { data_name: o.total }
+                createdAt:              { data_name: o.createdAt }
+        filters:
+            columns:
+                ebayOrderId:
+                    type: string
+                    data_name: o.ebayOrderId
+                orderStatus:
+                    type: string
+                    data_name: o.orderStatus
+                amountPaid:
+                    type:             number
+                    data_name:        o.amountPaid
+                    options:
+                        data_type:    Oro\Bundle\FilterBundle\Form\Type\Filter\NumberFilterType::DATA_DECIMAL
+                salesTaxAmount:
+                  type:             number
+                  data_name:        o.salesTaxAmount
+                  options:
+                      data_type:    Oro\Bundle\FilterBundle\Form\Type\Filter\NumberFilterType::DATA_DECIMAL
+                shippingService:
+                    type: string
+                    data_name: o.shippingService
+                shippingServiceCost:
+                    type:             number
+                    data_name:        o.shippingServiceCost
+                    options:
+                        data_type:    Oro\Bundle\FilterBundle\Form\Type\Filter\NumberFilterType::DATA_DECIMAL
+                paymentMethods:
+                    type: string
+                    data_name: o.paymentMethods
+                sellerEmail:
+                    type: string
+                    data_name: o.sellerEmail
+                subtotal:
+                    type:             number
+                    data_name:        o.subtotal
+                    options:
+                        data_type:    Oro\Bundle\FilterBundle\Form\Type\Filter\NumberFilterType::DATA_DECIMAL
+                total:
+                    type:             number
+                    data_name:        o.total
+                    options:
+                        data_type:    Oro\Bundle\FilterBundle\Form\Type\Filter\NumberFilterType::DATA_DECIMAL
+        actions:
+            view:
+                type:         navigate
+                label:        eltrino.ebay.datagrid.actions.view.label
+                link:         view_link
+                icon:         book
+                rowAction:    true
+        options:
+            entityHint: order
+
+    ebay-orderitem-grid:
+        source:
+            type: orm
+            query:
+                select:
+                    - o
+                from:
+                    - { table: %eltrino_ebay.order_item.entity.class%, alias: o }
+                where:
+                    and:
+                        - o.order = :id
+        columns:
+            sku:
+                label: sku
+            orderLineItemId:
+                label: Order Line Item ID
+            quantityPurchased:
+                label: Qty
+            itemSite:
+                label: Item Site
+            itemTitle:
+                label: Item Title
+            conditionDisplayName:
+                label: Condition
+            transactionPrice:
+                label:  Transaction Price
+                type:   localized_number
+                method: formatCurrency
+                context_resolver: Eltrino\EbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
+        sorters:
+            columns:
+                sku:                     { data_name: o.sku }
+                orderLineItemId:         { data_name: o.orderLineItemId }
+                quantityPurchased:       { data_name: o.quantityPurchased }
+                itemSite:                { data_name: o.itemSite }
+                itemTitle:               { data_name: o.itemTitle }
+                conditionDisplayName:    { data_name: o.conditionDisplayName }
+                transactionPrice:        { data_name: o.transactionPrice }
+        filters:
+            columns:
+                sku:
+                    type: string
+                    data_name: o.sku
+                orderLineItemId:
+                    type: string
+                    data_name: o.orderLineItemId
+                quantityPurchased:
+                    type:             number
+                    data_name:        o.quantityPurchased
+                    options:
+                        data_type:    Oro\Bundle\FilterBundle\Form\Type\Filter\NumberFilterType::DATA_DECIMAL
+                itemSite:
+                    type: string
+                    data_name: o.itemSite
+                itemTitle:
+                    type: string
+                    data_name: o.itemTitle
+                conditionDisplayName:
+                    type: string
+                    data_name: o.conditionDisplayName
+                transactionPrice:
+                    type:             number
+                    data_name:        o.transactionPrice
+                    options:
+                        data_type:    Oro\Bundle\FilterBundle\Form\Type\Filter\NumberFilterType::DATA_DECIMAL
+        options:
+            entityHint: order item

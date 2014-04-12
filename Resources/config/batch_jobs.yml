@@ -1,0 +1,16 @@
+connector:
+    name: oro_importexport
+    jobs:
+        # Order import job
+        ebay_order_import:
+            title: "Order Import from Ebay REST API"
+            type: import
+            steps:
+                import:
+                    title:     import
+                    services:
+                        reader:    eltrino_ebay.provider.ebay_order_connector
+                        processor: oro_importexport.processor.import_delegate
+                        writer:    oro_integration.writer.persistent_batch_writer
+                    parameters:
+                        batch_size: 100

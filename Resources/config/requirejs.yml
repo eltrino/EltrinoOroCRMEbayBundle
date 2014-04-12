@@ -1,0 +1,3 @@
+config:
+    paths:
+        'eltrino/ebay/rest-checker': 'bundles/eltrinoebay/js/rest-checker.js'

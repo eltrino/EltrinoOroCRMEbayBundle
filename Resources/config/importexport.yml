@@ -1,0 +1,49 @@
+parameters:
+    # entities
+    eltrino_ebay.order.entity.class:                                          Eltrino\EbayBundle\Entity\Order
+    eltrino_ebay.order_item.entity.class:                                     Eltrino\EbayBundle\Entity\OrderItem
+
+    # connectors
+    eltrino_ebay.provider.ebay_order_connector.class:                         Eltrino\EbayBundle\Provider\EbayOrderConnector
+
+    # normalizer
+    eltrino_ebay.importexport.denormalizer.order.class:                       Eltrino\EbayBundle\ImportExport\Serializer\OrderDenormalizer
+
+    # strategies
+    eltrino_ebay.import_strategy.order.add_or_update.class:                   Eltrino\EbayBundle\ImportExport\Strategy\OrderStrategy
+
+services:
+    # connectors
+    eltrino_ebay.provider.ebay_order_connector:
+        class: %eltrino_ebay.provider.ebay_order_connector.class%
+        arguments:
+          - @eltrino_ebay.action.factory
+          - @oro_importexport.context_registry
+          - @oro_integration.provider.connector_context_mediator
+          - @eltrino_ebay.ebay_rest_client.factory
+          - @eltrino_ebay.filters.factory
+        tags:
+          - { name: oro_integration.connector, type: order, channel_type: ebay }
+
+    # Normalizers / Denormalizers
+    eltrino_ebay.importexport.denormalizer.order:
+        class: %eltrino_ebay.importexport.denormalizer.order.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @eltrino_ebay.order.factory
+        tags:
+            - { name: oro_importexport.normalizer }
+
+    # strategies
+    eltrino_ebay.import.strategy.order.add_or_update:
+        class: %eltrino_ebay.import_strategy.order.add_or_update.class%
+        arguments:
+            - @oro_importexport.strategy.import.helper
+
+    # Processors
+    eltrino_ebay.importexport.processor.import_order:
+        parent: oro_importexport.processor.import_abstract
+        calls:
+             - [setStrategy, [@eltrino_ebay.import.strategy.order.add_or_update]]
+        tags:
+            - { name: oro_importexport.processor, type: import, entity: %eltrino_ebay.order.entity.class%, alias: eltrino_ebay.add_or_update_order }
