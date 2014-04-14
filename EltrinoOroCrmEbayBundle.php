@@ -1,6 +1,6 @@
 <?php
 
-namespace Eltrino\EbayBundle;
+namespace Eltrino\OroCrmEbayBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
