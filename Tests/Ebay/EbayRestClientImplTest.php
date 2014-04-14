@@ -6,7 +6,9 @@
  * Time: 4:40 PM
  */
 
-namespace Eltrino\OroCrmEbayBundle\Tests\Ebay;Eltrino\OroCrmEbayBundle\undle\Ebay\EbayRestClientImpl;
+namespace Eltrino\OroCrmEbayBundle\Tests\Ebay;
+
+use Eltrino\OroCrmEbayBundle\Ebay\EbayRestClientImpl;
 
 class EbayRestClientImplTest extends \PHPUnit_Framework_TestCase
 {
@@ -14,10 +16,11 @@ class EbayRestClientImplTest extends \PHPUnit_Framework_TestCase
     {
         $client = $this->getMockBuilder('Guzzle\Http\ClientInterface')
             ->getMock();
-        $authHandler = $this->getMEltrino\OroCrmEbayBundle\\EbayBundle\Ebay\Api\AuthorizationHandler')
+        $authHandler = $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler')
             ->getMock();
         $ebayRestClient = new EbayRestClientImpl($client, $authHandler);
-        $this->assertInstancEltrino\OroCrmEbayBundle\ltrino\EbayBundle\Ebay\Api\OrderRestClient',
+        $this->assertInstanceOf(
+            'Eltrino\OroCrmEbayBundle\Ebay\Api\OrderRestClient',
             $ebayRestClient->getOrderRestClient()
         );
     }

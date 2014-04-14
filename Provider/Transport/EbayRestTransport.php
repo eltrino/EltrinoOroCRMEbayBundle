@@ -11,7 +11,7 @@ use Oro\Bundle\IntegrationBundle\Provider\TransportInterface;
  * used to fetch and pull data to/from Ebay instance
  * with sessionId param using REST requests
  *
- * @package Eltrino\EbayBundle
+ * @package Eltrino\OroCrmEbayBundle
  */
 class EbayRestTransport implements TransportInterface
 {
@@ -36,7 +36,7 @@ class EbayRestTransport implements TransportInterface
      */
     public function getSettingsEntityFQCN()
     {
-        return 'Eltrino\\EbayBundle\\Entity\\EbayRestTransport';
+        return 'Eltrino\OroCrmEbayBundle\Entity\EbayRestTransport';
     }
 
 

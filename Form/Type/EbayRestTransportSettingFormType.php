@@ -45,7 +45,7 @@ class EbayRestTransportSettingFormType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(['data_class' => 'Eltrino\\EbayBundle\\Entity\\EbayRestTransport']);
+        $resolver->setDefaults(['data_class' => 'Eltrino\OroCrmEbayBundle\Entity\EbayRestTransport']);
     }
 
     /**

@@ -6,7 +6,9 @@
  * Time: 5:38 PM
  */
 
-namespace Eltrino\OroCrmEbayBundle\Tests\Provider\Iterator;Eltrino\OroCrmEbayBundle\undle\Provider\Iterator\EbayDataIterator;
+namespace Eltrino\OroCrmEbayBundle\Tests\Provider\Iterator;
+
+use Eltrino\OroCrmEbayBundle\Provider\Iterator\EbayDataIterator;
 
 class EbayDataIteratorTest extends \PHPUnit_Framework_TestCase
 {
@@ -23,7 +25,7 @@ class EbayDataIteratorTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->loader = $this
-            ->getMEltrino\OroCrmEbayBundle\\EbayBundle\Provider\Iterator\Loader')
+            ->getMockBuilder('Eltrino\OroCrmEbayBundle\Provider\Iterator\Loader')
             ->getMock();
 
         $this->iterator = new EbayDataIterator($this->loader);

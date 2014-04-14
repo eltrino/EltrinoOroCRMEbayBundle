@@ -6,7 +6,9 @@
  * Time: 5:37 PM
  */
 
-namespace Eltrino\OroCrmEbayBundle\Tests\Provider\Iterator\Order;Eltrino\OroCrmEbayBundle\undle\Provider\Iterator\Order\UpdateModeLoader;
+namespace Eltrino\OroCrmEbayBundle\Tests\Provider\Iterator\Order;
+
+use Eltrino\OroCrmEbayBundle\Provider\Iterator\Order\UpdateModeLoader;
 
 class UpdateModeLoaderTest extends \PHPUnit_Framework_TestCase
 {
@@ -18,22 +20,24 @@ class UpdateModeLoaderTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $action = $this
-            ->getMEltrino\OroCrmEbayBundle\\EbayBundle\Provider\Actions\Action')
+            ->getMockBuilder('Eltrino\OroCrmEbayBundle\Provider\Actions\Action')
             ->getMock();
         $filtersFactory = $this
-            Eltrino\OroCrmEbayBundle\ltrino\EbayBundle\Ebay\Filters\FiltersFactory')
+            ->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Filters\FiltersFactory')
             ->getMock();
         $compositeFilter = $this
-      Eltrino\OroCrmEbayBundle\der('Eltrino\EbayBundle\Ebay\Filters\CompositeFilter')
+            ->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Filters\CompositeFilter')
             ->getMock();
         $createTimeFilter = $this
-Eltrino\OroCrmEbayBundle\ckBuilder('Eltrino\EbayBundle\Ebay\Filters\CreateTimeRangeFilter')
+            ->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Filters\CreateTimeRangeFilter')
             ->disableOriginalConstructor()
             ->getMock();
-        $modTimeFilter = Eltrino\OroCrmEbayBundle\>getMockBuilder('Eltrino\EbayBundle\Ebay\Filters\ModTimeRangeFilter')
+        $modTimeFilter = $this
+            ->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Filters\ModTimeRangeFilter')
             ->disableOriginalConstructor()
             ->getMock();
-        $pagerFilEltrino\OroCrmEbayBundle\     ->getMockBuilder('Eltrino\EbayBundle\Ebay\Filters\PagerFilter')
+        $pagerFilter = $this
+            ->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Filters\PagerFilter')
             ->disableOriginalConstructor()
             ->getMock();
 

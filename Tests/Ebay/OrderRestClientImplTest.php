@@ -6,7 +6,9 @@
  * Time: 4:37 PM
  */
 
-namespace Eltrino\OroCrmEbayBundle\Tests\Ebay;Eltrino\OroCrmEbayBundle\undle\Ebay\OrderRestClientImpl;
+namespace Eltrino\OroCrmEbayBundle\Tests\Ebay;
+
+use Eltrino\OroCrmEbayBundle\Ebay\OrderRestClientImpl;
 
 class OrderRestClientImplTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,7 +18,7 @@ class OrderRestClientImplTest extends \PHPUnit_Framework_TestCase
     private $client;
 
     /**
- Eltrino\OroCrmEbayBundle\\EbayBundle\Ebay\Api\AuthorizationHandler
+     * @var Eltrino\OroCrmEbayBundle\EbayBundle\Ebay\Api\AuthorizationHandler
      */
     private $authHandler;
 
@@ -45,7 +47,8 @@ class OrderRestClientImplTest extends \PHPUnit_Framework_TestCase
      */
     private $orderRestClient;
 
-   Eltrino\OroCrmEbayBundle\ltrino\EbayBundle\Ebay\Filters\Filter
+    /**
+     * @var Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter
      */
     private $filter;
 
@@ -58,7 +61,7 @@ class OrderRestClientImplTest extends \PHPUnit_Framework_TestCase
     {
         $this->client = $this->getMockBuilder('Guzzle\Http\ClientInterface')
             ->getMock();
-        $this->authHandler =Eltrino\OroCrmEbayBundle\der('Eltrino\EbayBundle\Ebay\Api\AuthorizationHandler')
+        $this->authHandler = $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler')
             ->getMock();
         $this->request = $this->getMockBuilder('Guzzle\Http\Message\RequestInterface')
             ->getMock();
@@ -118,7 +121,7 @@ class OrderRestClientImplTest extends \PHPUnit_Framework_TestCase
      */
     private function createFilter()
     {
-        return $this->getMockBuilder('Eltrino\\EbayBundle\\Ebay\\Filters\\Filter')
+        return $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter')
             ->getMock();
     }
 }

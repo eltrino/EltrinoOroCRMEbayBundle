@@ -20,7 +20,7 @@ use Oro\Bundle\IntegrationBundle\Entity\Status;
 
 class EbayOrderConnector extends IteratorBasedReader implements ConnectorInterface
 {
-    const ORDER_TYPE = 'Eltrino\\EbayBundle\\Entity\\Order';
+    const ORDER_TYPE = 'Eltrino\OroCrmEbayBundle\Entity\Order';
 
     /**
      * @var ContextRegistry

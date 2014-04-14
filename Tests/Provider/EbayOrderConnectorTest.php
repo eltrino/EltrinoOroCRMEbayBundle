@@ -1,11 +1,13 @@
 <?php
 
-namespace Eltrino\OroCrmEbayBundle\Tests\Provider;Eltrino\OroCrmEbayBundle\undle\Provider\EbayOrderConnector;
+namespace Eltrino\OroCrmEbayBundle\Tests\Provider;
+
+use Eltrino\OroCrmEbayBundle\Provider\EbayOrderConnector;
 
 class EbayOrderConnectorTest extends \PHPUnit_Framework_TestCase
 {
     /**
- Eltrino\OroCrmEbayBundle\\EbayBundle\Provider\Actions\ActionFactory;
+     * @var \Eltrino\OroCrmEbayBundle\Provider\Actions\ActionFactory
      */
     private $actionFactory;
 
@@ -19,12 +21,10 @@ class EbayOrderConnectorTest extends \PHPUnit_Framework_TestCase
      */
     private $contextMediator;
 
-   Eltrino\OroCrmEbayBundle\ltrino\EbayBundle\Ebay\EbayRestClientFactory
-     */
-    private $ebayRestClientFactoryEltrino\OroCrmEbayBundle\var \Eltrino\EbayBundle\Ebay\Filters\FiltersFactory
-     */
-    private $filtersFEltrino\OroCrmEbayBundle\   * @var \Eltrino\EbayBundle\Provider\EbayOrderConnector;
-     */
+    private $ebayRestClientFactory;
+
+    private $filtersFactory;
+
     private $ebayOrderConnector;
 
     public function setUp()
@@ -51,7 +51,7 @@ class EbayOrderConnectorTest extends \PHPUnit_Framework_TestCase
 
     public function testGetImportEntityFQCN()
     {
-        $this->assertEquals('Eltrino\\EbayBundle\\Entity\\Order', $this->ebayOrderConnector->getImportEntityFQCN());
+        $this->assertEquals('Eltrino\OroCrmEbayBundle\Entity\Order', $this->ebayOrderConnector->getImportEntityFQCN());
     }
 
     public function testGetType()
@@ -64,7 +64,7 @@ class EbayOrderConnectorTest extends \PHPUnit_Framework_TestCase
      */
     private function createActionFactory()
     {
-        return $this->getMockBuilder('Eltrino\\EbayBundle\\Provider\\Actions\\ActionFactory')
+        return $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Provider\Actions\ActionFactory')
             ->getMock();
     }
 
@@ -73,7 +73,7 @@ class EbayOrderConnectorTest extends \PHPUnit_Framework_TestCase
      */
     private function createContextRegistry()
     {
-        return $this->getMockBuilder('Oro\\Bundle\\ImportExportBundle\\Context\\ContextRegistry')
+        return $this->getMockBuilder('Oro\Bundle\ImportExportBundle\Context\ContextRegistry')
             ->getMock();
     }
 
@@ -82,7 +82,7 @@ class EbayOrderConnectorTest extends \PHPUnit_Framework_TestCase
      */
     private function createContextMediator()
     {
-        return $this->getMockBuilder('Oro\\Bundle\\IntegrationBundle\\Provider\\ConnectorContextMediator')
+        return $this->getMockBuilder('Oro\Bundle\IntegrationBundle\Provider\ConnectorContextMediator')
             ->disableOriginalConstructor()
             ->getMock();
     }
@@ -92,7 +92,7 @@ class EbayOrderConnectorTest extends \PHPUnit_Framework_TestCase
      */
     private function createEbayRestClientFactory()
     {
-        return $this->getMockBuilder('Eltrino\\EbayBundle\\Ebay\\EbayRestClientFactory')
+        return $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\EbayRestClientFactory')
             ->getMock();
     }
 
@@ -101,7 +101,7 @@ class EbayOrderConnectorTest extends \PHPUnit_Framework_TestCase
      */
     private function createFiltersFactory()
     {
-        return $this->getMockBuilder('Eltrino\\EbayBundle\\Ebay\\Filters\\FiltersFactory')
+        return $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Filters\FiltersFactory')
             ->getMock();
     }
 }

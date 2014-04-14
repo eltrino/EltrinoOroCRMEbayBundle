@@ -1,4 +1,4 @@
 eltrino_ebay_bundle:
-    resource:     "@EltrinoEbayBundle/Controller"
+    resource:     "@EltrinoOroCrmEbayBundle/Controller"
     type:         annotation
     prefix:       /ebay
