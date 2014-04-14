@@ -1,13 +1,11 @@
 <?php
 
-namespace Eltrino\EbayBundle\Tests\Provider;
-
-use Eltrino\EbayBundle\Provider\EbayOrderConnector;
+namespace Eltrino\OroCrmEbayBundle\Tests\Provider;Eltrino\OroCrmEbayBundle\undle\Provider\EbayOrderConnector;
 
 class EbayOrderConnectorTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Eltrino\EbayBundle\Provider\Actions\ActionFactory;
+ Eltrino\OroCrmEbayBundle\\EbayBundle\Provider\Actions\ActionFactory;
      */
     private $actionFactory;
 
@@ -21,18 +19,11 @@ class EbayOrderConnectorTest extends \PHPUnit_Framework_TestCase
      */
     private $contextMediator;
 
-    /**
-     * @var \Eltrino\EbayBundle\Ebay\EbayRestClientFactory
+   Eltrino\OroCrmEbayBundle\ltrino\EbayBundle\Ebay\EbayRestClientFactory
      */
-    private $ebayRestClientFactory;
-
-    /**
-     * @var \Eltrino\EbayBundle\Ebay\Filters\FiltersFactory
+    private $ebayRestClientFactoryEltrino\OroCrmEbayBundle\var \Eltrino\EbayBundle\Ebay\Filters\FiltersFactory
      */
-    private $filtersFactory;
-
-    /**
-     * @var \Eltrino\EbayBundle\Provider\EbayOrderConnector;
+    private $filtersFEltrino\OroCrmEbayBundle\   * @var \Eltrino\EbayBundle\Provider\EbayOrderConnector;
      */
     private $ebayOrderConnector;
 

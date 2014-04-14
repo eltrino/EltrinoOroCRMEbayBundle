@@ -6,8 +6,8 @@
  * Time: 9:34 PM
  */
 
-namespace Eltrino\EbayBundle\Entity\OrderItemTraits;
-use Eltrino\EbayBundle\Model\OrderItem\Transaction;
+namespace Eltrino\OroCrmEbayBundle\Entity\OrderItemTraits;
+use Eltrino\OroCrmEbayBundle\Model\OrderItem\Transaction;
 
 trait TransactionTrait
 {
@@ -57,4 +57,4 @@ trait TransactionTrait
         $this->currencyId            = $transaction->getCurrencyId();
         $this->totalTaxAmount        = $transaction->getTotalTaxAmount();
     }
-} 
+}

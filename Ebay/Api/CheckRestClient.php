@@ -6,8 +6,8 @@
  * Time: 4:07 PM
  */
 
-namespace Eltrino\EbayBundle\Ebay\Api;
-use Eltrino\EbayBundle\Ebay\Filters\ComponentFilter;
+namespace Eltrino\OroCrmEbayBundle\Ebay\Api;
+use Eltrino\OroCrmEbayBundle\Ebay\Filters\ComponentFilter;
 
 interface CheckRestClient
 {
@@ -16,4 +16,4 @@ interface CheckRestClient
      * @return mixed
      */
     function getTime(ComponentFilter $componentFilter);
-} 
+}

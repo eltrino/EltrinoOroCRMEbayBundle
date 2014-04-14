@@ -6,7 +6,7 @@
  * Time: 9:29 PM
  */
 
-namespace Eltrino\EbayBundle\Model\OrderItem;
+namespace Eltrino\OroCrmEbayBundle\Model\OrderItem;
 
 class Transaction
 {
@@ -69,4 +69,4 @@ class Transaction
     {
         return $this->currencyId;
     }
-} 
+}

@@ -6,11 +6,11 @@
  * Time: 7:08 PM
  */
 
-namespace Eltrino\EbayBundle\Provider\Actions;
+namespace Eltrino\OroCrmEbayBundle\Provider\Actions;
 
-use Eltrino\EbayBundle\Provider\Actions\CheckConnectionAction;
-use Eltrino\EbayBundle\Provider\Actions\OrderAction;
-use Eltrino\EbayBundle\Ebay\Api\EbayRestClient;
+use Eltrino\OroCrmEbayBundle\Provider\Actions\CheckConnectionAction;
+use Eltrino\OroCrmEbayBundle\Provider\Actions\OrderAction;
+use Eltrino\OroCrmEbayBundle\Ebay\Api\EbayRestClient;
 
 class ActionFactory
 {

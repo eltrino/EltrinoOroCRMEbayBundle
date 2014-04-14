@@ -6,11 +6,11 @@
  * Time: 4:09 PM
  */
 
-namespace Eltrino\EbayBundle\Ebay;
+namespace Eltrino\OroCrmEbayBundle\Ebay;
 
-use Eltrino\EbayBundle\Ebay\Api\CheckRestClient;
-use Eltrino\EbayBundle\Ebay\Api\AuthorizationHandler;
-use Eltrino\EbayBundle\Ebay\Filters\ComponentFilter;
+use Eltrino\OroCrmEbayBundle\Ebay\Api\CheckRestClient;
+use Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler;
+use Eltrino\OroCrmEbayBundle\Ebay\Filters\ComponentFilter;
 use Guzzle\Http\ClientInterface;
 
 class CheckRestClientImpl implements CheckRestClient
@@ -92,4 +92,4 @@ class CheckRestClientImpl implements CheckRestClient
             return false;
         }
     }
-} 
+}

@@ -6,7 +6,7 @@
  * Time: 7:02 PM
  */
 
-namespace Eltrino\EbayBundle\Model\Request;
+namespace Eltrino\OroCrmEbayBundle\Model\Request;
 
 class Request
 {

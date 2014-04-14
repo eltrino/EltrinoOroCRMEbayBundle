@@ -6,7 +6,7 @@
  * Time: 12:40 PM
  */
 
-namespace Eltrino\EbayBundle\Model\Order;
+namespace Eltrino\OroCrmEbayBundle\Model\Order;
 
 
 class Shipping
@@ -72,4 +72,4 @@ class Shipping
     }
 
 
-} 
+}

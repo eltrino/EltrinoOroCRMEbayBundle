@@ -6,8 +6,8 @@
  * Time: 4:09 PM
  */
 
-namespace Eltrino\EbayBundle\Ebay\Api;
-use Eltrino\EbayBundle\Ebay\Filters\Filter;
+namespace Eltrino\OroCrmEbayBundle\Ebay\Api;
+use Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter;
 
 interface OrderRestClient
 {

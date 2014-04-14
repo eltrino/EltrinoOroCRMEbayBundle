@@ -6,7 +6,7 @@
  * Time: 4:10 PM
  */
 
-namespace Eltrino\EbayBundle\Ebay;
+namespace Eltrino\OroCrmEbayBundle\Ebay;
 
 use Guzzle\Http\Client;
 use Guzzle\Http\ClientInterface;

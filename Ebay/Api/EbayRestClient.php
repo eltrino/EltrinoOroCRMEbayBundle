@@ -6,7 +6,7 @@
  * Time: 4:09 PM
  */
 
-namespace Eltrino\EbayBundle\Ebay\Api;
+namespace Eltrino\OroCrmEbayBundle\Ebay\Api;
 
 interface EbayRestClient
 {

@@ -6,7 +6,7 @@
  * Time: 5:33 PM
  */
 
-namespace Eltrino\EbayBundle\Ebay\Filters;
+namespace Eltrino\OroCrmEbayBundle\Ebay\Filters;
 
 class ModTimeRangeFilter implements Filter
 {

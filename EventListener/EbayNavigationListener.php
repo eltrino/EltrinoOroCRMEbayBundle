@@ -6,7 +6,7 @@
  * Time: 1:58 AM
  */
 
-namespace Eltrino\EbayBundle\EventListener;
+namespace Eltrino\OroCrmEbayBundle\EventListener;
 
 use Doctrine\ORM\EntityManager;
 
@@ -16,11 +16,11 @@ use Symfony\Component\Routing\RouterInterface;
 
 use Oro\Bundle\IntegrationBundle\Entity\Channel;
 use Oro\Bundle\NavigationBundle\Event\ConfigureMenuEvent;
-use Eltrino\EbayBundle\Provider\EbayChannelType;
+use Eltrino\OroCrmEbayBundle\Provider\EbayChannelType;
 
 /**
  * Class EbayNavigationListener.
- * @package Eltrino\EbayBundle\EventListener
+ * @package Eltrino\OroCrmEbayBundle\EventListener
  */
 class EbayNavigationListener
 {

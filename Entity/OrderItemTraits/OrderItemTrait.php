@@ -6,7 +6,7 @@
  * Time: 12:42 PM
  */
 
-namespace Eltrino\EbayBundle\Entity\OrderItemTraits;
+namespace Eltrino\OroCrmEbayBundle\Entity\OrderItemTraits;
 
 trait OrderItemTrait
 {
@@ -66,4 +66,4 @@ trait OrderItemTrait
         return $this->currencyId;
     }
 
-} 
+}

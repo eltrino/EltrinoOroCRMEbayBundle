@@ -6,11 +6,11 @@
  * Time: 1:32 PM
  */
 
-namespace Eltrino\EbayBundle\Entity\OrderTraits;
+namespace Eltrino\OroCrmEbayBundle\Entity\OrderTraits;
 
-use Eltrino\EbayBundle\Entity\OrderTraits\ShippingTrait;
-use Eltrino\EbayBundle\Entity\OrderTraits\PaymentTrait;
-use Eltrino\EbayBundle\Model\Order\OrderDetails;
+use Eltrino\OroCrmEbayBundle\Entity\OrderTraits\ShippingTrait;
+use Eltrino\OroCrmEbayBundle\Entity\OrderTraits\PaymentTrait;
+use Eltrino\OroCrmEbayBundle\Model\Order\OrderDetails;
 
 trait OrderDetailsTrait
 {
@@ -53,4 +53,4 @@ trait OrderDetailsTrait
         $this->sellerEmail = $orderDetails->getSellerEmail();
     }
 
-} 
+}

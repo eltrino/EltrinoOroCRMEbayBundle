@@ -6,9 +6,9 @@
  * Time: 1:23 PM
  */
 
-namespace Eltrino\EbayBundle\Model\Order;
-use Eltrino\EbayBundle\Model\Order\Payment;
-use Eltrino\EbayBundle\Model\Order\Shipping;
+namespace Eltrino\OroCrmEbayBundle\Model\Order;
+use Eltrino\OroCrmEbayBundle\Model\Order\Payment;
+use Eltrino\OroCrmEbayBundle\Model\Order\Shipping;
 
 class OrderDetails
 {
@@ -100,4 +100,4 @@ class OrderDetails
         return $this->shipping;
     }
 
-} 
+}

@@ -6,11 +6,11 @@
  * Time: 5:04 PM
  */
 
-namespace Eltrino\EbayBundle\Provider\Iterator\Order;
+namespace Eltrino\OroCrmEbayBundle\Provider\Iterator\Order;
 
-use Eltrino\EbayBundle\Ebay\Filters\CompositeFilter;
-use Eltrino\EbayBundle\Ebay\Filters\FiltersFactory;
-use Eltrino\EbayBundle\Provider\Actions\Action;
+use Eltrino\OroCrmEbayBundle\Ebay\Filters\CompositeFilter;
+use Eltrino\OroCrmEbayBundle\Ebay\Filters\FiltersFactory;
+use Eltrino\OroCrmEbayBundle\Provider\Actions\Action;
 
 class InitialModeLoader extends AbstractLoader
 {

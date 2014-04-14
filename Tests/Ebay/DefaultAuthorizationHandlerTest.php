@@ -6,9 +6,7 @@
  * Time: 2:58 PM
  */
 
-namespace Eltrino\EbayBundle\Tests\Ebay;
-
-use Eltrino\EbayBundle\Ebay\DefaultAuthorizationHandler;
+namespace Eltrino\OroCrmEbayBundle\Tests\Ebay;Eltrino\OroCrmEbayBundle\undle\Ebay\DefaultAuthorizationHandler;
 
 class DefaultAuthorizationHandlerTest extends \PHPUnit_Framework_TestCase
 {

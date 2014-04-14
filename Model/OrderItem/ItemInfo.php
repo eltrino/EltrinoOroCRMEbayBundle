@@ -6,7 +6,7 @@
  * Time: 9:29 PM
  */
 
-namespace Eltrino\EbayBundle\Model\OrderItem;
+namespace Eltrino\OroCrmEbayBundle\Model\OrderItem;
 
 class ItemInfo
 {
@@ -83,4 +83,4 @@ class ItemInfo
     {
         return $this->conditionDisplayName;
     }
-} 
+}

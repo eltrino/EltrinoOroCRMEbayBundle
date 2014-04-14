@@ -6,9 +6,9 @@
  * Time: 5:34 PM
  */
 
-namespace Eltrino\EbayBundle\Provider\Iterator;
+namespace Eltrino\OroCrmEbayBundle\Provider\Iterator;
 
-use Eltrino\EbayBundle\Provider\Iterator\LoaderReachedEndException;
+use Eltrino\OroCrmEbayBundle\Provider\Iterator\LoaderReachedEndException;
 
 class EbayDataIterator implements \Iterator
 {

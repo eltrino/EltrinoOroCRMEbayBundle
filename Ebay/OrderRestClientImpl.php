@@ -6,11 +6,11 @@
  * Time: 4:12 PM
  */
 
-namespace Eltrino\EbayBundle\Ebay;
+namespace Eltrino\OroCrmEbayBundle\Ebay;
 
-use Eltrino\EbayBundle\Ebay\Api\AuthorizationHandler;
-use Eltrino\EbayBundle\Ebay\Api\OrderRestClient;
-use Eltrino\EbayBundle\Ebay\Filters\Filter;
+use Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler;
+use Eltrino\OroCrmEbayBundle\Ebay\Api\OrderRestClient;
+use Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter;
 use Guzzle\Http\ClientInterface;
 
 class OrderRestClientImpl implements OrderRestClient

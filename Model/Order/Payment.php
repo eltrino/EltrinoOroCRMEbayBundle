@@ -6,11 +6,11 @@
  * Time: 9:57 AM
  */
 
-namespace Eltrino\EbayBundle\Model\Order;
+namespace Eltrino\OroCrmEbayBundle\Model\Order;
 
 /**
  * Class File, Value Object
- * @package Eltrino\EbayBundle\Model
+ * @package Eltrino\OroCrmEbayBundle\Model
  */
 class Payment
 {
@@ -61,4 +61,4 @@ class Payment
     }
 
 
-} 
+}

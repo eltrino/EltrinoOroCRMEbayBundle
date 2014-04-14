@@ -6,8 +6,8 @@
  * Time: 12:46 PM
  */
 
-namespace Eltrino\EbayBundle\Entity\OrderTraits;
-use Eltrino\EbayBundle\Model\Order\Shipping;
+namespace Eltrino\OroCrmEbayBundle\Entity\OrderTraits;
+use Eltrino\OroCrmEbayBundle\Model\Order\Shipping;
 
 trait ShippingTrait
 {
@@ -58,4 +58,4 @@ trait ShippingTrait
         $this->shippingService     = $shipping->getShippingService();
         $this->shippingServiceCost = $shipping->getShippingServiceCost();
     }
-} 
+}

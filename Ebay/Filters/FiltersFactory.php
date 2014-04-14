@@ -6,7 +6,7 @@
  * Time: 2:45 PM
  */
 
-namespace Eltrino\EbayBundle\Ebay\Filters;
+namespace Eltrino\OroCrmEbayBundle\Ebay\Filters;
 
 class FiltersFactory
 {

@@ -6,9 +6,7 @@
  * Time: 5:36 PM
  */
 
-namespace Eltrino\EbayBundle\Tests\Ebay\Filters;
-
-use Eltrino\EbayBundle\Ebay\Filters\PagerFilter;
+namespace Eltrino\OroCrmEbayBundle\Tests\Ebay\Filters;Eltrino\OroCrmEbayBundle\undle\Ebay\Filters\PagerFilter;
 
 class PagerFilterTest extends \PHPUnit_Framework_TestCase
 {

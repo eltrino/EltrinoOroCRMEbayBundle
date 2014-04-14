@@ -6,9 +6,9 @@
  * Time: 2:16 PM
  */
 
-namespace Eltrino\EbayBundle\Entity\CustomerTraits;
+namespace Eltrino\OroCrmEbayBundle\Entity\CustomerTraits;
 
-use Eltrino\EbayBundle\Model\Customer\CustomerAddress;
+use Eltrino\OroCrmEbayBundle\Model\Customer\CustomerAddress;
 
 trait CustomerAddressTrait
 {
@@ -75,4 +75,4 @@ trait CustomerAddressTrait
         $this->countryName     = $customerAddress->getCountryName();
         $this->postalCode      = $customerAddress->getPostalCode();
     }
-} 
+}

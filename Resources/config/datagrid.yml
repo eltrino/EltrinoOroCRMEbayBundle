@@ -19,7 +19,7 @@ datagrid:
                 label: Paid Amoint
                 type:   localized_number
                 method: formatCurrency
-                context_resolver: Eltrino\EbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
+                context_resolver: Eltrino\OroCrmEbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
             currencyId:
                 label: Currency
             salesTaxPercent:
@@ -28,14 +28,14 @@ datagrid:
                 label: Sales Tax Amount
                 type:   localized_number
                 method: formatCurrency
-                context_resolver: Eltrino\EbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
+                context_resolver: Eltrino\OroCrmEbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
             shippingService:
                 label: Shipping Service
             shippingServiceCost:
                 label: Shipping Service Cost
                 type:   localized_number
                 method: formatCurrency
-                context_resolver: Eltrino\EbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
+                context_resolver: Eltrino\OroCrmEbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
             paymentMethods:
                 label: Payment Methods
             sellerEmail:
@@ -44,12 +44,12 @@ datagrid:
                 label: Subtotal
                 type:   localized_number
                 method: formatCurrency
-                context_resolver: Eltrino\EbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
+                context_resolver: Eltrino\OroCrmEbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
             total:
                 label: Total
                 type:   localized_number
                 method: formatCurrency
-                context_resolver: Eltrino\EbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
+                context_resolver: Eltrino\OroCrmEbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
             createdAt:
                 label: Created At
                 frontend_type: datetime
@@ -154,7 +154,7 @@ datagrid:
                 label:  Transaction Price
                 type:   localized_number
                 method: formatCurrency
-                context_resolver: Eltrino\EbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
+                context_resolver: Eltrino\OroCrmEbayBundle\Grid\FormatterContextResolver::getResolverCurrencyClosure
         sorters:
             columns:
                 sku:                     { data_name: o.sku }

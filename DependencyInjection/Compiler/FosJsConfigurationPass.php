@@ -1,5 +1,5 @@
 <?php
-namespace Eltrino\EbayBundle\DependencyInjection\Compiler;
+namespace Eltrino\OroCrmEbayBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;

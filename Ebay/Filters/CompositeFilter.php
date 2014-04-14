@@ -6,7 +6,7 @@
  * Time: 2:31 PM
  */
 
-namespace Eltrino\EbayBundle\Ebay\Filters;
+namespace Eltrino\OroCrmEbayBundle\Ebay\Filters;
 
 class CompositeFilter implements Filter
 {

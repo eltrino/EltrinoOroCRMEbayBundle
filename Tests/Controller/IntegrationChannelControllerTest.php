@@ -1,6 +1,6 @@
 <?php
 
-namespace Eltrino\EbayBundle\Tests\Controller;
+namespace Eltrino\OroCrmEbayBundle\Tests\Controller;
 
 use Oro\Bundle\TestFrameworkBundle\Test\WebTestCase;
 use Oro\Bundle\TestFrameworkBundle\Test\ToolsAPI;

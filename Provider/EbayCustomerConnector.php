@@ -1,6 +1,6 @@
 <?php
 
-namespace Eltrino\EbayBundle\Provider;
+namespace Eltrino\OroCrmEbayBundle\Provider;
 
 use Oro\Bundle\IntegrationBundle\Provider\ConnectorInterface;
 

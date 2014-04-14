@@ -6,9 +6,7 @@
  * Time: 5:36 PM
  */
 
-namespace Eltrino\EbayBundle\Tests\Provider\Iterator\Order;
-
-use Eltrino\EbayBundle\Provider\Iterator\Order\InitialModeLoader;
+namespace Eltrino\OroCrmEbayBundle\Tests\Provider\Iterator\Order;Eltrino\OroCrmEbayBundle\undle\Provider\Iterator\Order\InitialModeLoader;
 
 class InitialModeLoaderTest extends \PHPUnit_Framework_TestCase
 {
@@ -20,20 +18,19 @@ class InitialModeLoaderTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $action = $this
-            ->getMockBuilder('Eltrino\EbayBundle\Provider\Actions\Action')
+            ->getMEltrino\OroCrmEbayBundle\\EbayBundle\Provider\Actions\Action')
             ->getMock();
         $filtersFactory = $this
-            ->getMockBuilder('Eltrino\EbayBundle\Ebay\Filters\FiltersFactory')
+            Eltrino\OroCrmEbayBundle\ltrino\EbayBundle\Ebay\Filters\FiltersFactory')
             ->getMock();
         $compositeFilter = $this
-            ->getMockBuilder('Eltrino\EbayBundle\Ebay\Filters\CompositeFilter')
+      Eltrino\OroCrmEbayBundle\der('Eltrino\EbayBundle\Ebay\Filters\CompositeFilter')
             ->getMock();
         $createTimeFilter = $this
-            ->getMockBuilder('Eltrino\EbayBundle\Ebay\Filters\CreateTimeRangeFilter')
+Eltrino\OroCrmEbayBundle\ckBuilder('Eltrino\EbayBundle\Ebay\Filters\CreateTimeRangeFilter')
             ->disableOriginalConstructor()
             ->getMock();
-        $pagerFilter = $this
-            ->getMockBuilder('Eltrino\EbayBundle\Ebay\Filters\PagerFilter')
+        $pagerFilter = Eltrino\OroCrmEbayBundle\>getMockBuilder('Eltrino\EbayBundle\Ebay\Filters\PagerFilter')
             ->disableOriginalConstructor()
             ->getMock();
 

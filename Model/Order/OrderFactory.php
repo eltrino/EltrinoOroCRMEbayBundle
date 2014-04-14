@@ -6,17 +6,17 @@
  * Time: 2:03 PM
  */
 
-namespace Eltrino\EbayBundle\Model\Order;
+namespace Eltrino\OroCrmEbayBundle\Model\Order;
 
-use Eltrino\EbayBundle\Entity\Customer;
-use Eltrino\EbayBundle\Entity\Order;
-use Eltrino\EbayBundle\Entity\OrderItem;
-use Eltrino\EbayBundle\Model\Customer\CustomerAddress;
+use Eltrino\OroCrmEbayBundle\Entity\Customer;
+use Eltrino\OroCrmEbayBundle\Entity\Order;
+use Eltrino\OroCrmEbayBundle\Entity\OrderItem;
+use Eltrino\OroCrmEbayBundle\Model\Customer\CustomerAddress;
 use SimpleXMLElement;
 use Doctrine\Common\Collections\ArrayCollection;
 
-use Eltrino\EbayBundle\Model\OrderItem\ItemInfo;
-use Eltrino\EbayBundle\Model\OrderItem\Transaction;
+use Eltrino\OroCrmEbayBundle\Model\OrderItem\ItemInfo;
+use Eltrino\OroCrmEbayBundle\Model\OrderItem\Transaction;
 
 class OrderFactory
 {

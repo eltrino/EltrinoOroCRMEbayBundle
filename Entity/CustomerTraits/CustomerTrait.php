@@ -6,7 +6,7 @@
  * Time: 11:50 AM
  */
 
-namespace Eltrino\EbayBundle\Entity\CustomerTraits;
+namespace Eltrino\OroCrmEbayBundle\Entity\CustomerTraits;
 
 trait CustomerTrait
 {
@@ -57,4 +57,4 @@ trait CustomerTrait
     {
         return $this->stateOrProvince;
     }
-} 
+}

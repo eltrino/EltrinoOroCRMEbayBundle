@@ -1,16 +1,16 @@
 <?php
 
-namespace Eltrino\EbayBundle\Entity;
+namespace Eltrino\OroCrmEbayBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Eltrino\EbayBundle\Entity\CustomerTraits\CustomerAddressTrait;
-use Eltrino\EbayBundle\Entity\CustomerTraits\CustomerTrait;
-use Eltrino\EbayBundle\Model\Customer\CustomerAddress;
+use Eltrino\OroCrmEbayBundle\Entity\CustomerTraits\CustomerAddressTrait;
+use Eltrino\OroCrmEbayBundle\Entity\CustomerTraits\CustomerTrait;
+use Eltrino\OroCrmEbayBundle\Model\Customer\CustomerAddress;
 
 /**
  * Class Customer
  *
- * @package Eltrino\EbayBundle\Entity
+ * @package Eltrino\OroCrmEbayBundle\Entity
  * @ORM\Entity()
  * @ORM\Table(name="eltrino_ebay_customer")
  */
@@ -58,7 +58,7 @@ class Customer
     private $phone;
 
     /**
-     * @var \Eltrino\EbayBundle\Model\Customer\CustomerAddress
+     * @var \Eltrino\OroCrmEbayBundle\Model\Customer\CustomerAddress
      */
     private $customerAddress;
 
@@ -111,7 +111,7 @@ class Customer
     }
 
     /**
-     * @return \Eltrino\EbayBundle\Entity\Order
+     * @return \Eltrino\OroCrmEbayBundle\Entity\Order
      */
     public function getOrder()
     {

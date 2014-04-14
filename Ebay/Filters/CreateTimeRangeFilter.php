@@ -6,7 +6,7 @@
  * Time: 5:32 PM
  */
 
-namespace Eltrino\EbayBundle\Ebay\Filters;
+namespace Eltrino\OroCrmEbayBundle\Ebay\Filters;
 
 class CreateTimeRangeFilter implements Filter
 {

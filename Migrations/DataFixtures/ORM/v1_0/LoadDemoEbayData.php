@@ -1,13 +1,13 @@
 <?php
 
-namespace Eltrino\EbayBundle\Migrations\DataFixtures\ORM\v1_0;
+namespace Eltrino\OroCrmEbayBundle\Migrations\DataFixtures\ORM\v1_0;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 use Oro\Bundle\IntegrationBundle\Entity\Channel;
-use Eltrino\EbayBundle\Entity\EbayRestTransport;
+use Eltrino\OroCrmEbayBundle\Entity\EbayRestTransport;
 
 class LoadDemoEbayData extends AbstractFixture
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Eltrino\EbayBundle\Entity;
+namespace Eltrino\OroCrmEbayBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\ParameterBag;
@@ -8,7 +8,7 @@ use Oro\Bundle\IntegrationBundle\Entity\Transport;
 
 /**
  * Class EbayRestTransport
- * @package Eltrino\EbayBundle\Entity
+ * @package Eltrino\OroCrmEbayBundle\Entity
  * @ORM\Entity()
  */
 class EbayRestTransport extends Transport

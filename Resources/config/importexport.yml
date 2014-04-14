@@ -1,16 +1,16 @@
 parameters:
     # entities
-    eltrino_ebay.order.entity.class:                                          Eltrino\EbayBundle\Entity\Order
-    eltrino_ebay.order_item.entity.class:                                     Eltrino\EbayBundle\Entity\OrderItem
+    eltrino_ebay.order.entity.class:                                          Eltrino\OroCrmEbayBundle\Entity\Order
+    eltrino_ebay.order_item.entity.class:                                     Eltrino\OroCrmEbayBundle\Entity\OrderItem
 
     # connectors
-    eltrino_ebay.provider.ebay_order_connector.class:                         Eltrino\EbayBundle\Provider\EbayOrderConnector
+    eltrino_ebay.provider.ebay_order_connector.class:                         Eltrino\OroCrmEbayBundle\Provider\EbayOrderConnector
 
     # normalizer
-    eltrino_ebay.importexport.denormalizer.order.class:                       Eltrino\EbayBundle\ImportExport\Serializer\OrderDenormalizer
+    eltrino_ebay.importexport.denormalizer.order.class:                       Eltrino\OroCrmEbayBundle\ImportExport\Serializer\OrderDenormalizer
 
     # strategies
-    eltrino_ebay.import_strategy.order.add_or_update.class:                   Eltrino\EbayBundle\ImportExport\Strategy\OrderStrategy
+    eltrino_ebay.import_strategy.order.add_or_update.class:                   Eltrino\OroCrmEbayBundle\ImportExport\Strategy\OrderStrategy
 
 services:
     # connectors

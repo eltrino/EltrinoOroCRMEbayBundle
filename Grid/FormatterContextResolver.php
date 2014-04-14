@@ -1,5 +1,5 @@
 <?php
-namespace Eltrino\EbayBundle\Grid;
+namespace Eltrino\OroCrmEbayBundle\Grid;
 
 use Oro\Bundle\LocaleBundle\Formatter\NumberFormatter;
 use Oro\Bundle\DataGridBundle\Datasource\ResultRecordInterface;

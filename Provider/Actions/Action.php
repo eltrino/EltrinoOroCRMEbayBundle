@@ -6,8 +6,8 @@
  * Time: 6:22 PM
  */
 
-namespace Eltrino\EbayBundle\Provider\Actions;
-use Eltrino\EbayBundle\Ebay\Filters\Filter;
+namespace Eltrino\OroCrmEbayBundle\Provider\Actions;
+use Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter;
 
 interface Action
 {

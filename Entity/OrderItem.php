@@ -1,18 +1,18 @@
 <?php
 
-namespace Eltrino\EbayBundle\Entity;
+namespace Eltrino\OroCrmEbayBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Eltrino\EbayBundle\Entity\OrderItemTraits\OrderItemTrait;
-use Eltrino\EbayBundle\Entity\OrderItemTraits\TransactionTrait;
-use Eltrino\EbayBundle\Entity\OrderItemTraits\ItemInfoTrait;
-use Eltrino\EbayBundle\Model\OrderItem\ItemInfo;
-use Eltrino\EbayBundle\Model\OrderItem\Transaction;
+use Eltrino\OroCrmEbayBundle\Entity\OrderItemTraits\OrderItemTrait;
+use Eltrino\OroCrmEbayBundle\Entity\OrderItemTraits\TransactionTrait;
+use Eltrino\OroCrmEbayBundle\Entity\OrderItemTraits\ItemInfoTrait;
+use Eltrino\OroCrmEbayBundle\Model\OrderItem\ItemInfo;
+use Eltrino\OroCrmEbayBundle\Model\OrderItem\Transaction;
 
 /**
  * Class OrderItem
  *
- * @package Eltrino\EbayBundle\Entity
+ * @package Eltrino\OroCrmEbayBundle\Entity
  * @ORM\Entity()
  * @ORM\Table(name="eltrino_ebay_order_items")
  */
@@ -99,7 +99,7 @@ class OrderItem
     }
 
     /**
-     * @return \Eltrino\EbayBundle\Entity\Order
+     * @return \Eltrino\OroCrmEbayBundle\Entity\Order
      */
     public function getOrder()
     {

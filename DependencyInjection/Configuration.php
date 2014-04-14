@@ -1,6 +1,6 @@
 <?php
 
-namespace Eltrino\EbayBundle\DependencyInjection;
+namespace Eltrino\OroCrmEbayBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

@@ -6,9 +6,9 @@
  * Time: 1:15 PM
  */
 
-namespace Eltrino\EbayBundle\Ebay;
+namespace Eltrino\OroCrmEbayBundle\Ebay;
 
-use Eltrino\EbayBundle\Ebay\Api\AuthorizationHandler;
+use Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler;
 
 class DefaultAuthorizationHandler implements AuthorizationHandler
 {

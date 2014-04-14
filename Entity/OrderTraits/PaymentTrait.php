@@ -6,8 +6,8 @@
  * Time: 9:57 AM
  */
 
-namespace Eltrino\EbayBundle\Entity\OrderTraits;
-use Eltrino\EbayBundle\Model\Order\Payment;
+namespace Eltrino\OroCrmEbayBundle\Entity\OrderTraits;
+use Eltrino\OroCrmEbayBundle\Model\Order\Payment;
 
 trait PaymentTrait
 {

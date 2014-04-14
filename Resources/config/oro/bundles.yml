@@ -1,2 +1,2 @@
 bundles:
-    - Eltrino\EbayBundle\EltrinoEbayBundle
+    - Eltrino\OroCrmEbayBundle\EltrinoEbayBundle

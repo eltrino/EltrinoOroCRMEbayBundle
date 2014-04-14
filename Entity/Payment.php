@@ -6,7 +6,7 @@
  * Time: 7:53 PM
  */
 
-namespace Eltrino\EbayBundle\Entity;
+namespace Eltrino\OroCrmEbayBundle\Entity;
 
 
 class Payment
@@ -25,4 +25,4 @@ class Payment
     {
         return $this->payidAmount;
     }
-} 
+}

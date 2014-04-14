@@ -6,9 +6,9 @@
  * Time: 4:58 PM
  */
 
-namespace Eltrino\EbayBundle\Provider\Iterator;
+namespace Eltrino\OroCrmEbayBundle\Provider\Iterator;
 
-use Eltrino\EbayBundle\Provider\Iterator\LoaderReachedEndException;
+use Eltrino\OroCrmEbayBundle\Provider\Iterator\LoaderReachedEndException;
 
 interface Loader
 {

@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Oro\Bundle\IntegrationBundle\Entity\Channel;
 use Oro\Bundle\IntegrationBundle\Provider\ConnectorInterface;
 
-use Eltrino\EbayBundle\Entity\EbayRestTransport;
+use Eltrino\OroCrmEbayBundle\Entity\EbayRestTransport;
 
 class EbayRestController extends Controller
 {

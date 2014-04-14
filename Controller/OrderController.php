@@ -1,6 +1,6 @@
 <?php
 
-namespace Eltrino\EbayBundle\Controller;
+namespace Eltrino\OroCrmEbayBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Oro\Bundle\IntegrationBundle\Entity\Channel;
-use Eltrino\EbayBundle\Entity\Order;
+use Eltrino\OroCrmEbayBundle\Entity\Order;
 
 
 /**

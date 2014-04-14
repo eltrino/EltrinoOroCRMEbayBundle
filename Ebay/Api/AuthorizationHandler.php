@@ -6,7 +6,7 @@
  * Time: 12:32 PM
  */
 
-namespace Eltrino\EbayBundle\Ebay\Api;
+namespace Eltrino\OroCrmEbayBundle\Ebay\Api;
 
 interface AuthorizationHandler
 {

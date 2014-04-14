@@ -1,11 +1,11 @@
 <?php
 
-namespace Eltrino\EbayBundle\ImportExport\Strategy;
+namespace Eltrino\OroCrmEbayBundle\ImportExport\Strategy;
 
 use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\EntityRepository;
 
-use Eltrino\EbayBundle\Entity\Order;
+use Eltrino\OroCrmEbayBundle\Entity\Order;
 
 use Oro\Bundle\ImportExportBundle\Context\ContextAwareInterface;
 use Oro\Bundle\ImportExportBundle\Context\ContextInterface;

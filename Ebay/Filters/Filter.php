@@ -6,7 +6,7 @@
  * Time: 1:20 PM
  */
 
-namespace Eltrino\EbayBundle\Ebay\Filters;
+namespace Eltrino\OroCrmEbayBundle\Ebay\Filters;
 
 interface Filter
 {

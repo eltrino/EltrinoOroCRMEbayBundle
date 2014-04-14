@@ -6,9 +6,9 @@
  * Time: 7:08 PM
  */
 
-namespace Eltrino\EbayBundle\Model\Request;
+namespace Eltrino\OroCrmEbayBundle\Model\Request;
 
-use Eltrino\EbayBundle\Model\Request\Request;
+use Eltrino\OroCrmEbayBundle\Model\Request\Request;
 
 class RequestFactory
 {

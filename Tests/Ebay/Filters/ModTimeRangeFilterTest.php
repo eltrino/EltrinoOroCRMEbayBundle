@@ -6,9 +6,7 @@
  * Time: 5:35 PM
  */
 
-namespace Eltrino\EbayBundle\Tests\Ebay\Filters;
-
-use Eltrino\EbayBundle\Ebay\Filters\ModTimeRangeFilter;
+namespace Eltrino\OroCrmEbayBundle\Tests\Ebay\Filters;Eltrino\OroCrmEbayBundle\undle\Ebay\Filters\ModTimeRangeFilter;
 
 class ModTimeRangeFilterTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,8 +1,6 @@
 <?php
 
-namespace Eltrino\EbayBundle\Tests\Provider;
-
-use Eltrino\EbayBundle\Provider\EbayChannelType;
+namespace Eltrino\OroCrmEbayBundle\Tests\Provider;Eltrino\OroCrmEbayBundle\undle\Provider\EbayChannelType;
 
 class EbayChannelTypeTest extends \PHPUnit_Framework_TestCase
 {

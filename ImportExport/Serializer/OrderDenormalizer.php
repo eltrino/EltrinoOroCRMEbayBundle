@@ -1,6 +1,6 @@
 <?php
 
-namespace ELtrino\EbayBundle\ImportExport\Serializer;
+namespace Eltrino\OroCrmEbayBundle\ImportExport\Serializer;
 
 use Doctrine\ORM\EntityManager;
 
@@ -9,8 +9,8 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-use Eltrino\EbayBundle\Model\Order\OrderFactory;
-use Eltrino\EbayBundle\Provider\EbayOrderConnector;
+use Eltrino\OroCrmEbayBundle\Model\Order\OrderFactory;
+use Eltrino\OroCrmEbayBundle\Provider\EbayOrderConnector;
 
 class OrderDenormalizer implements SerializerAwareInterface, DenormalizerInterface
 {
@@ -20,7 +20,7 @@ class OrderDenormalizer implements SerializerAwareInterface, DenormalizerInterfa
     private $serializer;
 
     /**
-     * @var \Eltrino\EbayBundle\Model\Order\OrderFactory
+     * @var \Eltrino\OroCrmEbayBundle\Model\Order\OrderFactory
      */
     private $orderFactory;
 

@@ -1,32 +1,32 @@
 parameters:
     # transport
-    eltrino_ebay.ebay_rest_transport.class:                              Eltrino\EbayBundle\Provider\Transport\EbayRestTransport
+    eltrino_ebay.ebay_rest_transport.class:                              Eltrino\OroCrmEbayBundle\Provider\Transport\EbayRestTransport
 
     # providers
-    eltrino_ebay.provider.ebay_channel_type.class:                       Eltrino\EbayBundle\Provider\EbayChannelType
+    eltrino_ebay.provider.ebay_channel_type.class:                       Eltrino\OroCrmEbayBundle\Provider\EbayChannelType
 
     # forms
-    eltrino_ebay.form.type.ebay_rest_transport_setting.class:            Eltrino\EbayBundle\Form\Type\EbayRestTransportSettingFormType
+    eltrino_ebay.form.type.ebay_rest_transport_setting.class:            Eltrino\OroCrmEbayBundle\Form\Type\EbayRestTransportSettingFormType
 
-    eltrino_ebay.order.factory.class:                                    Eltrino\EbayBundle\Model\Order\OrderFactory
+    eltrino_ebay.order.factory.class:                                    Eltrino\OroCrmEbayBundle\Model\Order\OrderFactory
 
-    eltrino_ebay.request.factory.class:                                  Eltrino\EbayBundle\Model\Request\RequestFactory
+    eltrino_ebay.request.factory.class:                                  Eltrino\OroCrmEbayBundle\Model\Request\RequestFactory
 
-    eltrino_ebay.client.factory.class:                                   Eltrino\EbayBundle\Model\Client\ClientFactory
+    eltrino_ebay.client.factory.class:                                   Eltrino\OroCrmEbayBundle\Model\Client\ClientFactory
 
-    eltrino_ebay.action.factory.class:                                   Eltrino\EbayBundle\Provider\Actions\ActionFactory
+    eltrino_ebay.action.factory.class:                                   Eltrino\OroCrmEbayBundle\Provider\Actions\ActionFactory
 
-    eltrino_ebay.order_action.class:                                     Eltrino\EbayBundle\Provider\Actions\OrderAction
+    eltrino_ebay.order_action.class:                                     Eltrino\OroCrmEbayBundle\Provider\Actions\OrderAction
 
-    eltrino_ebay.check_action.class:                                     Eltrino\EbayBundle\Provider\Actions\CheckConnectionAction
+    eltrino_ebay.check_action.class:                                     Eltrino\OroCrmEbayBundle\Provider\Actions\CheckConnectionAction
 
-    eltrino_ebay.rest_client.class:                                      Eltrino\EbayBundle\Ebay\EbayRestClientImpl
+    eltrino_ebay.rest_client.class:                                      Eltrino\OroCrmEbayBundle\Ebay\EbayRestClientImpl
 
-    eltrino_ebay.ebay_rest_client.factory_class:                         Eltrino\EbayBundle\Ebay\EbayRestClientFactory
+    eltrino_ebay.ebay_rest_client.factory_class:                         Eltrino\OroCrmEbayBundle\Ebay\EbayRestClientFactory
 
-    eltrino_ebay.filters.factory_class:                                  Eltrino\EbayBundle\Ebay\Filters\FiltersFactory
+    eltrino_ebay.filters.factory_class:                                  Eltrino\OroCrmEbayBundle\Ebay\Filters\FiltersFactory
 
-    eltrino_ebay.navigation.listener_class:                              Eltrino\EbayBundle\EventListener\EbayNavigationListener
+    eltrino_ebay.navigation.listener_class:                              Eltrino\OroCrmEbayBundle\EventListener\EbayNavigationListener
 
 services:
    # transport

@@ -1,22 +1,22 @@
 <?php
 
-namespace Eltrino\EbayBundle\Entity;
+namespace Eltrino\OroCrmEbayBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Eltrino\EbayBundle\Entity\OrderTraits\OrderTrait;
+use Eltrino\OroCrmEbayBundle\Entity\OrderTraits\OrderTrait;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Oro\Bundle\IntegrationBundle\Entity\Transport;
 use Oro\Bundle\IntegrationBundle\Model\IntegrationEntityTrait;
 use Doctrine\Common\Collections\ArrayCollection;
-use Eltrino\EbayBundle\Entity\OrderTraits\OrderDetailsTrait;
+use Eltrino\OroCrmEbayBundle\Entity\OrderTraits\OrderDetailsTrait;
 
-use Eltrino\EbayBundle\Model\Order\OrderDetails;
+use Eltrino\OroCrmEbayBundle\Model\Order\OrderDetails;
 
 
 /**
  * Class Order
  *
- * @package Eltrino\EbayBundle\Entity
+ * @package Eltrino\OroCrmEbayBundle\Entity
  * @ORM\Entity()
  * @ORM\Table(name="eltrino_ebay_order")
  */

@@ -6,7 +6,7 @@
  * Time: 8:54 PM
  */
 
-namespace Eltrino\EbayBundle\Entity\OrderTraits;
+namespace Eltrino\OroCrmEbayBundle\Entity\OrderTraits;
 
 trait OrderTrait
 {
@@ -113,4 +113,4 @@ trait OrderTrait
     {
         return $this->shippingServiceCost;
     }
-} 
+}

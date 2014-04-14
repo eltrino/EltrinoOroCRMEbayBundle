@@ -1,9 +1,9 @@
 <?php
 
-namespace Eltrino\EbayBundle\Provider\Transport;
+namespace Eltrino\OroCrmEbayBundle\Provider\Transport;
 
 use Oro\Bundle\IntegrationBundle\Entity\Transport;
-use Eltrino\EbayBundle\Provider\Iterator\OrderRestIterator;
+use Eltrino\OroCrmEbayBundle\Provider\Iterator\OrderRestIterator;
 use Oro\Bundle\IntegrationBundle\Provider\TransportInterface;
 
 /**

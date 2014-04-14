@@ -6,7 +6,7 @@
  * Time: 5:29 PM
  */
 
-namespace Eltrino\EbayBundle\Ebay\Filters;
+namespace Eltrino\OroCrmEbayBundle\Ebay\Filters;
 
 class PagerFilter implements Filter
 {

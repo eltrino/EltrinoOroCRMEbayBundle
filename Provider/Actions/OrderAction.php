@@ -6,15 +6,15 @@
  * Time: 6:29 PM
  */
 
-namespace Eltrino\EbayBundle\Provider\Actions;
+namespace Eltrino\OroCrmEbayBundle\Provider\Actions;
 
-use Eltrino\EbayBundle\Ebay\Api\EbayRestClient;
-use Eltrino\EbayBundle\Ebay\Filters\Filter;
+use Eltrino\OroCrmEbayBundle\Ebay\Api\EbayRestClient;
+use Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter;
 
 class OrderAction implements Action
 {
     /**
-     * @var \Eltrino\EbayBundle\Ebay\EbayRestClient
+     * @var \Eltrino\OroCrmEbayBundle\Ebay\EbayRestClient
      */
     private $ebayRestClient;
 

@@ -6,8 +6,8 @@
  * Time: 9:34 PM
  */
 
-namespace Eltrino\EbayBundle\Entity\OrderItemTraits;
-use Eltrino\EbayBundle\Model\OrderItem\ItemInfo;
+namespace Eltrino\OroCrmEbayBundle\Entity\OrderItemTraits;
+use Eltrino\OroCrmEbayBundle\Model\OrderItem\ItemInfo;
 
 trait ItemInfoTrait
 {

@@ -1,19 +1,19 @@
 <?php
 
-namespace Eltrino\EbayBundle\Provider;
+namespace Eltrino\OroCrmEbayBundle\Provider;
 
-use Eltrino\EbayBundle\Ebay\EbayRestClientFactory;
-use Eltrino\EbayBundle\Provider\Iterator\EbayDataIterator;
-use Eltrino\EbayBundle\Provider\Iterator\Order\InitialModeLoader;
-use Eltrino\EbayBundle\Provider\Iterator\Order\UpdateModeLoader;
+use Eltrino\OroCrmEbayBundle\Ebay\EbayRestClientFactory;
+use Eltrino\OroCrmEbayBundle\Provider\Iterator\EbayDataIterator;
+use Eltrino\OroCrmEbayBundle\Provider\Iterator\Order\InitialModeLoader;
+use Eltrino\OroCrmEbayBundle\Provider\Iterator\Order\UpdateModeLoader;
 use Oro\Bundle\ImportExportBundle\Reader\IteratorBasedReader;
 use Oro\Bundle\IntegrationBundle\Provider\ConnectorInterface;
 use Oro\Bundle\IntegrationBundle\Provider\ConnectorContextMediator;
 use Oro\Bundle\ImportExportBundle\Context\ContextInterface;
 use Oro\Bundle\ImportExportBundle\Context\ContextRegistry;
-use Eltrino\EbayBundle\Provider\Actions\ActionFactory;
-use Eltrino\EbayBundle\Ebay\Filters\FiltersFactory;
-use Eltrino\EbayBundle\Provider\Iterator\OrderIterator;
+use Eltrino\OroCrmEbayBundle\Provider\Actions\ActionFactory;
+use Eltrino\OroCrmEbayBundle\Ebay\Filters\FiltersFactory;
+use Eltrino\OroCrmEbayBundle\Provider\Iterator\OrderIterator;
 use OroCRM\Bundle\MagentoBundle\Provider\Iterator\UpdatedLoaderInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Oro\Bundle\IntegrationBundle\Entity\Status;
@@ -43,7 +43,7 @@ class EbayOrderConnector extends IteratorBasedReader implements ConnectorInterfa
     private $ebayRestClientFactory;
 
     /**
-     * @var \Eltrino\EbayBundle\Ebay\Filters\FiltersFactory
+     * @var \Eltrino\OroCrmEbayBundle\Ebay\Filters\FiltersFactory
      */
     private $filtersFactory;
 

@@ -6,7 +6,7 @@
  * Time: 2:08 PM
  */
 
-namespace Eltrino\EbayBundle\Model\Customer;
+namespace Eltrino\OroCrmEbayBundle\Model\Customer;
 
 class CustomerAddress
 {
@@ -119,4 +119,4 @@ class CustomerAddress
     }
 
 
-} 
+}

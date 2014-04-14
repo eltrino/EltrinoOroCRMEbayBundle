@@ -6,9 +6,7 @@
  * Time: 5:32 PM
  */
 
-namespace Eltrino\EbayBundle\Tests\Ebay\Filters;
-
-use Eltrino\EbayBundle\Ebay\Filters\CreateTimeRangeFilter;
+namespace Eltrino\OroCrmEbayBundle\Tests\Ebay\Filters;Eltrino\OroCrmEbayBundle\undle\Ebay\Filters\CreateTimeRangeFilter;
 
 class CreateTimeRangeFilterTest extends \PHPUnit_Framework_TestCase
 {
