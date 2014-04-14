@@ -6,7 +6,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Eltrino\EbayBundle\DependencyInjection\Compiler\FosJsConfigurationPass;
 
-class EltrinoEbayBundle extends Bundle
+class EltrinoOroCrmEbayBundle extends Bundle
 {
     /**
      * {@inheritdoc}
