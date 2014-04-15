@@ -7,7 +7,7 @@
  */
 
 namespace Eltrino\OroCrmEbayBundle\Ebay\Api;
-use Eltrino\OroCrmEbayBundle\Ebay\Filters\ComponentFilter;
+use Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter;
 
 interface CheckRestClient
 {
@@ -15,5 +15,5 @@ interface CheckRestClient
      * @param ComponentFilter $componentFilter
      * @return mixed
      */
-    function getTime(ComponentFilter $componentFilter);
+    function getTime(Filter $filter);
 }

@@ -92,7 +92,7 @@ services:
             - @oro_datagrid.datagrid.request_params
             - false
         tags:
-            - { name: kernel.event_listener, event: oro_datagrid.datgrid.build.after.orders-grid, method: onBuildAfter }
+            - { name: kernel.event_listener, event: oro_datagrid.datagrid.build.after.orders-grid, method: onBuildAfter }
 
     eltrino_ebay.event_listener.order_items_grid_listener:
         class: %oro_datagrid.event_listener.base_orm_relation.class%
@@ -101,6 +101,6 @@ services:
             - @oro_datagrid.datagrid.request_params
             - false
         tags:
-            - { name: kernel.event_listener, event: oro_datagrid.datgrid.build.after.ebay-orderitem-grid, method: onBuildAfter }
+            - { name: kernel.event_listener, event: oro_datagrid.datagrid.build.after.ebay-orderitem-grid, method: onBuildAfter }
 
 

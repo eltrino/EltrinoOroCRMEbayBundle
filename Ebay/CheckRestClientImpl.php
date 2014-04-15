@@ -10,7 +10,7 @@ namespace Eltrino\OroCrmEbayBundle\Ebay;
 
 use Eltrino\OroCrmEbayBundle\Ebay\Api\CheckRestClient;
 use Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler;
-use Eltrino\OroCrmEbayBundle\Ebay\Filters\ComponentFilter;
+use Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter;
 use Guzzle\Http\ClientInterface;
 
 class CheckRestClientImpl implements CheckRestClient
@@ -35,9 +35,14 @@ class CheckRestClientImpl implements CheckRestClient
         $this->authHandler = $authHandler;
     }
 
-    public function getTime(ComponentFilter $componentFilter)
+    /**
+     * @param Filter $filter
+     * @return bool|mixed
+     * @throws \Guzzle\Common\Exception\RuntimeException
+     */
+    public function getTime(Filter $filter)
     {
-        $body = $componentFilter->process($this->getBody());
+        $body = $filter->process($this->getBody());
 
         $response = $this->client
             ->post(null, $this->getHeaders(), $body)
