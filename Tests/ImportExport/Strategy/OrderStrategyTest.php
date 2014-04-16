@@ -14,7 +14,7 @@
  */
 namespace Eltrino\OroCrmEbayBundle\Tests\ImportExport\Srtategy;
 use Eltrino\OroCrmEbayBundle\ImportExport\Strategy\OrderStrategy;
-use Eltrino\OroCrmEbayBundle\Model\Order\OrderFactory;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class OrderStrategyTest extends \PHPUnit_Framework_TestCase
 {
@@ -43,6 +43,11 @@ class OrderStrategyTest extends \PHPUnit_Framework_TestCase
      */
     private $context;
 
+    /**
+     * @var \Oro\Bundle\IntegrationBundle\Entity\Channel
+     */
+    private $channel;
+
     public function setUp()
     {
         $this->strategyHelper = $this->getMockBuilder('Oro\Bundle\ImportExportBundle\Strategy\Import\ImportStrategyHelper')
@@ -59,11 +64,22 @@ class OrderStrategyTest extends \PHPUnit_Framework_TestCase
 
         $this->context = $this->getMockBuilder('Oro\Bundle\ImportExportBundle\Context\StepExecutionProxyContext')
             ->disableOriginalConstructor()->getMock();
+
+        $this->channel = $this->getMockBuilder('Oro\Bundle\IntegrationBundle\Entity\Channel')
+            ->disableOriginalConstructor()->getMock();
     }
 
-    public function testProcess()
+    public function testProcessForCreate()
     {
-        $order = $this->createOrder();
+        $this->order
+            ->expects($this->once())
+            ->method('getEbayOrderId')
+            ->will($this->returnValue(1));
+
+        $this->order
+            ->expects($this->once())
+            ->method('getChannel')
+            ->will($this->returnValue($this->channel));
 
         $this->strategyHelper
             ->expects($this->once())
@@ -78,16 +94,70 @@ class OrderStrategyTest extends \PHPUnit_Framework_TestCase
         $this->repository
             ->expects($this->once())
             ->method('findOneBy')
-            ->will($this->returnValue($order));
+            ->will($this->returnValue(null));
+
+        $this->order
+            ->expects($this->once())
+            ->method('getItems')
+            ->will($this->returnValue(new ArrayCollection()));
+
+        $customer = $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Entity\Customer')
+            ->disableOriginalConstructor()->getMock();
+
+        $this->order
+            ->expects($this->once())
+            ->method('getCustomer')
+            ->will($this->returnValue($customer));
+
+        $strategy = new OrderStrategy($this->strategyHelper);
+        $strategy->setImportExportContext($this->context);
+        $strategy->process($this->order);
+    }
+
+    public function testProcessForUpdate()
+    {
+        $this->order
+            ->expects($this->once())
+            ->method('getEbayOrderId')
+            ->will($this->returnValue(1));
+
+        $this->order
+            ->expects($this->once())
+            ->method('getChannel')
+            ->will($this->returnValue($this->channel));
+
+        $this->strategyHelper
+            ->expects($this->once())
+            ->method('getEntityManager')
+            ->will($this->returnValue($this->em));
+
+        $this->em
+            ->expects($this->once())
+            ->method('getRepository')
+            ->will($this->returnValue($this->repository));
+
+        $this->repository
+            ->expects($this->once())
+            ->method('findOneBy')
+            ->will($this->returnValue($this->order));
 
         $this->strategyHelper
             ->expects($this->once())
             ->method('importEntity')
             ->will($this->returnValue($this->em));
 
-        $this->context
-            ->expects($this->any())
-            ->method('incrementAddCount');
+        $this->order
+            ->expects($this->once())
+            ->method('getItems')
+            ->will($this->returnValue(new ArrayCollection()));
+
+        $customer = $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Entity\Customer')
+            ->disableOriginalConstructor()->getMock();
+
+        $this->order
+            ->expects($this->once())
+            ->method('getCustomer')
+            ->will($this->returnValue($customer));
 
         $this->context
             ->expects($this->any())
@@ -95,18 +165,7 @@ class OrderStrategyTest extends \PHPUnit_Framework_TestCase
 
         $strategy = new OrderStrategy($this->strategyHelper);
         $strategy->setImportExportContext($this->context);
-        $strategy->process($order);
+        $strategy->process($this->order);
     }
 
-    /**
-     * @return \Eltrino\OroCrmEbayBundle\Entity\Order
-     */
-    private function createOrder()
-    {
-        $fileName = __DIR__ . DIRECTORY_SEPARATOR . 'dictionaries' . DIRECTORY_SEPARATOR . "order.xml";
-        $data = simplexml_load_file($fileName);
-
-        $orderFactory = new OrderFactory();
-        return $orderFactory->createOrder($data);
-    }
 }
