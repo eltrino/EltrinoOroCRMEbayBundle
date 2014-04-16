@@ -10,10 +10,6 @@ parameters:
 
     eltrino_ebay.order.factory.class:                                    Eltrino\OroCrmEbayBundle\Model\Order\OrderFactory
 
-    eltrino_ebay.request.factory.class:                                  Eltrino\OroCrmEbayBundle\Model\Request\RequestFactory
-
-    eltrino_ebay.client.factory.class:                                   Eltrino\OroCrmEbayBundle\Model\Client\ClientFactory
-
     eltrino_ebay.action.factory.class:                                   Eltrino\OroCrmEbayBundle\Provider\Actions\ActionFactory
 
     eltrino_ebay.order_action.class:                                     Eltrino\OroCrmEbayBundle\Provider\Actions\OrderAction
@@ -52,14 +48,9 @@ services:
 
     eltrino_ebay.check_action:
         class: %eltrino_ebay.check_action.class%
-        arguments:
-            - @eltrino_ebay.request.factory
 
     eltrino_ebay.order.factory:
         class: %eltrino_ebay.order.factory.class%
-
-    eltrino_ebay.request.factory:
-        class: %eltrino_ebay.request.factory.class%
 
     eltrino_ebay.client.factory:
         class: %eltrino_ebay.client.factory.class%

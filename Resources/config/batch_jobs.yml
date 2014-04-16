@@ -3,7 +3,7 @@ connector:
     jobs:
         # Order import job
         ebay_order_import:
-            title: "Order Import from Ebay REST API"
+            title: "Order Import from Ebay via REST API"
             type: import
             steps:
                 import:
