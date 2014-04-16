@@ -97,7 +97,7 @@ define(['jquery', 'underscore', 'routing', 'backbone', 'orotranslation/js/transl
                         navigation.loadingMask.hide();
                     }
                     if (status !== 'success') {
-                        this.renderResult('error', __('Error occurred during check request, please try later!'));
+                        this.renderResult('error', __('orocrm.ebay.error'));
                     }
                 }, this));
         },
@@ -109,7 +109,7 @@ define(['jquery', 'underscore', 'routing', 'backbone', 'orotranslation/js/transl
          */
         responseHandler: function (res) {
             var success = res.success || false,
-                message = success ? __('orocrm.ebay.success') : __('orocrm.ebay.not_valid_parameters');
+                message = success ? 'orocrm.ebay.success' : 'orocrm.ebay.not_valid_parameters';
 
             if (success) {
                 var form = this.$el.parents('form');
