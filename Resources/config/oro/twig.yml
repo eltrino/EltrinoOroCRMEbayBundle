@@ -1,0 +1,2 @@
+bundles:
+    - EltrinoOroCrmEbayBundle:Form:fields.html.twig

@@ -1,0 +1,31 @@
+{
+    "name": "eltrino/orocrm-ebay-bundle",
+    "description": "OroCRM eBay Integration Bundle",
+    "homepage": "https://github.com/eltrino/EltrinoOroCRMEbayBundle",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "Eltrino LLC",
+            "homepage": "http://eltrino.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Eltrino\\OroCrmEbayBundle": "."
+        }
+    },
+    "target-dir": "Eltrino/OroCrmEbayBundle",
+    "require": {
+        "php": ">=5.4.4",
+        "oro/platform": "1.0.*",
+        "oro/crm": "1.0.*",
+        "guzzle/guzzle": "3.7.*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
