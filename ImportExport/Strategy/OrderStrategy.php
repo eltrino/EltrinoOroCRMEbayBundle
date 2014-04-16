@@ -21,7 +21,6 @@ class OrderStrategy implements StrategyInterface, ContextAwareInterface
     /** @var ContextInterface */
     private $context;
 
-
     /**
      * @param ImportStrategyHelper $strategyHelper
      */
@@ -30,6 +29,12 @@ class OrderStrategy implements StrategyInterface, ContextAwareInterface
         $this->strategyHelper = $strategyHelper;
     }
 
+    /**
+     * @param mixed $importedOrder
+     * @return mixed|null|object
+     * @throws \Oro\Bundle\ImportExportBundle\Exception\InvalidArgumentException
+     * @throws \Oro\Bundle\ImportExportBundle\Exception\LogicException
+     */
     public function process($importedOrder)
     {
         $criteria = ['ebayOrderId' => $importedOrder->getEbayOrderId(), 'channel' => $importedOrder->getChannel()];

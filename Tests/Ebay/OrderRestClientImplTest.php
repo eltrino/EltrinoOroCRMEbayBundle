@@ -18,7 +18,7 @@ class OrderRestClientImplTest extends \PHPUnit_Framework_TestCase
     private $client;
 
     /**
-     * @var Eltrino\OroCrmEbayBundle\EbayBundle\Ebay\Api\AuthorizationHandler
+     * @var \Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler
      */
     private $authHandler;
 
@@ -38,6 +38,11 @@ class OrderRestClientImplTest extends \PHPUnit_Framework_TestCase
     private $responseXml;
 
     /**
+     * @var \Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter
+     */
+    private $Filter;
+
+    /**
      * @var array
      */
     private $parsedResponseArray;
@@ -46,11 +51,6 @@ class OrderRestClientImplTest extends \PHPUnit_Framework_TestCase
      * @var OrderRestClientImpl
      */
     private $orderRestClient;
-
-    /**
-     * @var Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter
-     */
-    private $filter;
 
     /**
      * @var string

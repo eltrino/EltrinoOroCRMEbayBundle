@@ -24,4 +24,17 @@ class EbayRestClientImplTest extends \PHPUnit_Framework_TestCase
             $ebayRestClient->getOrderRestClient()
         );
     }
+
+    public function testGetCheckRestClient()
+    {
+        $client = $this->getMockBuilder('Guzzle\Http\ClientInterface')
+            ->getMock();
+        $authHandler = $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler')
+            ->getMock();
+        $ebayRestClient = new EbayRestClientImpl($client, $authHandler);
+        $this->assertInstanceOf(
+            'Eltrino\OroCrmEbayBundle\Ebay\Api\CheckRestClient',
+            $ebayRestClient->getCheckRestClient()
+        );
+    }
 }
