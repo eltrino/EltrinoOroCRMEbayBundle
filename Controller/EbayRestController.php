@@ -36,7 +36,6 @@ class EbayRestController extends Controller
      */
     public function checkAction(Request $request)
     {
-
         $transport = $this->get('eltrino_ebay.ebay_rest_transport');
         $data = null;
 
