@@ -46,7 +46,7 @@ class OrderRestClientImplTest extends \PHPUnit_Framework_TestCase
     /**
      * @var \Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter
      */
-    private $Filter;
+    private $filter;
 
     /**
      * @var array
@@ -82,23 +82,7 @@ class OrderRestClientImplTest extends \PHPUnit_Framework_TestCase
         ];
 
         $this->orderRestClient = new OrderRestClientImpl($this->client, $this->authHandler);
-        $this->Filter = $this->createFilter();
-
-        $this->bodyString = '<?xml version="1.0" encoding="utf-8"?>
-        <GetOrdersRequest xmlns="urn:ebay:apis:eBLBaseComponents">
-            <RequesterCredentials>
-            <eBayAuthToken>' . $this->authHandler->getAuthToken() . '</eBayAuthToken>
-            </RequesterCredentials>
-            <CreateTimeFrom>2014-01-01</CreateTimeFrom>
-            <CreateTimeTo>2015-01-01</CreateTimeTo>
-            <OrderRole>Seller</OrderRole>
-            <OrderStatus>Completed</OrderStatus>
-            <Pagination>
-            <EntriesPerPage>100</EntriesPerPage>
-            <PageNumber>1</PageNumber>
-            </Pagination>
-            <SortingOrder>Ascending</SortingOrder>
-        </GetOrdersRequest>';
+        $this->filter = $this->createFilter();
     }
 
     public function testGetOrders()
@@ -115,7 +99,7 @@ class OrderRestClientImplTest extends \PHPUnit_Framework_TestCase
             ->method('xml')
             ->will($this->returnValue($this->responseXml));
 
-        $orders = $this->orderRestClient->getOrders($this->Filter);
+        $orders = $this->orderRestClient->getOrders($this->filter);
 
         $this->assertCount(2, $orders);
         $this->assertXmlStringEqualsXmlString($this->parsedResponseArray[0]->asXml(), $orders[0]->asXml());
