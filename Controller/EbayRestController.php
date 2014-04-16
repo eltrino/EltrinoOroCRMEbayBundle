@@ -26,6 +26,9 @@ use Oro\Bundle\IntegrationBundle\Provider\ConnectorInterface;
 
 use Eltrino\OroCrmEbayBundle\Entity\EbayRestTransport;
 
+/**
+ * @Route("/rest")
+ */
 class EbayRestController extends Controller
 {
     /**
