@@ -1,0 +1,5 @@
+orocrm:
+    ebay:
+        success: Connection successful
+        not_valid_parameters: Parameters are not valid!
+        error: Error occurred during check request, please try later!
