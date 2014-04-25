@@ -13,14 +13,20 @@ eBay integration bundle supports OroCRM version 1.0 or above. Additional require
 Installation
 ------------
 
-Add as dependency in composer
+### Marketplace
 
+Follow `System > Package Manager` to install it from [OroCRM Marketplace][1]
+
+### Composer
+
+Add as dependency in composer
 ```bash
 composer require eltrino/orocrm-ebay-bundle:dev-master
 ```
 
-In addition you will need to run Doctrine schema update
-
+In addition you will need to run platform update
 ```bash
-php app/console doctrine:schema:update --force
+php app/console oro:platform:update
 ```
+
+[1]: http://www.orocrm.com/marketplace/oro-crm/package/orocrm-ebay-integration
