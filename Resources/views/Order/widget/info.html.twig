@@ -18,15 +18,26 @@
         </div>
 
         <div class="responsive-block">
-            {{ ui.renderProperty('Buyer Id'|trans, entity.customer.buyerUserId) }}
-            {{ ui.renderProperty('Buyer name'|trans, entity.customer.name) }}
-            {{ ui.renderProperty('Buyer phone'|trans, entity.customer.phone) }}
-            {{ ui.renderProperty('Street 1'|trans, entity.customer.street1) }}
-            {{ ui.renderProperty('Street 2'|trans, entity.customer.street2) }}
-            {{ ui.renderProperty('City'|trans, entity.customer.city) }}
-            {{ ui.renderProperty('Country'|trans, entity.customer.countryName) }}
-            {{ ui.renderProperty('Postal code'|trans, entity.customer.postalCode) }}
-            {{ ui.renderProperty('State'|trans, entity.customer.stateOrProvince) }}
+            {{ ui.renderProperty('Buyer Id'|trans, entity.buyerUserID) }}
+            {% if entity.buyer %}
+                {% set address = entity.buyer.addresses.0 %}
+                {% if address %}
+                    {{ ui.renderProperty('Buyer name'|trans, address.name) }}
+                    {{ ui.renderProperty('Buyer phone'|trans, address.phone) }}
+                    {{ ui.renderProperty('Street 1'|trans, address.street1) }}
+                    {{ ui.renderProperty('Street 2'|trans, address.street2) }}
+                    {{ ui.renderProperty('City'|trans, address.city) }}
+                    {{ ui.renderProperty('Country'|trans, address.countryName) }}
+                    {{ ui.renderProperty('Postal code'|trans, address.postalCode) }}
+                    {{ ui.renderProperty('State'|trans, address.stateOrProvince) }}
+                {% endif %}
+                {% if entity.buyer.contact %}
+                    {% set contactData %}
+                        <a href="{{ path('orocrm_contact_view', {'id': entity.buyer.contact.id}) }}">{{ entity.buyer.contact|oro_format_name|escape }}</a>
+                    {% endset %}
+                    {{ ui.renderHtmlProperty('Contact'|trans, contactData) }}
+                {% endif %}
+            {% endif %}
         </div>
     </div>
 </div>

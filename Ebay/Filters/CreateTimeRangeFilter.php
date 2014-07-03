@@ -42,7 +42,7 @@ class CreateTimeRangeFilter implements Filter
      * @param $body string
      * @return mixed
      */
-    function process($body)
+    public function process($body)
     {
         $requestNode = new \SimpleXMLElement($body);
 

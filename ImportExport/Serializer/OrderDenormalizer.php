@@ -12,25 +12,18 @@
  * obtain it through the world-wide-web, please send an email
  * to license@eltrino.com so we can send you a copy immediately.
  */
-
 namespace Eltrino\OroCrmEbayBundle\ImportExport\Serializer;
 
 use Doctrine\ORM\EntityManager;
 
-use Symfony\Component\Serializer\SerializerAwareInterface;
+use Oro\Bundle\IntegrationBundle\Entity\Repository\ChannelRepository;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 use Eltrino\OroCrmEbayBundle\Model\Order\OrderFactory;
 use Eltrino\OroCrmEbayBundle\Provider\EbayOrderConnector;
 
-class OrderDenormalizer implements SerializerAwareInterface, DenormalizerInterface
+class OrderDenormalizer implements DenormalizerInterface
 {
-    /**
-     * @var SerializerInterface|NormalizerInterface|DenormalizerInterface
-     */
-    private $serializer;
 
     /**
      * @var \Eltrino\OroCrmEbayBundle\Model\Order\OrderFactory
@@ -46,14 +39,6 @@ class OrderDenormalizer implements SerializerAwareInterface, DenormalizerInterfa
     {
         $this->channelRepository = $em->getRepository('OroIntegrationBundle:Channel');
         $this->orderFactory = $orderFactory;
-    }
-
-    /**
-     * @param SerializerInterface $serializer
-     */
-    public function setSerializer(SerializerInterface $serializer)
-    {
-        $this->serializer = $serializer;
     }
 
     /**

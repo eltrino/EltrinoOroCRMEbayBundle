@@ -12,13 +12,19 @@
  * obtain it through the world-wide-web, please send an email
  * to license@eltrino.com so we can send you a copy immediately.
  */
-namespace Eltrino\OroCrmEbayBundle\Provider\Actions;
-use Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter;
+/**
+ * Created by PhpStorm.
+ * User: Ruslan Voitenko
+ * Date: 5/6/14
+ * Time: 5:50 PM
+ */
 
-interface Action
+namespace Eltrino\OroCrmEbayBundle\Entity;
+
+class AddressFactory
 {
-    /**
-     * @return mixed
-     */
-    public function execute(Filter $filter);
+    public function create($name, $phone, $street1, $street2, $city, $stateOrProvince, $countryCode, $countryName, $postalCode)
+    {
+        return new Address($name, $phone, $street1, $street2, $city, $stateOrProvince, $countryCode, $countryName, $postalCode);
+    }
 }

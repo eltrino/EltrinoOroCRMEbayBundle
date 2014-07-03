@@ -12,9 +12,9 @@
  * obtain it through the world-wide-web, please send an email
  * to license@eltrino.com so we can send you a copy immediately.
  */
-
 namespace Eltrino\OroCrmEbayBundle\Controller;
 
+use Eltrino\OroCrmEbayBundle\Ebay\EbayRestClientFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -47,8 +47,8 @@ class EbayRestController extends Controller
             ->createNamed('rest-check', $transport->getSettingsFormType(), $data, ['csrf_protection' => false]);
         $form->submit($request);
 
+        /** @var EbayRestClientFactory $ebayRestClientFactory */
         $ebayRestClientFactory = $this->get('eltrino_ebay.ebay_rest_client.factory');
-        $actionFactory         = $this->get('eltrino_ebay.action.factory');
         $filtersFactory        = $this->get('eltrino_ebay.filters.factory');
 
         $ebayRestClient = $ebayRestClientFactory->create(
@@ -59,11 +59,8 @@ class EbayRestController extends Controller
             $data->getAuthToken()
         );
 
-        $action = $actionFactory->createCheckConnectionAction($ebayRestClient);
-
-        $compositeFilter = $filtersFactory->createCompositeFilter();
-
-        $result = $action->execute($compositeFilter);
+        $filter = $filtersFactory->createCompositeFilter();
+        $result = $ebayRestClient->getCheckRestClient()->getTime($filter);
 
         return new JsonResponse(
             [

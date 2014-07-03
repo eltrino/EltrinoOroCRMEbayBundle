@@ -14,9 +14,9 @@
  */
 namespace Eltrino\OroCrmEbayBundle\Provider\Iterator\Order;
 
+use Eltrino\OroCrmEbayBundle\Ebay\Api\EbayRestClient;
 use Eltrino\OroCrmEbayBundle\Ebay\Filters\CompositeFilter;
 use Eltrino\OroCrmEbayBundle\Ebay\Filters\FiltersFactory;
-use Eltrino\OroCrmEbayBundle\Provider\Actions\Action;
 use Eltrino\OroCrmEbayBundle\Provider\Iterator\Loader;
 
 abstract class AbstractLoader implements Loader
@@ -25,9 +25,9 @@ abstract class AbstractLoader implements Loader
     const PAGE_NUMBER_TO_START = 1;
 
     /**
-     * @var Action
+     * @var EbayRestClient
      */
-    protected $action;
+    protected $ebayRestClient;
 
     /**
      * @var FiltersFactory
@@ -48,9 +48,9 @@ abstract class AbstractLoader implements Loader
 
     protected $currentPage = self::PAGE_NUMBER_TO_START;
 
-    public function __construct(Action $action, FiltersFactory $filtersFactory, \DateTime $startSyncDate)
+    public function __construct(EbayRestClient $ebayRestClient, FiltersFactory $filtersFactory, \DateTime $startSyncDate)
     {
-        $this->action = $action;
+        $this->ebayRestClient = $ebayRestClient;
         $this->filtersFactory = $filtersFactory;
         $this->startSyncDate = clone $startSyncDate;
         $this->now = new \DateTime('now', new \DateTimeZone('UTC'));

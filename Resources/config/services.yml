@@ -8,13 +8,14 @@ parameters:
     # forms
     eltrino_ebay.form.type.ebay_rest_transport_setting.class:            Eltrino\OroCrmEbayBundle\Form\Type\EbayRestTransportSettingFormType
 
+    # connectors
+    eltrino_ebay.provider.ebay_order_connector.class:                    Eltrino\OroCrmEbayBundle\Provider\EbayOrderConnector
+    eltrino_ebay.provider.ebay_buyer_connector.class:                    Eltrino\OroCrmEbayBundle\Provider\EbayBuyerConnector
+
     eltrino_ebay.order.factory.class:                                    Eltrino\OroCrmEbayBundle\Model\Order\OrderFactory
 
-    eltrino_ebay.action.factory.class:                                   Eltrino\OroCrmEbayBundle\Provider\Actions\ActionFactory
-
-    eltrino_ebay.order_action.class:                                     Eltrino\OroCrmEbayBundle\Provider\Actions\OrderAction
-
-    eltrino_ebay.check_action.class:                                     Eltrino\OroCrmEbayBundle\Provider\Actions\CheckConnectionAction
+    eltrino_ebay.user.factory.class:                                     Eltrino\OroCrmEbayBundle\Entity\UserFactory
+    eltrino_ebay.address.factory.class:                                  Eltrino\OroCrmEbayBundle\Entity\AddressFactory
 
     eltrino_ebay.rest_client.class:                                      Eltrino\OroCrmEbayBundle\Ebay\EbayRestClientImpl
 
@@ -43,17 +44,38 @@ services:
         tags:
             - { name: form.type, alias: eltrino_ebay_rest_transport_setting_form_type }
 
-    eltrino_ebay.order_action:
-        class: %eltrino_ebay.order_action.class%
+    # connectors
+    eltrino_ebay.provider.ebay_order_connector:
+        class: %eltrino_ebay.provider.ebay_order_connector.class%
+        arguments:
+          - @oro_importexport.context_registry
+          - @oro_integration.provider.connector_context_mediator
+          - @eltrino_ebay.ebay_rest_client.factory
+          - @eltrino_ebay.filters.factory
+        tags:
+            - { name: oro_integration.connector, type: order, channel_type: ebay }
 
-    eltrino_ebay.check_action:
-        class: %eltrino_ebay.check_action.class%
+    eltrino_ebay.provider.ebay_buyer_connector:
+        class: %eltrino_ebay.provider.ebay_buyer_connector.class%
+        arguments:
+          - @oro_importexport.context_registry
+          - @oro_integration.provider.connector_context_mediator
+          - @eltrino_ebay.ebay_rest_client.factory
+          - @eltrino_ebay.filters.factory
+        tags:
+            - { name: oro_integration.connector, type: buyer, channel_type: ebay }
 
     eltrino_ebay.order.factory:
         class: %eltrino_ebay.order.factory.class%
+        arguments:
+          - @eltrino_ebay.user.factory
+          - @eltrino_ebay.address.factory
 
-    eltrino_ebay.action.factory:
-        class: %eltrino_ebay.action.factory.class%
+    eltrino_ebay.user.factory:
+        class: %eltrino_ebay.user.factory.class%
+
+    eltrino_ebay.address.factory:
+        class: %eltrino_ebay.address.factory.class%
 
     eltrino_ebay.rest_client:
         class: %eltrino_ebay.rest_client.class%
@@ -90,5 +112,23 @@ services:
             - false
         tags:
             - { name: kernel.event_listener, event: oro_datagrid.datagrid.build.after.ebay-orderitem-grid, method: onBuildAfter }
+
+    eltrino_ebay.event_listener.buyer_grid_listener:
+        class: %oro_datagrid.event_listener.base_orm_relation.class%
+        arguments:
+            - 'channelId'
+            - @oro_datagrid.datagrid.request_params
+            - false
+        tags:
+            - { name: kernel.event_listener, event: oro_datagrid.datagrid.build.after.ebay-buyer-grid, method: onBuildAfter }
+
+    eltrino_ebay.event_listener.buyer_addresses_grid_listener:
+        class: %oro_datagrid.event_listener.base_orm_relation.class%
+        arguments:
+            - 'userId'
+            - @oro_datagrid.datagrid.request_params
+            - false
+        tags:
+            - { name: kernel.event_listener, event: oro_datagrid.datagrid.build.after.ebay-buyer-addresses-grid, method: onBuildAfter }
 
 

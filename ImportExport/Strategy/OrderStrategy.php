@@ -12,7 +12,6 @@
  * obtain it through the world-wide-web, please send an email
  * to license@eltrino.com so we can send you a copy immediately.
  */
-
 namespace Eltrino\OroCrmEbayBundle\ImportExport\Strategy;
 
 use Doctrine\Common\Util\ClassUtils;
@@ -20,6 +19,7 @@ use Doctrine\ORM\EntityRepository;
 
 use Eltrino\OroCrmEbayBundle\Entity\Order;
 
+use Eltrino\OroCrmEbayBundle\Provider\EbayBuyerConnector;
 use Oro\Bundle\ImportExportBundle\Context\ContextAwareInterface;
 use Oro\Bundle\ImportExportBundle\Context\ContextInterface;
 use Oro\Bundle\ImportExportBundle\Strategy\Import\ImportStrategyHelper;
@@ -54,13 +54,13 @@ class OrderStrategy implements StrategyInterface, ContextAwareInterface
         $order    = $this->getEntityByCriteria($criteria, $importedOrder);
 
         if ($order) {
-            $this->strategyHelper->importEntity($order, $importedOrder, array());
+            $this->strategyHelper->importEntity($order, $importedOrder, array('buyer'));
         } else {
             $order = $importedOrder;
         }
 
         $this->processItems($order, $importedOrder);
-        $this->processCustomer($order);
+        $this->processBuyer($order);
 
         // check errors, update context increments
         return $this->validateAndUpdateContext($order);
@@ -79,14 +79,14 @@ class OrderStrategy implements StrategyInterface, ContextAwareInterface
         }
     }
 
-    /**
-     * @param Order $entityToUpdate
-     * @param Order $entityToImport
-     */
-    private function processCustomer(Order $order)
+    public function processBuyer(Order $order)
     {
-        $customer = $order->getCustomer();
-        $customer->setOrder($order);
+        $buyer = $order->getBuyer();
+        if ($buyer) {
+            $criteria = ['EIASToken' => $buyer->getEIASToken(), 'channel' => $order->getChannel()];
+            $buyer = $this->getEntityByCriteria($criteria, EbayBuyerConnector::USER_ENTITY);
+            $order->setBuyer($buyer);
+        }
     }
 
     /**

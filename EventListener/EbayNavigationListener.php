@@ -31,14 +31,24 @@ use Eltrino\OroCrmEbayBundle\Provider\EbayChannelType;
 class EbayNavigationListener
 {
     const ORDER_MENU_ITEM = 'ebay_order';
+    const BUYER_MENU_ITEM = 'ebay_buyer';
 
     protected static $map = [
         'order'    => [
             'parent'       => 'sales_tab',
+            'parent_item'  => 'magento_order',
             'prefix'       => self::ORDER_MENU_ITEM,
             'label'        => 'Ebay',
             'route'        => 'eltrino_ebay_order_index',
             'extra_routes' => '/^eltrino_ebay_order_(index|view)$/'
+        ],
+        'buyer' => [
+            'parent'       => 'customers_tab',
+            'parent_item'  => 'magento_customer',
+            'prefix'       => self::BUYER_MENU_ITEM,
+            'label'        => 'Ebay',
+            'route'        => 'eltrino_ebay_buyer_index',
+            'extra_routes' => '/^eltrino_ebay_buyer_(index|view)$/'
         ]
     ];
 
@@ -81,7 +91,7 @@ class EbayNavigationListener
             foreach ($entries as $key => $items) {
                 if (isset(self::$map[$key])) {
                     /** @var ItemInterface $reportsMenuItem */
-                    $salesMenuItem = $event->getMenu()->getChild(self::$map[$key]['parent'])->getChild('magento_order');
+                    $salesMenuItem = $event->getMenu()->getChild(self::$map[$key]['parent'])->getChild(self::$map[$key]['parent_item']);
                     if ($salesMenuItem) {
                         foreach ($items as $entry) {
                             $salesMenuItem->addChild(

@@ -15,26 +15,31 @@
 namespace Eltrino\OroCrmEbayBundle\Tests\Ebay;
 
 use Eltrino\OroCrmEbayBundle\Ebay\OrderRestClientImpl;
+use Eltrino\PHPUnit\MockAnnotations\MockAnnotations;
 
 class OrderRestClientImplTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \Guzzle\Http\ClientInterface
+     * @Mock Guzzle\Http\ClientInterface
      */
     private $client;
 
     /**
      * @var \Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler
+     * @Mock Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler
      */
     private $authHandler;
 
     /**
      * @var \Guzzle\Http\Message\RequestInterface
+     * @Mock Guzzle\Http\Message\RequestInterface
      */
     private $request;
 
     /**
      * @var \Guzzle\Http\Message\Response
+     * @Mock Guzzle\Http\Message\Response
      */
     private $response;
 
@@ -45,6 +50,7 @@ class OrderRestClientImplTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @var \Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter
+     * @Mock Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter
      */
     private $filter;
 
@@ -65,15 +71,7 @@ class OrderRestClientImplTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->client = $this->getMockBuilder('Guzzle\Http\ClientInterface')
-            ->getMock();
-        $this->authHandler = $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler')
-            ->getMock();
-        $this->request = $this->getMockBuilder('Guzzle\Http\Message\RequestInterface')
-            ->getMock();
-        $this->response = $this->getMockBuilder('Guzzle\Http\Message\Response')
-            ->disableOriginalConstructor()
-            ->getMock();
+        MockAnnotations::init($this);
 
         $this->responseXml = new \SimpleXMLElement('<GetOrdersResponse xmlns="urn:ebay:apis:eBLBaseComponents"><OrderArray><Order><OrderId>1</OrderId></Order><Order><OrderId>2</OrderId></Order></OrderArray></GetOrdersResponse>');
         $this->parsedResponseArray = [
@@ -82,13 +80,24 @@ class OrderRestClientImplTest extends \PHPUnit_Framework_TestCase
         ];
 
         $this->orderRestClient = new OrderRestClientImpl($this->client, $this->authHandler);
-        $this->filter = $this->createFilter();
     }
 
     public function testGetOrders()
     {
+        $body = '<ParsedRequestBody><RequestFilters>1</RequestFilters></ParsedRequestBody>';
+
+        $this->filter->expects($this->once())
+            ->method('process')
+            ->with($this->isType(\PHPUnit_Framework_Constraint_IsType::TYPE_STRING))
+            ->will($this->returnValue($body));
+
         $this->client->expects($this->once())
             ->method('post')
+            ->with($this->isNull(), $this->logicalAnd(
+                    $this->isType(\PHPUnit_Framework_Constraint_IsType::TYPE_ARRAY),
+                    $this->arrayHasKey('X-EBAY-API-CALL-NAME'),
+                    $this->callback(function($other) { return $other['X-EBAY-API-CALL-NAME'] == 'GetOrders'; })
+            ), $this->equalTo($body))
             ->will($this->returnValue($this->request));
 
         $this->request->expects($this->once())
@@ -104,14 +113,5 @@ class OrderRestClientImplTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $orders);
         $this->assertXmlStringEqualsXmlString($this->parsedResponseArray[0]->asXml(), $orders[0]->asXml());
         $this->assertXmlStringEqualsXmlString($this->parsedResponseArray[1]->asXml(), $orders[1]->asXml());
-    }
-
-    /**
-     * @return \PHPUnit_Framework_MockObject_MockObject
-     */
-    private function createFilter()
-    {
-        return $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter')
-            ->getMock();
     }
 }

@@ -12,7 +12,6 @@
  * obtain it through the world-wide-web, please send an email
  * to license@eltrino.com so we can send you a copy immediately.
  */
-
 namespace Eltrino\OroCrmEbayBundle\Provider;
 
 use Eltrino\OroCrmEbayBundle\Ebay\EbayRestClientFactory;
@@ -24,7 +23,6 @@ use Oro\Bundle\IntegrationBundle\Provider\ConnectorInterface;
 use Oro\Bundle\IntegrationBundle\Provider\ConnectorContextMediator;
 use Oro\Bundle\ImportExportBundle\Context\ContextInterface;
 use Oro\Bundle\ImportExportBundle\Context\ContextRegistry;
-use Eltrino\OroCrmEbayBundle\Provider\Actions\ActionFactory;
 use Eltrino\OroCrmEbayBundle\Ebay\Filters\FiltersFactory;
 use Eltrino\OroCrmEbayBundle\Provider\Iterator\OrderIterator;
 use OroCRM\Bundle\MagentoBundle\Provider\Iterator\UpdatedLoaderInterface;
@@ -46,11 +44,6 @@ class EbayOrderConnector extends IteratorBasedReader implements ConnectorInterfa
     protected $contextMediator;
 
     /**
-     * @var ActionFactory
-     */
-    private $actionFactory;
-
-    /**
      * @var EbayRestClientFactory
      */
     private $ebayRestClientFactory;
@@ -61,17 +54,14 @@ class EbayOrderConnector extends IteratorBasedReader implements ConnectorInterfa
     private $filtersFactory;
 
     /**
-     * @param ActionFactory $actionFactory
      * @param ContextRegistry $contextRegistry
      * @param ConnectorContextMediator $contextMediator
      * @param EbayRestClientFactory $ebayRestClientFactory
      * @param FiltersFactory $filtersFactory
      */
-    public function __construct(ActionFactory $actionFactory, ContextRegistry $contextRegistry,
-                                ConnectorContextMediator $contextMediator, EbayRestClientFactory $ebayRestClientFactory,
-                                FiltersFactory $filtersFactory)
+    public function __construct(ContextRegistry $contextRegistry, ConnectorContextMediator $contextMediator,
+                                EbayRestClientFactory $ebayRestClientFactory, FiltersFactory $filtersFactory)
     {
-        $this->actionFactory = $actionFactory;
         $this->contextRegistry = $contextRegistry;
         $this->contextMediator = $contextMediator;
         $this->ebayRestClientFactory = $ebayRestClientFactory;
@@ -83,7 +73,7 @@ class EbayOrderConnector extends IteratorBasedReader implements ConnectorInterfa
      */
     public function getLabel()
     {
-        return 'Order connector';
+        return 'Order Connector';
     }
 
     /**
@@ -95,7 +85,6 @@ class EbayOrderConnector extends IteratorBasedReader implements ConnectorInterfa
         $settings = $channel->getTransport()->getSettingsBag();
 
         $ebayRestClient = $this->initializeEbayRestClient($settings);
-        $action = $this->actionFactory->createOrderAction($ebayRestClient);
 
         /** @var Status $status */
         $status = $channel
@@ -104,9 +93,9 @@ class EbayOrderConnector extends IteratorBasedReader implements ConnectorInterfa
 
         $loader = null;
         if (false !== $status) { // update_mode
-            $loader = new UpdateModeLoader($action, $this->filtersFactory, $status->getDate());
+            $loader = new UpdateModeLoader($ebayRestClient, $this->filtersFactory, $status->getDate());
         } else { // initial_mode
-            $loader = new InitialModeLoader($action, $this->filtersFactory, $settings->get('start_sync_date'));
+            $loader = new InitialModeLoader($ebayRestClient, $this->filtersFactory, $settings->get('start_sync_date'));
         }
         $orderIterator = new EbayDataIterator($loader);
         $this->setSourceIterator($orderIterator);

@@ -1,0 +1,17 @@
+{% import 'OroUIBundle::macros.html.twig' as ui %}
+{% import 'OroAddressBundle::macros.html.twig' as address %}
+
+<div class="widget-content">
+    <div class="row-fluid form-horizontal">
+        <div class="responsive-block">
+            {{ ui.renderProperty('User ID'|trans, entity.userId) }}
+
+            {% if entity.contact %}
+                {% set contactData %}
+                    <a href="{{ path('orocrm_contact_view', {'id': entity.contact.id}) }}">{{ entity.contact|oro_format_name|escape }}</a>
+                {% endset %}
+                {{ ui.renderHtmlProperty('Contact'|trans, contactData) }}
+            {% endif %}
+        </div>
+    </div>
+</div>

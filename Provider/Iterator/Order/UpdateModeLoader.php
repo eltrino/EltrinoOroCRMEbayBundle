@@ -14,8 +14,8 @@
  */
 namespace Eltrino\OroCrmEbayBundle\Provider\Iterator\Order;
 
+use Eltrino\OroCrmEbayBundle\Ebay\Api\EbayRestClient;
 use Eltrino\OroCrmEbayBundle\Ebay\Filters\FiltersFactory;
-use Eltrino\OroCrmEbayBundle\Provider\Actions\Action;
 
 class UpdateModeLoader extends AbstractLoader
 {
@@ -26,9 +26,9 @@ class UpdateModeLoader extends AbstractLoader
 
     private $initialStartSyncDate;
 
-    public function __construct(Action $action, FiltersFactory $filtersFactory, \DateTime $startSyncDate)
+    public function __construct(EbayRestClient $ebayRestClient, FiltersFactory $filtersFactory, \DateTime $startSyncDate)
     {
-        parent::__construct($action, $filtersFactory, $startSyncDate);
+        parent::__construct($ebayRestClient, $filtersFactory, $startSyncDate);
         $this->initialStartSyncDate = clone $this->startSyncDate;
     }
 
@@ -46,7 +46,10 @@ class UpdateModeLoader extends AbstractLoader
             }
             $this->compositeFilter->addFilter($timeFilter);
             $this->compositeFilter->addFilter($this->createPagerFilter($this->currentPage));
-            $elements = $this->action->execute($this->compositeFilter);
+
+            $elements = $this->ebayRestClient->getOrderRestClient()
+                ->getOrders($this->compositeFilter);
+
             $this->currentPage++;
             if (empty($elements)) { // try to move to next date interval and load elements
                 $this->startSyncDate = clone $to;

@@ -15,32 +15,45 @@
 namespace Eltrino\OroCrmEbayBundle\Tests\Ebay;
 
 use Eltrino\OroCrmEbayBundle\Ebay\EbayRestClientImpl;
+use Eltrino\PHPUnit\MockAnnotations\MockAnnotations;
 
 class EbayRestClientImplTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler
+     * @Mock Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler
+     */
+    private $authHandler;
+
+    /**
+     * @var Guzzle\Http\ClientInterface
+     * @Mock Guzzle\Http\ClientInterface
+     */
+    private $client;
+    /**
+     * @var EbayRestClientImpl
+     */
+    private $ebayRestClient;
+
+    protected function setUp()
+    {
+        MockAnnotations::init($this);
+        $this->ebayRestClient = new EbayRestClientImpl($this->client, $this->authHandler);
+    }
+
     public function testGetOrderRestClient()
     {
-        $client = $this->getMockBuilder('Guzzle\Http\ClientInterface')
-            ->getMock();
-        $authHandler = $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler')
-            ->getMock();
-        $ebayRestClient = new EbayRestClientImpl($client, $authHandler);
         $this->assertInstanceOf(
             'Eltrino\OroCrmEbayBundle\Ebay\Api\OrderRestClient',
-            $ebayRestClient->getOrderRestClient()
+            $this->ebayRestClient->getOrderRestClient()
         );
     }
 
     public function testGetCheckRestClient()
     {
-        $client = $this->getMockBuilder('Guzzle\Http\ClientInterface')
-            ->getMock();
-        $authHandler = $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler')
-            ->getMock();
-        $ebayRestClient = new EbayRestClientImpl($client, $authHandler);
         $this->assertInstanceOf(
             'Eltrino\OroCrmEbayBundle\Ebay\Api\CheckRestClient',
-            $ebayRestClient->getCheckRestClient()
+            $this->ebayRestClient->getCheckRestClient()
         );
     }
 }

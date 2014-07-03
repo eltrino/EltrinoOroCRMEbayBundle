@@ -14,8 +14,6 @@
  */
 namespace Eltrino\OroCrmEbayBundle\Provider\Iterator;
 
-use Eltrino\OroCrmEbayBundle\Provider\Iterator\LoaderReachedEndException;
-
 class EbayDataIterator implements \Iterator
 {
     /**

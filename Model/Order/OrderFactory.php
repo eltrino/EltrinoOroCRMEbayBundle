@@ -14,9 +14,12 @@
  */
 namespace Eltrino\OroCrmEbayBundle\Model\Order;
 
+use Eltrino\OroCrmEbayBundle\Entity\AddressFactory;
 use Eltrino\OroCrmEbayBundle\Entity\Customer;
 use Eltrino\OroCrmEbayBundle\Entity\Order;
 use Eltrino\OroCrmEbayBundle\Entity\OrderItem;
+use Eltrino\OroCrmEbayBundle\Entity\User;
+use Eltrino\OroCrmEbayBundle\Entity\UserFactory;
 use Eltrino\OroCrmEbayBundle\Model\Customer\CustomerAddress;
 use SimpleXMLElement;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -26,6 +29,22 @@ use Eltrino\OroCrmEbayBundle\Model\OrderItem\Transaction;
 
 class OrderFactory
 {
+    /**
+     * @var UserFactory
+     */
+    private $userFactory;
+
+    /**
+     * @var AddressFactory
+     */
+    private $addressFactory;
+
+    public function __construct(UserFactory $userFactory, AddressFactory $addressFactory)
+    {
+        $this->userFactory = $userFactory;
+        $this->addressFactory = $addressFactory;
+    }
+
     /**
      * Create Order
      */
@@ -46,14 +65,14 @@ class OrderFactory
         $subtotal            = (string) $data->Subtotal;
         $total               = (string) $data->Total;
 
-        $customer = $this->prepareCustomer($data);
+        $buyer = $this->prepareBuyer($data);
         $items    = $this->prepareOrderItems($data->TransactionArray->Transaction);
 
         $shipping     = new Shipping($salesTaxPercent, $salesTaxAmount, $shippingService, $shippingServiceCost);
         $payment      = new Payment($amountPaid, $currencyId, $paymentMethods);
         $orderDetails = new OrderDetails($orderStatus, $subtotal, $total, $sellerEmail, $payment, $shipping);
 
-        return new Order($ebayOrderId, $buyerUserId, $sellerUserId, $orderDetails, $items, $customer);
+        return new Order($ebayOrderId, $buyerUserId, $sellerUserId, $orderDetails, $items, $buyer);
     }
 
     private function prepareOrderItems($transactionItems)
@@ -83,20 +102,24 @@ class OrderFactory
         return $orderItems;
     }
 
-    private function prepareCustomer($data)
+    private function prepareBuyer($data)
     {
         $buyerUserId     = (string) $data->BuyerUserID;
+        $EIASToken       = (string) $data->EIASToken;
         $name            = (string) $data->ShippingAddress->Name;
         $street1         = (string) $data->ShippingAddress->Street1;
         $street2         = (string) $data->ShippingAddress->Street2;
         $city            = (string) $data->ShippingAddress->CityName;
         $stateOrProvince = (string) $data->ShippingAddress->StateOrProvince;
+        $countryCode     = (string) $data->ShippingAddress->Country;
         $countryName     = (string) $data->ShippingAddress->CountryName;
         $phone           = (string) $data->ShippingAddress->Phone;
         $postalCode      = (string) $data->ShippingAddress->PostalCode;
 
-        $customerAddress = new CustomerAddress($street1, $street2, $city, $stateOrProvince, $countryName, $postalCode);
-
-        return new Customer($buyerUserId, $name, $phone, $customerAddress);
+        $buyer = $this->userFactory->create($buyerUserId, $EIASToken);
+        $address = $this->addressFactory->create($name, $phone, $street1, $street2, $city,
+            $stateOrProvince, $countryCode, $countryName, $postalCode);
+        $buyer->addAddress($address);
+        return $buyer;
     }
 }

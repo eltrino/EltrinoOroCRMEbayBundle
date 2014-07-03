@@ -12,7 +12,6 @@
  * obtain it through the world-wide-web, please send an email
  * to license@eltrino.com so we can send you a copy immediately.
  */
-
 namespace Eltrino\OroCrmEbayBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -91,11 +90,12 @@ class Order
     private $items;
 
     /**
-     * @var Customer
+     * @var User
      *
-     * @ORM\OneToOne(targetEntity="Customer", mappedBy="order",cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="User", cascade={"all"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    private $customer;
+    private $buyer;
 
     /**
      * @var OrderDetails
@@ -108,18 +108,18 @@ class Order
      * @param $sellerUserId
      * @param OrderDetails $orderDetails
      * @param $items
-     * @param Customer $customer
+     * @param Customer $buyer
      * @param null $createdTime
      */
     public function __construct($ebayOrderId, $buyerUserId, $sellerUserId, OrderDetails $orderDetails,
-                                $items, Customer $customer, $createdAt = null)
+                                $items, User $buyer, $createdAt = null)
     {
         $this->ebayOrderId         = $ebayOrderId;
         $this->buyerUserId         = $buyerUserId;
         $this->sellerUserId        = $sellerUserId;
         $this->orderDetails        = $orderDetails;
         $this->items               = $items;
-        $this->customer            = $customer;
+        $this->buyer               = $buyer;
         $this->createdAt           = is_null($createdAt) ? new \DateTime('now') : $createdAt;
 
         $this->updatedAt = clone $this->createdAt;
@@ -193,8 +193,6 @@ class Order
     public function setItems($items)
     {
         $this->items = $items;
-
-        return $this;
     }
 
     /**
@@ -206,22 +204,20 @@ class Order
     }
 
     /**
-     * @return Customer
+     * @return User
      */
-    public function getCustomer()
+    public function getBuyer()
     {
-        return $this->customer;
+        return $this->buyer;
     }
 
     /**
-     * @param $customer
-     * @return $this
+     * @param Buyer $buyer
+     * @return void
      */
-    public function setCustomer($customer)
+    public function setBuyer(User $buyer)
     {
-        $this->customer = $customer;
-
-        return $this;
+        $this->buyer = $buyer;
     }
 
     /**

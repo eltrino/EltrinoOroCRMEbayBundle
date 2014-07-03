@@ -15,26 +15,31 @@
 namespace Eltrino\OroCrmEbayBundle\Tests\Ebay;
 
 use Eltrino\OroCrmEbayBundle\Ebay\CheckRestClientImpl;
+use Eltrino\PHPUnit\MockAnnotations\MockAnnotations;
 
 class CheckRestClientImplTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \Guzzle\Http\ClientInterface
+     * @Mock Guzzle\Http\ClientInterface
      */
     private $client;
 
     /**
      * @var \Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler
+     * @Mock Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler
      */
     private $authHandler;
 
     /**
      * @var \Guzzle\Http\Message\RequestInterface
+     * @Mock Guzzle\Http\Message\RequestInterface
      */
     private $request;
 
     /**
      * @var \Guzzle\Http\Message\Response
+     * @Mock Guzzle\Http\Message\Response
      */
     private $response;
 
@@ -45,6 +50,7 @@ class CheckRestClientImplTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @var \Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter
+     * @Mock Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter
      */
     private $filter;
 
@@ -55,21 +61,10 @@ class CheckRestClientImplTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->client = $this->getMockBuilder('Guzzle\Http\ClientInterface')
-            ->getMock();
-        $this->authHandler = $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Api\AuthorizationHandler')
-            ->getMock();
-        $this->request = $this->getMockBuilder('Guzzle\Http\Message\RequestInterface')
-            ->getMock();
-        $this->response = $this->getMockBuilder('Guzzle\Http\Message\Response')
-            ->disableOriginalConstructor()
-            ->getMock();
-
+        MockAnnotations::init($this);
         $this->responseXml = new \SimpleXMLElement('<GeteBayOfficialTimeResponse xmlns="urn:ebay:apis:eBLBaseComponents"><Ack>Success</Ack></GeteBayOfficialTimeResponse>');
 
         $this->checkRestClient = new CheckRestClientImpl($this->client, $this->authHandler);
-        $this->filter = $this->createFilter();
-
     }
 
     public function testGetTime()
@@ -89,14 +84,5 @@ class CheckRestClientImplTest extends \PHPUnit_Framework_TestCase
         $response = $this->checkRestClient->getTime($this->filter);
 
         $this->assertEquals(true, $response);
-    }
-
-    /**
-     * @return \PHPUnit_Framework_MockObject_MockObject
-     */
-    private function createFilter()
-    {
-        return $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter')
-            ->getMock();
     }
 }

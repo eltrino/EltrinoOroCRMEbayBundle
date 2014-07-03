@@ -17,9 +17,12 @@
     "target-dir": "Eltrino/OroCrmEbayBundle",
     "require": {
         "php": ">=5.4.4",
-        "oro/platform": "1.0.*",
-        "oro/crm": "1.0.*",
+        "oro/platform": "1.1.*",
+        "oro/crm": "1.1.*",
         "guzzle/guzzle": "3.7.*"
+    },
+    "require-dev": {
+        "eltrino/phpunit-mockannotations": "1.0.*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

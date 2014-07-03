@@ -2,29 +2,18 @@ parameters:
     # entities
     eltrino_ebay.order.entity.class:                                          Eltrino\OroCrmEbayBundle\Entity\Order
     eltrino_ebay.order_item.entity.class:                                     Eltrino\OroCrmEbayBundle\Entity\OrderItem
-
-    # connectors
-    eltrino_ebay.provider.ebay_order_connector.class:                         Eltrino\OroCrmEbayBundle\Provider\EbayOrderConnector
+    eltrino_ebay.user.entity.class:                                           Eltrino\OroCrmEbayBundle\Entity\User
+    eltrino_ebay.address.entity.class:                                        Eltrino\OroCrmEbayBundle\Entity\Address
 
     # normalizer
     eltrino_ebay.importexport.denormalizer.order.class:                       Eltrino\OroCrmEbayBundle\ImportExport\Serializer\OrderDenormalizer
+    eltrino_ebay.importexport.denormalizer.user.class:                        Eltrino\OroCrmEbayBundle\ImportExport\Serializer\UserDenormalizer
 
     # strategies
     eltrino_ebay.import_strategy.order.add_or_update.class:                   Eltrino\OroCrmEbayBundle\ImportExport\Strategy\OrderStrategy
+    eltrino_ebay.import_strategy.user.class:                                  Eltrino\OroCrmEbayBundle\ImportExport\Strategy\UserStrategy
 
 services:
-    # connectors
-    eltrino_ebay.provider.ebay_order_connector:
-        class: %eltrino_ebay.provider.ebay_order_connector.class%
-        arguments:
-          - @eltrino_ebay.action.factory
-          - @oro_importexport.context_registry
-          - @oro_integration.provider.connector_context_mediator
-          - @eltrino_ebay.ebay_rest_client.factory
-          - @eltrino_ebay.filters.factory
-        tags:
-          - { name: oro_integration.connector, type: order, channel_type: ebay }
-
     # Normalizers / Denormalizers
     eltrino_ebay.importexport.denormalizer.order:
         class: %eltrino_ebay.importexport.denormalizer.order.class%
@@ -34,11 +23,26 @@ services:
         tags:
             - { name: oro_importexport.normalizer }
 
+    eltrino_ebay.importexport.denormalizer.user:
+        class: %eltrino_ebay.importexport.denormalizer.user.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @eltrino_ebay.user.factory
+            - @eltrino_ebay.address.factory
+        tags:
+            - { name: oro_importexport.normalizer }
+
     # strategies
     eltrino_ebay.import.strategy.order.add_or_update:
         class: %eltrino_ebay.import_strategy.order.add_or_update.class%
         arguments:
             - @oro_importexport.strategy.import.helper
+
+    eltrino_ebay.import.strategy.user:
+        class: %eltrino_ebay.import_strategy.user.class%
+        arguments:
+            - @oro_importexport.strategy.import.helper
+            - @security.context
 
     # Processors
     eltrino_ebay.importexport.processor.import_order:
@@ -47,3 +51,10 @@ services:
              - [setStrategy, [@eltrino_ebay.import.strategy.order.add_or_update]]
         tags:
             - { name: oro_importexport.processor, type: import, entity: %eltrino_ebay.order.entity.class%, alias: eltrino_ebay.add_or_update_order }
+
+    eltrino_ebay.importexport.processor.import_user:
+        parent: oro_importexport.processor.import_abstract
+        calls:
+             - [setStrategy, [@eltrino_ebay.import.strategy.user]]
+        tags:
+            - { name: oro_importexport.processor, type: import, entity: %eltrino_ebay.user.entity.class%, alias: eltrino_ebay.import_user_processor }

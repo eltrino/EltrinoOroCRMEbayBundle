@@ -16,50 +16,43 @@ namespace Eltrino\OroCrmEbayBundle\Tests\ImportExport\Serializer;
 
 use Eltrino\OroCrmEbayBundle\ImportExport\Serializer\OrderDenormalizer;
 use Eltrino\OroCrmEbayBundle\Provider\EbayOrderConnector;
+use Eltrino\PHPUnit\MockAnnotations\MockAnnotations;
 
 class OrderDenormalizerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \Eltrino\OroCrmEbayBundle\Model\Order\OrderFactory
+     * @Mock Eltrino\OroCrmEbayBundle\Model\Order\OrderFactory
      */
     private $orderFactory;
 
     /**
      * @var \Oro\Bundle\IntegrationBundle\Entity\Repository\ChannelRepository
+     * @Mock Oro\Bundle\IntegrationBundle\Entity\Repository\ChannelRepository
      */
     private $channelRepository;
 
     /**
      * @var \Doctrine\ORM\EntityManager
+     * @Mock Doctrine\ORM\EntityManager
      */
     private $em;
 
     /**
      * @var \Oro\Bundle\IntegrationBundle\Entity\Channel
+     * @Mock Oro\Bundle\IntegrationBundle\Entity\Channel
      */
     private $channel;
 
     /**
      * @var \Eltrino\OroCrmEbayBundle\Entity\Order
+     * @Mock Eltrino\OroCrmEbayBundle\Entity\Order
      */
     private $order;
 
     public function setUp()
     {
-        $this->orderFactory = $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Model\Order\OrderFactory')
-            ->getMock();
-
-        $this->channelRepository = $this->getMockBuilder('Oro\Bundle\IntegrationBundle\Entity\Repository\ChannelRepository')
-            ->disableOriginalConstructor()->getMock();
-
-        $this->em = $this->getMockBuilder('Doctrine\ORM\EntityManager')
-            ->disableOriginalConstructor()->getMock();
-
-        $this->channel = $this->getMockBuilder('Oro\Bundle\IntegrationBundle\Entity\Channel')
-            ->disableOriginalConstructor()->getMock();
-
-        $this->order = $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Entity\Order')
-            ->disableOriginalConstructor()->getMock();
+        MockAnnotations::init($this);
     }
 
     public function testDenormalize()

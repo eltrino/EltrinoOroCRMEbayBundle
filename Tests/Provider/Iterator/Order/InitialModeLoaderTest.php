@@ -15,9 +15,46 @@
 namespace Eltrino\OroCrmEbayBundle\Tests\Provider\Iterator\Order;
 
 use Eltrino\OroCrmEbayBundle\Provider\Iterator\Order\InitialModeLoader;
+use Eltrino\PHPUnit\MockAnnotations\MockAnnotations;
 
 class InitialModeLoaderTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var \Eltrino\OroCrmEbayBundle\Ebay\Api\EbayRestClient
+     * @Mock Eltrino\OroCrmEbayBundle\Ebay\Api\EbayRestClient
+     */
+    private $ebayRestClient;
+
+    /**
+     * @var \Eltrino\OroCrmEbayBundle\Ebay\Api\OrderRestClient
+     * @Mock Eltrino\OroCrmEbayBundle\Ebay\Api\OrderRestClient
+     */
+    private $ebayOrdersClient;
+
+    /**
+     * @var \Eltrino\OroCrmEbayBundle\Ebay\Filters\FiltersFactory
+     * @Mock Eltrino\OroCrmEbayBundle\Ebay\Filters\FiltersFactory
+     */
+    private $filtersFactory;
+
+    /**
+     * @var \Eltrino\OroCrmEbayBundle\Ebay\Filters\CompositeFilter
+     * @Mock Eltrino\OroCrmEbayBundle\Ebay\Filters\CompositeFilter
+     */
+    private $compositeFilter;
+
+    /**
+     * @var \Eltrino\OroCrmEbayBundle\Ebay\Filters\CreateTimeRangeFilter
+     * @Mock Eltrino\OroCrmEbayBundle\Ebay\Filters\CreateTimeRangeFilter
+     */
+    private $createTimeFilter;
+
+    /**
+     * @var \Eltrino\OroCrmEbayBundle\Ebay\Filters\PagerFilter
+     * @Mock Eltrino\OroCrmEbayBundle\Ebay\Filters\PagerFilter
+     */
+    private $pagerFilter;
+
     /**
      * @var InitialModeLoader
      */
@@ -25,60 +62,49 @@ class InitialModeLoaderTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $action = $this
-            ->getMockBuilder('Eltrino\OroCrmEbayBundle\Provider\Actions\Action')
-            ->getMock();
-        $filtersFactory = $this
-            ->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Filters\FiltersFactory')
-            ->getMock();
-        $compositeFilter = $this
-            ->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Filters\CompositeFilter')
-            ->getMock();
-        $createTimeFilter = $this
-            ->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Filters\CreateTimeRangeFilter')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $pagerFilter = $this
-            ->getMockBuilder('Eltrino\OroCrmEbayBundle\Ebay\Filters\PagerFilter')
-            ->disableOriginalConstructor()
-            ->getMock();
+        MockAnnotations::init($this);
 
         $elements = [
             new \SimpleXMLElement('<orderId>1</orderId>'),
             new \SimpleXMLElement('<orderId>2</orderId>')
         ];
 
-        $action
+        $this->ebayRestClient
+            ->expects($this->any())
+            ->method('getOrderRestClient')
+            ->will($this->returnValue($this->ebayOrdersClient));
+
+        $this->ebayOrdersClient
             ->expects($this->at(0))
-            ->method('execute')
-            ->with($this->equalTo($compositeFilter))
+            ->method('getOrders')
+            ->with($this->equalTo($this->compositeFilter))
             ->will($this->returnValue($elements));
 
-        $action
+        $this->ebayOrdersClient
             ->expects($this->at(1))
-            ->method('execute')
-            ->with($this->equalTo($compositeFilter))
+            ->method('getOrders')
+            ->with($this->equalTo($this->compositeFilter))
             ->will($this->returnValue(array()));
 
-        $filtersFactory
+        $this->filtersFactory
             ->expects($this->once())
             ->method('createCompositeFilter')
-            ->will($this->returnValue($compositeFilter));
+            ->will($this->returnValue($this->compositeFilter));
 
-        $filtersFactory
+        $this->filtersFactory
             ->expects($this->exactly(3))
             ->method('createCreateTimeRangeFilter')
-            ->will($this->returnValue($createTimeFilter));
+            ->will($this->returnValue($this->createTimeFilter));
 
-        $filtersFactory
+        $this->filtersFactory
             ->expects($this->exactly(3))
             ->method('createPagerFilter')
-            ->will($this->returnValue($pagerFilter));
+            ->will($this->returnValue($this->pagerFilter));
 
         $startSycDate = new \DateTime('now');
         $startSycDate->sub(new \DateInterval('P95D')); // Create Time Range has 90 days interval. As a result loader should try to load 2 times with two dates interval
 
-        $this->loader = new InitialModeLoader($action, $filtersFactory, $startSycDate);
+        $this->loader = new InitialModeLoader($this->ebayRestClient, $this->filtersFactory, $startSycDate);
     }
 
     public function testLoad()

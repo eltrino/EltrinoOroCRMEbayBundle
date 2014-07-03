@@ -15,6 +15,7 @@
 namespace Eltrino\OroCrmEbayBundle\Tests\Provider\Iterator;
 
 use Eltrino\OroCrmEbayBundle\Provider\Iterator\EbayDataIterator;
+use Eltrino\PHPUnit\MockAnnotations\MockAnnotations;
 
 class EbayDataIteratorTest extends \PHPUnit_Framework_TestCase
 {
@@ -25,15 +26,13 @@ class EbayDataIteratorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @var Loader
+     * @Mock Eltrino\OroCrmEbayBundle\Provider\Iterator\Loader
      */
     private $loader;
 
     protected function setUp()
     {
-        $this->loader = $this
-            ->getMockBuilder('Eltrino\OroCrmEbayBundle\Provider\Iterator\Loader')
-            ->getMock();
-
+        MockAnnotations::init($this);
         $this->iterator = new EbayDataIterator($this->loader);
     }
 

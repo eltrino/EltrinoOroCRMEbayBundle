@@ -15,58 +15,55 @@
 namespace Eltrino\OroCrmEbayBundle\Tests\ImportExport\Srtategy;
 use Eltrino\OroCrmEbayBundle\ImportExport\Strategy\OrderStrategy;
 use Doctrine\Common\Collections\ArrayCollection;
+use Eltrino\PHPUnit\MockAnnotations\MockAnnotations;
 
 class OrderStrategyTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @var \Eltrino\OroCrmEbayBundle\Entity\Customer
+     * @Mock Eltrino\OroCrmEbayBundle\Entity\Customer
+     */
+    private $customer;
+
+    /**
      * @var \Oro\Bundle\ImportExportBundle\Strategy\Import\ImportStrategyHelper
+     * @Mock Oro\Bundle\ImportExportBundle\Strategy\Import\ImportStrategyHelper
      */
     private $strategyHelper;
 
     /**
      * @var \Eltrino\OroCrmEbayBundle\Entity\Order
+     * @Mock Eltrino\OroCrmEbayBundle\Entity\Order
      */
     private $order;
 
     /**
      * @var \Doctrine\ORM\EntityManager
+     * @Mock Doctrine\ORM\EntityManager
      */
     private $em;
 
     /**
      * @var \Doctrine\Common\Persistence\ObjectRepository
+     * @Mock Doctrine\Common\Persistence\ObjectRepository
      */
     private $repository;
 
     /**
      * @var \Oro\Bundle\ImportExportBundle\Context\StepExecutionProxyContext
+     * @Mock Oro\Bundle\ImportExportBundle\Context\StepExecutionProxyContext
      */
     private $context;
 
     /**
      * @var \Oro\Bundle\IntegrationBundle\Entity\Channel
+     * @Mock Oro\Bundle\IntegrationBundle\Entity\Channel
      */
     private $channel;
 
     public function setUp()
     {
-        $this->strategyHelper = $this->getMockBuilder('Oro\Bundle\ImportExportBundle\Strategy\Import\ImportStrategyHelper')
-            ->disableOriginalConstructor()->getMock();
-
-        $this->order = $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Entity\Order')
-            ->disableOriginalConstructor()->getMock();
-
-        $this->em = $this->getMockBuilder('Doctrine\ORM\EntityManager')
-            ->disableOriginalConstructor()->getMock();
-
-        $this->repository = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectRepository')
-            ->getMock();
-
-        $this->context = $this->getMockBuilder('Oro\Bundle\ImportExportBundle\Context\StepExecutionProxyContext')
-            ->disableOriginalConstructor()->getMock();
-
-        $this->channel = $this->getMockBuilder('Oro\Bundle\IntegrationBundle\Entity\Channel')
-            ->disableOriginalConstructor()->getMock();
+        MockAnnotations::init($this);
     }
 
     public function testProcessForCreate()
@@ -100,14 +97,6 @@ class OrderStrategyTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('getItems')
             ->will($this->returnValue(new ArrayCollection()));
-
-        $customer = $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Entity\Customer')
-            ->disableOriginalConstructor()->getMock();
-
-        $this->order
-            ->expects($this->once())
-            ->method('getCustomer')
-            ->will($this->returnValue($customer));
 
         $strategy = new OrderStrategy($this->strategyHelper);
         $strategy->setImportExportContext($this->context);
@@ -150,14 +139,6 @@ class OrderStrategyTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('getItems')
             ->will($this->returnValue(new ArrayCollection()));
-
-        $customer = $this->getMockBuilder('Eltrino\OroCrmEbayBundle\Entity\Customer')
-            ->disableOriginalConstructor()->getMock();
-
-        $this->order
-            ->expects($this->once())
-            ->method('getCustomer')
-            ->will($this->returnValue($customer));
 
         $this->context
             ->expects($this->any())

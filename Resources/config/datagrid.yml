@@ -119,8 +119,8 @@ datagrid:
         actions:
             view:
                 type:         navigate
-                label:        eltrino.ebay.datagrid.actions.view.label
                 link:         view_link
+                label:        eltrino.ebay.datagrid.actions.view.label
                 icon:         book
                 rowAction:    true
         options:
@@ -193,3 +193,99 @@ datagrid:
                         data_type:    Oro\Bundle\FilterBundle\Form\Type\Filter\NumberFilterType::DATA_DECIMAL
         options:
             entityHint: order item
+
+
+    ebay-buyer-grid:
+        source:
+            type: orm
+            query:
+                select:
+                    - u
+                from:
+                    - { table: %eltrino_ebay.user.entity.class%, alias: u }
+                where:
+                    and:
+                        - u.channel = :channelId
+        columns:
+            userId:
+                label: User ID
+            createdAt:
+                label: Created
+                frontend_type: datetime
+            updatedAt:
+                label: Updated
+                frontend_type: datetime
+        sorters:
+            columns:
+                userId:      { data_name: u.userId }
+                createdAt:   { data_name: u.createdAt }
+                updatedAt:   { data_name: u.updatedAt }
+        filters:
+            columns:
+                userId:
+                    type: string
+                    data_name: u.userId
+                createdAt:
+                    type:      datetime
+                    data_name: u.createdAt
+                updatedAt:
+                    type:      datetime
+                    data_name: u.updatedAt
+        properties:
+            id: ~
+            view_link:
+                type: url
+                route: eltrino_ebay_buyer_view
+                params: [ id ]
+        actions:
+            view:
+                type:         navigate
+                label:        eltrino.ebay.datagrid.actions.view.label
+                link:         view_link
+                icon:         book
+                rowAction:    true
+        options:
+            entityHint: buyer
+
+    ebay-buyer-addresses-grid:
+        source:
+            type: orm
+            query:
+                select:
+                    - a
+                from:
+                    - { table: %eltrino_ebay.address.entity.class%, alias: a }
+                where:
+                    and:
+                        - a.user = :userId
+        columns:
+            name:
+                label: Name
+            countryName:
+                label: Country
+            city:
+                label: City
+            phone:
+                label: Phone
+        sorters:
+            columns:
+                name:        { data_name: a.name }
+                countryName: { data_name: a.countryName }
+                city:        { data_name: a.city }
+                phone:       { data_name: a.phone }
+        filters:
+            columns:
+                name:
+                    type: string
+                    data_name: a.name
+                countryName:
+                    type: string
+                    data_name: a.countryName
+                city:
+                    type: string
+                    data_name: a.city
+                phone:
+                    type: string
+                    data_name: a.phone
+        options:
+            entityHint: addresses
