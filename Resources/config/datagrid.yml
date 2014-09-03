@@ -5,12 +5,15 @@ datagrid:
             query:
                 select:
                     - o
+                    - ch.name as channelName
                 from:
                     - { table: %eltrino_ebay.order.entity.class%, alias: o }
-                where:
-                    and:
-                        - o.channel = :channelId
+                join:
+                    left:
+                        - { join: o.channel, alias: ch }
         columns:
+            channelName:
+                label: Channel
             ebayOrderId:
                 label: Ebay Order Id
             orderStatus:
@@ -71,11 +74,20 @@ datagrid:
                 shippingServiceCost:    { data_name: o.shippingServiceCost }
                 paymentMethods:         { data_name: o.paymentMethods }
                 sellerEmail:            { data_name: o.sellerEmail }
+                channelName:            { data_name: ch.name }
                 subtotal:               { data_name: o.subtotal }
                 total:                  { data_name: o.total }
                 createdAt:              { data_name: o.createdAt }
         filters:
             columns:
+                channelName:
+                    type: entity
+                    data_name: ch.id
+                    options:
+                        field_options:
+                            multiple: true
+                            class: OroIntegrationBundle:Channel
+                            property: name
                 ebayOrderId:
                     type: string
                     data_name: o.ebayOrderId
@@ -201,12 +213,15 @@ datagrid:
             query:
                 select:
                     - u
+                    - ch.name as channelName
                 from:
                     - { table: %eltrino_ebay.user.entity.class%, alias: u }
-                where:
-                    and:
-                        - u.channel = :channelId
+                join:
+                    left:
+                        - { join: u.channel, alias: ch }
         columns:
+            channelName:
+                label: Channel
             userId:
                 label: User ID
             createdAt:
@@ -218,10 +233,19 @@ datagrid:
         sorters:
             columns:
                 userId:      { data_name: u.userId }
+                channelName: { data_name: ch.name }
                 createdAt:   { data_name: u.createdAt }
                 updatedAt:   { data_name: u.updatedAt }
         filters:
             columns:
+                channelName:
+                    type: entity
+                    data_name: ch.id
+                    options:
+                        field_options:
+                            multiple: true
+                            class: OroIntegrationBundle:Channel
+                            property: name
                 userId:
                     type: string
                     data_name: u.userId

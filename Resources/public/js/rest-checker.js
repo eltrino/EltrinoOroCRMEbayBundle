@@ -12,10 +12,15 @@
  * to license@eltrino.com so we can send you a copy immediately.
  */
 /* global:define */
-/* global:define */
-define(['jquery', 'underscore', 'routing', 'backbone', 'orotranslation/js/translator',
-    'oronavigation/js/navigation', 'oroui/js/messenger'
-], function ($, _, routing, Backbone, __, Navigation, messenger) {
+define([
+    'jquery',
+    'underscore',
+    'routing',
+    'backbone',
+    'orotranslation/js/translator',
+    'oroui/js/mediator',
+    'oroui/js/messenger'
+], function ($, _, routing, Backbone, __, mediator, messenger) {
     "use strict";
 
     return Backbone.View.extend({
@@ -45,6 +50,7 @@ define(['jquery', 'underscore', 'routing', 'backbone', 'orotranslation/js/transl
         ),
 
         initialize: function (options) {
+            this.options = _.defaults(options || {}, this.options);
             this.id = options.transportEntityId || null;
             this.url = this.getUrl();
 
@@ -60,7 +66,6 @@ define(['jquery', 'underscore', 'routing', 'backbone', 'orotranslation/js/transl
             var params = {id: this.id};
             if (type !== undefined) {
                 params.type = type;
-                params.type = type;
             }
 
             return routing.generate(this.route, params);
@@ -68,10 +73,8 @@ define(['jquery', 'underscore', 'routing', 'backbone', 'orotranslation/js/transl
 
         /**
          * Click handler
-         *
-         * @param e
          */
-        processClick: function (e) {
+        processClick: function () {
             var data = this.$el.parents('form').serializeArray();
             var typeData = _.filter(data, function (field) {
                 return field.name.indexOf('[type]') !== -1;
@@ -84,18 +87,13 @@ define(['jquery', 'underscore', 'routing', 'backbone', 'orotranslation/js/transl
                 return field.name.indexOf('[transport]') !== -1;
             });
             data = _.map(data, function (field) {
-                field.name = field.name.replace(/.+\[(.+)\]$/, 'rest-check[$1]')
+                field.name = field.name.replace(/.+\[(.+)\]$/, 'rest-check[$1]');
                 return field;
             });
-            var navigation = Navigation.getInstance();
-            if (navigation) {
-                navigation.loadingMask.show();
-            }
+            mediator.execute('showLoading');
             $.post(this.getUrl(typeData), data, _.bind(this.responseHandler, this), 'json')
-                .always(_.bind(function (respose, status) {
-                    if (navigation) {
-                        navigation.loadingMask.hide();
-                    }
+                .always(_.bind(function (response, status) {
+                    mediator.execute('hideLoading');
                     if (status !== 'success') {
                         this.renderResult('error', __('orocrm.ebay.error'));
                     }

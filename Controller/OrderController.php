@@ -29,12 +29,14 @@ use Eltrino\OroCrmEbayBundle\Entity\Order;
 class OrderController extends Controller
 {
     /**
-     * @Route("/{id}", name="eltrino_ebay_order_index")
+     * @Route("/", name="eltrino_ebay_order_index")
      * @Template
      */
-    public function indexAction(Channel $channel)
+    public function indexAction()
     {
-        return ['channelId' => $channel->getId()];
+        return [
+            'entity_class' => $this->container->getParameter('eltrino_ebay.order.entity.class')
+        ];
     }
 
     /**

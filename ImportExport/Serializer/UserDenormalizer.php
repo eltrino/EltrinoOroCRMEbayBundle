@@ -26,7 +26,7 @@ use Eltrino\OroCrmEbayBundle\Entity\AddressFactory;
 use Eltrino\OroCrmEbayBundle\Entity\User;
 use Eltrino\OroCrmEbayBundle\Entity\UserFactory;
 use Eltrino\OroCrmEbayBundle\Provider\EbayBuyerConnector;
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Oro\Bundle\ImportExportBundle\Serializer\Normalizer\DenormalizerInterface;
 
 class UserDenormalizer implements DenormalizerInterface
 {
@@ -103,10 +103,10 @@ class UserDenormalizer implements DenormalizerInterface
      * @param mixed $data Data to denormalize from.
      * @param string $type The class to which the data should be denormalized.
      * @param string $format The format being deserialized from.
-     *
+     * @param array $context
      * @return Boolean
      */
-    public function supportsDenormalization($data, $type, $format = null)
+    public function supportsDenormalization($data, $type, $format = null, array $context = array())
     {
         return (is_object($data) && $data instanceof \SimpleXMLElement) && ($type == EbayBuyerConnector::USER_ENTITY);
     }

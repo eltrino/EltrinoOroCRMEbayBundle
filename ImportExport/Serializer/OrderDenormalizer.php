@@ -17,7 +17,7 @@ namespace Eltrino\OroCrmEbayBundle\ImportExport\Serializer;
 use Doctrine\ORM\EntityManager;
 
 use Oro\Bundle\IntegrationBundle\Entity\Repository\ChannelRepository;
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Oro\Bundle\ImportExportBundle\Serializer\Normalizer\DenormalizerInterface;
 
 use Eltrino\OroCrmEbayBundle\Model\Order\OrderFactory;
 use Eltrino\OroCrmEbayBundle\Provider\EbayOrderConnector;
@@ -45,9 +45,10 @@ class OrderDenormalizer implements DenormalizerInterface
      * @param mixed $data
      * @param string $type
      * @param null $format
+     * @param array $context
      * @return bool
      */
-    public function supportsDenormalization($data, $type, $format = null)
+    public function supportsDenormalization($data, $type, $format = null, array $context = array())
     {
         return is_object($data) && ($type == EbayOrderConnector::ORDER_TYPE);
     }
@@ -66,6 +67,7 @@ class OrderDenormalizer implements DenormalizerInterface
         /** @var Order $order */
 
         $order = $this->orderFactory->createOrder($data);
+
         $order->setChannel($channel);
 
         return $order;

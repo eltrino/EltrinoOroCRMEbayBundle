@@ -8,7 +8,7 @@ Eltrino is working on improvements for this bundle as well as on support for Ama
 Requirements
 ------------
 
-eBay integration bundle supports OroCRM version 1.0 or above. Additional requirement is Guzzle version 3.7.
+eBay integration bundle supports OroCRM version 1.3 or above. Additional requirement is Guzzle version 3.7.
 
 Installation
 ------------

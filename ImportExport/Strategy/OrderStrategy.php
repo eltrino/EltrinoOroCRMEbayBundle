@@ -85,8 +85,8 @@ class OrderStrategy implements StrategyInterface, ContextAwareInterface
         if ($buyer) {
             $criteria = ['EIASToken' => $buyer->getEIASToken(), 'channel' => $order->getChannel()];
             $buyer = $this->getEntityByCriteria($criteria, EbayBuyerConnector::USER_ENTITY);
-            $order->setBuyer($buyer);
         }
+        $order->setBuyer($buyer);
     }
 
     /**

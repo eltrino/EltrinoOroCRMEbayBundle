@@ -29,12 +29,14 @@ use Oro\Bundle\IntegrationBundle\Entity\Channel;
 class BuyerController extends Controller
 {
     /**
-     * @Route("/{id}", name="eltrino_ebay_buyer_index")
+     * @Route("/", name="eltrino_ebay_buyer_index")
      * @Template
      */
-    public function indexAction(Channel $channel)
+    public function indexAction()
     {
-        return ['channelId' => $channel->getId()];
+        return [
+            'entity_class' => $this->container->getParameter('eltrino_ebay.user.entity.class')
+        ];
     }
 
     /**

@@ -159,11 +159,16 @@ class UserStrategy implements StrategyInterface, ContextAwareInterface
      */
     private function extractRegion(Country $country, $stateOrProvince)
     {
-        return $country->getRegions()->filter(function(Region $region) use($stateOrProvince) {
+        $region = $country->getRegions()->filter(function(Region $region) use($stateOrProvince) {
             if ($region->getCode() == $stateOrProvince) {
                 return $region;
             }
         })->first();
+
+        if (!$region) {
+            $region = null;
+        }
+        return $region;
     }
 
     /**

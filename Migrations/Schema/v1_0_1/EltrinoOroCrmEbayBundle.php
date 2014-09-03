@@ -40,7 +40,7 @@ class EltrinoOroCrmEbayBundle implements Migration
         /** Generate table eltrino_ebay_order **/
         $table = $schema->createTable('eltrino_ebay_order');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
-        $table->addColumn('channel_id', 'smallint', ['notnull' => false]);
+        $table->addColumn('channel_id', 'integer', ['notnull' => false]);
         $table->addColumn('user_id', 'integer', ['notnull' => false]);
         $table->addColumn('ebay_order_id', 'string', ['length' => 60]);
         $table->addColumn('buyer_user_id', 'string', ['length' => 60]);
@@ -86,7 +86,7 @@ class EltrinoOroCrmEbayBundle implements Migration
         /** Generate table eltrino_ebay_user **/
         $table = $schema->createTable('eltrino_ebay_user');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
-        $table->addColumn('channel_id', 'smallint', ['notnull' => false]);
+        $table->addColumn('channel_id', 'integer', ['notnull' => false]);
         $table->addColumn('cotact_id', 'integer', ['notnull' => false]);
         $table->addColumn('user_id', 'string', ['length' => 255]);
         $table->addColumn('eias_token', 'string', ['length' => 255]);

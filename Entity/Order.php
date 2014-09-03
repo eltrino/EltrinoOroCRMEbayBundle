@@ -212,11 +212,13 @@ class Order
     }
 
     /**
-     * @param Buyer $buyer
-     * @return void
+     * @param User|null $buyer
      */
-    public function setBuyer(User $buyer)
+    public function setBuyer($buyer)
     {
+        if (!($buyer instanceof User || null == $buyer)) {
+            throw new \InvalidArgumentException('$buyer parameter has wrong type. $buyer should be instance of User or null.');
+        }
         $this->buyer = $buyer;
     }
 
