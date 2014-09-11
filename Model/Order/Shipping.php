@@ -70,7 +70,7 @@ class Shipping
     }
 
     /**
-     * @return string
+     * @return float
      */
     public function getShippingServiceCost()
     {

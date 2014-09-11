@@ -58,7 +58,7 @@ class OrderFactory
         $salesTaxPercent     = (string) $data->ShippingDetails->SalesTax->SalesTaxPercent;
         $salesTaxAmount      = (string) $data->ShippingDetails->SalesTax->SalesTaxAmount;
         $shippingService     = (string) $data->ShippingDetails->ShippingServiceOptions->ShippingService;
-        $shippingServiceCost = (string) $data->ShippingDetails->ShippingServiceOptions->ShippingServiceCost;
+        $shippingServiceCost = (float) $data->ShippingDetails->ShippingServiceOptions->ShippingServiceCost;
         $paymentMethods      = (string) $data->PaymentMethods;
         $sellerUserId        = (string) $data->SellerUserID;
         $sellerEmail         = (string) $data->SellerEmail;

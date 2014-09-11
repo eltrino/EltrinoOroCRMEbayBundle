@@ -25,6 +25,9 @@ parameters:
 
     eltrino_ebay.navigation.listener_class:                              Eltrino\OroCrmEbayBundle\EventListener\EbayNavigationListener
 
+    #writer
+    eltrino_ebay.writer.ebay_buyer_writer.class:                         Eltrino\OroCrmEbayBundle\Writer\EbayBuyerWriter
+
 services:
    # transport
     eltrino_ebay.ebay_rest_transport:
@@ -64,6 +67,14 @@ services:
           - @eltrino_ebay.filters.factory
         tags:
             - { name: oro_integration.connector, type: buyer, channel_type: ebay }
+
+    #writer
+    eltrino_ebay.writer.ebay_buyer_writer:
+      class: %eltrino_ebay.writer.ebay_buyer_writer.class%
+      arguments:
+        - @doctrine
+        - @event_dispatcher
+        - @oro_importexport.context_registry
 
     eltrino_ebay.order.factory:
         class: %eltrino_ebay.order.factory.class%

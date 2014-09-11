@@ -23,6 +23,6 @@ connector:
                     services:
                         reader:    eltrino_ebay.provider.ebay_buyer_connector
                         processor: oro_importexport.processor.import_delegate
-                        writer:    oro_integration.writer.persistent_batch_writer
+                        writer:    eltrino_ebay.writer.ebay_buyer_writer
                     parameters:
                         batch_size: 100
