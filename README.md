@@ -29,4 +29,22 @@ In addition you will need to run platform update
 php app/console oro:platform:update
 ```
 
+In order to preserve data consistency, you will need to load data from Buyer Connector first.
+Doing this facilitates loading of the correct user data to imported orders.
+To achieve this, follow provided instruction:
+
+1. Open `System > Integrations > Manage Integrations`
+2. Create (or edit existing) integration with type **Ebay**
+3. Fill in all the required data
+4. Make sure none of the connector checkboxes are checked
+5. Click **Save** button on the top right of the page. 
+6. Mark  **Buyer connector** checkbox
+7. **Save** the integration
+8. Mark **Order connector** checkbox
+9. **Save** the integration once again
+
+We've created the feature request for allowing the ordering of the connectors by some parameter to ensure the correct data loading order. As soon as (and if) these changes are implemented this instruction will be updated.
+You can follow the news for request [here][2]
+
 [1]: http://www.orocrm.com/marketplace/oro-crm/package/orocrm-ebay-integration
+[2]: http://www.orocrm.com/forums/topic/ordering-the-integration-connectors-by-parameter

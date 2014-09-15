@@ -82,7 +82,7 @@ class UserStrategy implements StrategyInterface, ContextAwareInterface
         } catch (\Exception $e) {
         }
 
-        return $user;
+        return $this->validateAndUpdateContext($user);
     }
 
     private function processContact(User $user)
@@ -177,5 +177,31 @@ class UserStrategy implements StrategyInterface, ContextAwareInterface
     public function setImportExportContext(ContextInterface $context)
     {
         $this->context = $context;
+    }
+
+    /**
+     * @param object $entity
+     *
+     * @return null|object
+     */
+    private function validateAndUpdateContext($entity)
+    {
+        // validate entity
+        $validationErrors = $this->strategyHelper->validateEntity($entity);
+        if ($validationErrors) {
+            $this->context->incrementErrorEntriesCount();
+            $this->strategyHelper->addValidationErrors($validationErrors, $this->context);
+
+            return null;
+        }
+
+        // increment context counter
+        if ($entity->getId()) {
+            $this->context->incrementUpdateCount();
+        } else {
+            $this->context->incrementAddCount();
+        }
+
+        return $entity;
     }
 }
