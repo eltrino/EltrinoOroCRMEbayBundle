@@ -37,8 +37,12 @@ use OroCRM\Bundle\ContactBundle\Entity\Contact;
 use OroCRM\Bundle\ContactBundle\Entity\ContactAddress;
 use OroCRM\Bundle\ContactBundle\Entity\ContactPhone;
 
+
 class UserStrategy implements StrategyInterface, ContextAwareInterface
 {
+    /**
+     * @var ContextInterface
+     */
     private $context;
 
     /**

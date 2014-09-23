@@ -48,6 +48,12 @@ class UserStrategyTest extends \PHPUnit_Framework_TestCase
      */
     private $repository;
 
+    /**
+     * @var \Oro\Bundle\ImportExportBundle\Context\Context
+     * @Mock \Oro\Bundle\ImportExportBundle\Context\Context
+     */
+    private $context;
+
     protected function setUp()
     {
         \Eltrino\PHPUnit\MockAnnotations\MockAnnotations::init($this);
@@ -66,6 +72,7 @@ class UserStrategyTest extends \PHPUnit_Framework_TestCase
     public function testProcessWhenImportedUserIsNew()
     {
         $strategy = new UserStrategy($this->strategyHelper);
+        $strategy->setImportExportContext($this->context);
 
         $this->repository
             ->expects($this->at(0))
@@ -77,6 +84,10 @@ class UserStrategyTest extends \PHPUnit_Framework_TestCase
             ->method('findOneBy')
             ->will($this->returnValue(new Country('US')));
 
+        $this->context
+            ->expects($this->atLeastOnce())
+            ->method('incrementAddCount');
+
         $user = $strategy->process($this->dummyUser());
 
         $this->assertCount(1, $user->getAddresses());
@@ -87,6 +98,7 @@ class UserStrategyTest extends \PHPUnit_Framework_TestCase
     public function testProcessWhenImportedUserIsAlreadyExistsInSystem()
     {
         $strategy = new UserStrategy($this->strategyHelper);
+        $strategy->setImportExportContext($this->context);
 
         $dummyUser = $this->dummyUser();
         $contact = new Contact();
@@ -120,6 +132,50 @@ class UserStrategyTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $user->getAddresses());
         $this->assertNotNull($user->getContact());
         $this->assertCount(2, $user->getContact()->getAddresses());
+    }
+
+    public function testStrategyReturnsNullIfValidationErrorsOccur()
+    {
+        $strategy = new UserStrategy($this->strategyHelper);
+        $strategy->setImportExportContext($this->context);
+
+        $dummyUser = $this->dummyUser();
+        $contact = new Contact();
+        $dummyUser->setContact($contact);
+
+        $region = new Region('DummyState');
+        $region->setCode('DummyState');
+        $country = new Country('US');
+        $country->addRegion($region);
+
+        $this->repository
+            ->expects($this->at(0))
+            ->method('findOneBy')
+            ->will($this->returnValue($dummyUser));
+
+        $this->repository
+            ->expects($this->at(1))
+            ->method('findOneBy')
+            ->will($this->returnValue($country));
+
+        $this->strategyHelper
+            ->expects($this->once())
+            ->method('validateEntity')
+            ->with($dummyUser)
+            ->will($this->returnValue(array('errors')));
+
+        $this->context
+            ->expects($this->once())
+            ->method('incrementErrorEntriesCount');
+
+        $this->strategyHelper
+            ->expects($this->atLeastOnce())
+            ->method('addValidationErrors')
+            ->with(array('errors'), $this->context);
+
+        $user = $strategy->process($this->dummyUser());
+
+        $this->assertNull($user);
     }
 
     /**
