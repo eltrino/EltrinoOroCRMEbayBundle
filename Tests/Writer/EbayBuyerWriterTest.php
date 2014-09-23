@@ -67,9 +67,6 @@ class EbayBuyerWriterTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         MockAnnotations::init($this);
-        $this->ebayBuyerWriter = new EbayBuyerWriter($this->registry, $this->eventDispatcher, $this->contextRegistry);
-        $this->stepExecution->setExecutionContext(new ExecutionContext());
-        $this->ebayBuyerWriter->setStepExecution($this->stepExecution);
     }
 
     /**
@@ -85,22 +82,26 @@ class EbayBuyerWriterTest extends \PHPUnit_Framework_TestCase
 
         $nonUniqueUsers = $users;
         for ($j=0; $j<self::TEST_USERS_REPETITION_COUNT; $j++) {
-            $nonUniqueUsers[] = $users[rand(0,count($users) - 1)];
+            $nonUniqueUsers[] = $users[rand(0, self::TEST_USERS_COUNT - 1)];
         }
 
         $this->registry
-            ->expects($this->any())
+            ->expects($this->atLeastOnce())
             ->method('getManager')
             ->will($this->returnValue($this->em));
 
         $this->em
-            ->expects($this->any())
+            ->expects($this->atLeastOnce())
             ->method('isOpen')
             ->will($this->returnValue(true));
 
         $this->em
             ->expects($this->exactly(self::TEST_USERS_COUNT))
             ->method('persist');
+
+        $this->ebayBuyerWriter = new EbayBuyerWriter($this->registry, $this->eventDispatcher, $this->contextRegistry);
+        $this->stepExecution->setExecutionContext(new ExecutionContext());
+        $this->ebayBuyerWriter->setStepExecution($this->stepExecution);
 
         $this->ebayBuyerWriter->write($nonUniqueUsers);
     }
