@@ -83,8 +83,9 @@ class EbayBuyerWriterTest extends \PHPUnit_Framework_TestCase
             $users[] = new User('test_user_id_' . $i, 'test_eias_token_' . $i);
         }
 
+        $nonUniqueUsers = $users;
         for ($j=0; $j<self::TEST_USERS_REPETITION_COUNT; $j++) {
-            $users[] = $users[rand(0,count($users))];
+            $nonUniqueUsers[] = $users[rand(0,count($users) - 1)];
         }
 
         $this->registry
@@ -101,6 +102,6 @@ class EbayBuyerWriterTest extends \PHPUnit_Framework_TestCase
             ->expects($this->exactly(self::TEST_USERS_COUNT))
             ->method('persist');
 
-        $this->ebayBuyerWriter->write($users);
+        $this->ebayBuyerWriter->write($nonUniqueUsers);
     }
 }
