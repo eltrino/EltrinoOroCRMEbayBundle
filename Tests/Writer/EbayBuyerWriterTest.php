@@ -48,6 +48,12 @@ class EbayBuyerWriterTest extends \PHPUnit_Framework_TestCase
     private $contextRegistry;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     * @Mock Psr\Log\LoggerInterface
+     */
+    private $logger;
+
+    /**
      * @var \Eltrino\OroCrmEbayBundle\Writer\EbayBuyerWriter
      */
     private $ebayBuyerWriter;
@@ -99,7 +105,7 @@ class EbayBuyerWriterTest extends \PHPUnit_Framework_TestCase
             ->expects($this->exactly(self::TEST_USERS_COUNT))
             ->method('persist');
 
-        $this->ebayBuyerWriter = new EbayBuyerWriter($this->registry, $this->eventDispatcher, $this->contextRegistry);
+        $this->ebayBuyerWriter = new EbayBuyerWriter($this->registry, $this->eventDispatcher, $this->contextRegistry, $this->logger);
         $this->stepExecution->setExecutionContext(new ExecutionContext());
         $this->ebayBuyerWriter->setStepExecution($this->stepExecution);
 
