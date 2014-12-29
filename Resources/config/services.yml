@@ -75,6 +75,7 @@ services:
         - @doctrine
         - @event_dispatcher
         - @oro_importexport.context_registry
+        - @logger
 
     eltrino_ebay.order.factory:
         class: %eltrino_ebay.order.factory.class%
