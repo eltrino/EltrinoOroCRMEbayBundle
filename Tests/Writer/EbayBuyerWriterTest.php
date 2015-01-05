@@ -96,10 +96,10 @@ class EbayBuyerWriterTest extends \PHPUnit_Framework_TestCase
             ->method('getManager')
             ->will($this->returnValue($this->em));
 
-        $this->em
+        $this->contextRegistry
             ->expects($this->atLeastOnce())
-            ->method('isOpen')
-            ->will($this->returnValue(true));
+            ->method('getByStepExecution')
+            ->will($this->returnValue(new Context\Context([])));
 
         $this->em
             ->expects($this->exactly(self::TEST_USERS_COUNT))
