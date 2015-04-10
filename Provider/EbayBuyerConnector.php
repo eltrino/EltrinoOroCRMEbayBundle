@@ -96,6 +96,26 @@ class EbayBuyerConnector extends IteratorBasedReader implements ConnectorInterfa
         return 'buyer';
     }
 
+    /**
+     * Placeholder function for "akeneo/batch-bundle"
+     *
+     * @return $this
+     */
+    public function initialize()
+    {
+        return $this;
+    }
+
+    /**
+     * Placeholder function for "akeneo/batch-bundle"
+     *
+     * @return $this
+     */
+    public function flush()
+    {
+        return $this;
+    }
+
     protected function initializeFromContext(ContextInterface $context)
     {
         $channel = $this->contextMediator->getChannel($context);

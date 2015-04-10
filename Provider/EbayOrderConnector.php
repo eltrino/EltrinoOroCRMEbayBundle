@@ -77,6 +77,26 @@ class EbayOrderConnector extends IteratorBasedReader implements ConnectorInterfa
     }
 
     /**
+     * Placeholder function for "akeneo/batch-bundle"
+     *
+     * @return $this
+     */
+    public function initialize()
+    {
+        return $this;
+    }
+
+    /**
+     * Placeholder function for "akeneo/batch-bundle"
+     *
+     * @return $this
+     */
+    public function flush()
+    {
+        return $this;
+    }
+
+    /**
      * @param ContextInterface $context
      */
     protected function initializeFromContext(ContextInterface $context)
