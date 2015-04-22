@@ -70,12 +70,8 @@ services:
 
     #writer
     eltrino_ebay.writer.ebay_buyer_writer:
-      class: %eltrino_ebay.writer.ebay_buyer_writer.class%
-      arguments:
-        - @doctrine
-        - @event_dispatcher
-        - @oro_importexport.context_registry
-        - @logger
+        class: %eltrino_ebay.writer.ebay_buyer_writer.class%
+        parent: oro_integration.writer.persistent_batch_writer
 
     eltrino_ebay.order.factory:
         class: %eltrino_ebay.order.factory.class%
