@@ -1,17 +1,14 @@
-OroCRM eBay Integration
-========================
+# OroCRM eBay Integration
 
 This bundle adds additional channel to OroCRM which allows import orders from eBay, view orders with all order info like ordered items, addresses, other customer data provided by eBay via eBay API and retrieved by the bundle.
 
 Eltrino is working on improvements for this bundle as well as on support for Amazon and other popular platforms and marketplaces.
 
-Requirements
-------------
+## Requirements
 
 eBay integration bundle supports OroCRM version 1.3 or above. Additional requirement is Guzzle version 3.7.
 
-Installation
-------------
+## Installation
 
 ### Marketplace
 
@@ -48,3 +45,7 @@ You can follow the news for request [here][2]
 
 [1]: http://www.orocrm.com/marketplace/oro-crm/package/orocrm-ebay-integration
 [2]: http://www.orocrm.com/forums/topic/ordering-the-integration-connectors-by-parameter
+
+## Contributing
+
+We welcome all kinds of contributions in the form of bug reporting, patches submition, feature requests or documentation enhancement. Please refer to our [guidelines for contributing](https://github.com/eltrino/EltrinoOroCRMEbayBundle/blob/master/Contributing.md) if you wish to be a part of the project.
