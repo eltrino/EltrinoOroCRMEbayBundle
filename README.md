@@ -21,8 +21,11 @@ Add as dependency in composer:
 ```bash
 composer require eltrino/orocrm-ebay-bundle:dev-master
 ```
+For this bundle to function properly, clear cache by issuing the following command:
 
-In addition, you will need to run platform update:
+```php app/console cache:clear --no-warmup```
+
+Then run platform update:
 ```bash
 php app/console oro:platform:update
 ```
