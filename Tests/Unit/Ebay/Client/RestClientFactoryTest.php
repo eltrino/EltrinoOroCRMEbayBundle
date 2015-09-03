@@ -38,7 +38,7 @@ class RestClientFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             $restClient,
-            $this->object->create('baseUrl', 'devId', 'apiId', 'certId', 'authToken')
+            $this->object->create('baseUrl', 'devId', 'appId', 'certId', 'authToken')
         );
     }
 }

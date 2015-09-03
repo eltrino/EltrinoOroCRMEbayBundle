@@ -67,11 +67,10 @@ class EbayRestTransportTest extends \PHPUnit_Framework_TestCase
         $entity = new TransportEntity();
 
         $entity
-            ->setKeyId('keyId')
-            ->setSecret('secret')
-            ->setMerchantId('merchantId')
-            ->setMarketplaceId('marketplaceId')
-            ->setSyncStartDate($date)
+            ->setAuthToken('authToken')
+            ->setDevId('devId')
+            ->setAppId('appId')
+            ->setCertId('certId')
             ->setWsdlUrl('wsdlUrl');
         $this->object->init($entity);
     }

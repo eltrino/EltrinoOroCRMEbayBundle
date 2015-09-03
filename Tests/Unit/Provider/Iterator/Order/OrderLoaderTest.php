@@ -56,31 +56,7 @@ class OrderLoaderTest extends \PHPUnit_Framework_TestCase
 
         $this->object = new OrderLoader($this->client, $this->firstFilter);
     }
-/*
-    public function testIsFirstRequestSend()
-    {
-        $this->assertFalse($this->object->isFirstRequestSend());
-        $ordersXml = new \SimpleXMLElement(file_get_contents(__DIR__ . '/../../../Fixtures/GetOrders.xml'));
-        $empty     = new \SimpleXMLElement('<el></el>');
 
-        $this->response
-            ->expects($this->at(0))
-            ->method('xml')
-            ->willReturn($ordersXml);
-
-        $this->response
-            ->expects($this->at(1))
-            ->method('xml')
-            ->willReturn($empty);
-
-        $this->response
-            ->expects($this->at(2))
-            ->method('xml')
-            ->willReturn($empty);
-        $this->object->load(2);
-
-        $this->assertTrue($this->object->isFirstRequestSend());
-    }*/
     public function testLoad()
     {
         $ordersXml     = new \SimpleXMLElement(file_get_contents(__DIR__ . '/../../../Fixtures/GetOrders.xml'));
@@ -89,34 +65,19 @@ class OrderLoaderTest extends \PHPUnit_Framework_TestCase
         $this->response
             ->expects($this->at(0))
             ->method('xml')
-            ->willReturn($ordersXml);
+            ->willReturn($empty);
 
         $this->response
             ->expects($this->at(1))
             ->method('xml')
-            ->willReturn($empty);
-
-        $this->response
-            ->expects($this->at(2))
-            ->method('xml')
-            ->willReturn($empty);
-
-        $this->response
-            ->expects($this->at(4))
-            ->method('xml')
-            ->willReturn($empty);
-
-        $this->response
-            ->expects($this->at(5))
-            ->method('xml')
-            ->willReturn($empty);
+            ->willReturn($ordersXml);
 
         $orders = [];
         foreach ($ordersXml->children()->OrderArray->children() as $order) {
             $orders[] = $order;
         }
 
-        $this->assertEquals($orders, $this->object->load(2));
-        $this->assertEquals([], $this->object->load(2));
+        $this->assertEquals([], $this->object->load(0));
+        $this->assertEquals($orders, $this->object->load(1));
     }
 }
