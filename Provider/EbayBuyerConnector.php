@@ -15,11 +15,9 @@
 
 namespace Eltrino\OroCrmEbayBundle\Provider;
 
-use Eltrino\OroCrmEbayBundle\Ebay\EbayRestClientFactory;
+use Eltrino\OroCrmEbayBundle\Provider\Transport\EbayRestTransport;
+use Eltrino\OroCrmEbayBundle\Ebay\Client\RestClientFactory;
 use Eltrino\OroCrmEbayBundle\Ebay\Filters\FiltersFactory;
-use Eltrino\OroCrmEbayBundle\Provider\Iterator\EbayDataIterator;
-use Eltrino\OroCrmEbayBundle\Provider\Iterator\Order\InitialModeLoader;
-use Eltrino\OroCrmEbayBundle\Provider\Iterator\User\UsersLoader;
 use Oro\Bundle\ImportExportBundle\Context\ContextInterface;
 use Oro\Bundle\ImportExportBundle\Context\ContextRegistry;
 use Oro\Bundle\ImportExportBundle\Reader\IteratorBasedReader;
@@ -27,8 +25,9 @@ use Oro\Bundle\IntegrationBundle\Entity\Status;
 use Oro\Bundle\IntegrationBundle\Provider\ConnectorContextMediator;
 use Oro\Bundle\IntegrationBundle\Provider\ConnectorInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
+use Oro\Bundle\IntegrationBundle\Provider\AbstractConnector;
 
-class EbayBuyerConnector extends IteratorBasedReader implements ConnectorInterface
+class EbayBuyerConnector extends AbstractConnector
 {
     const USER_ENTITY = 'Eltrino\OroCrmEbayBundle\Entity\User';
 
@@ -38,21 +37,24 @@ class EbayBuyerConnector extends IteratorBasedReader implements ConnectorInterfa
     protected $contextMediator;
 
     /**
-     * @var EbayRestClientFactory
+     * @var restClientFactory
      */
-    private $ebayRestClientFactory;
+    private $restClientFactory;
 
     /**
      * @var FiltersFactory
      */
     private $filtersFactory;
 
+    /** @var EbayRestTransport */
+    protected $transport;
+
     public function __construct(ContextRegistry $contextRegistry, ConnectorContextMediator $contextMediator,
-                                EbayRestClientFactory $ebayRestClientFactory, FiltersFactory $filtersFactory)
+                                RestClientFactory $restClientFactory, FiltersFactory $filtersFactory)
     {
-        parent::__construct($contextRegistry);
+        $this->contextRegistry       = $contextRegistry;
         $this->contextMediator       = $contextMediator;
-        $this->ebayRestClientFactory = $ebayRestClientFactory;
+        $this->restClientFactory     = $restClientFactory;
         $this->filtersFactory        = $filtersFactory;
     }
 
@@ -116,39 +118,19 @@ class EbayBuyerConnector extends IteratorBasedReader implements ConnectorInterfa
         return $this;
     }
 
-    protected function initializeFromContext(ContextInterface $context)
+    protected function getConnectorSource()
     {
-        $channel = $this->contextMediator->getChannel($context);
-        $settings = $channel->getTransport()->getSettingsBag();
-
-        $ebayRestClient = $this->initializeEbayRestClient($settings);
+        $settings = $this->channel->getTransport()->getSettingsBag();
 
         /** @var Status $status */
-        $status = $channel
+        $status = $this->channel
             ->getStatusesForConnector($this->getType(), Status::STATUS_COMPLETED)
             ->first();
 
-        $startSyncDate = $settings->get('start_sync_date');
-        if (false !== $status) { // update_mode
-            $startSyncDate = $status->getDate();
+        if (false !== $status) {
+            return $this->transport->getModUsers($status->getDate());
+        } else {
+            return $this->transport->getModUsers($settings->get('start_sync_date'));
         }
-        $ordersLoader = new InitialModeLoader($ebayRestClient, $this->filtersFactory, $startSyncDate);
-
-        $loader = new UsersLoader($ordersLoader, $ebayRestClient);
-        $iterator = new EbayDataIterator($loader);
-        $this->setSourceIterator($iterator);
-    }
-
-    private function initializeEbayRestClient(ParameterBag $settings)
-    {
-        $ebayRestClient = $this->ebayRestClientFactory->create(
-            $settings->get('wsdl_url'),
-            $settings->get('dev_id'),
-            $settings->get('app_id'),
-            $settings->get('cert_id'),
-            $settings->get('auth_token')
-        );
-
-        return $ebayRestClient;
     }
 }

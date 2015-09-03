@@ -12,26 +12,19 @@
  * obtain it through the world-wide-web, please send an email
  * to license@eltrino.com so we can send you a copy immediately.
  */
-/**
- * Created by PhpStorm.
- * User: Ruslan Voitenko
- * Date: 4/25/14
- * Time: 3:43 AM
- */
-
 namespace Eltrino\OroCrmEbayBundle\Provider\Iterator\User;
 
 use Eltrino\OroCrmEbayBundle\Provider\Iterator\Loader;
-use Eltrino\OroCrmEbayBundle\Provider\Iterator\Order\InitialModeLoader;
+use Eltrino\OroCrmEbayBundle\Provider\Iterator\Order\OrderLoader;
 
 class UsersLoader implements Loader
 {
     /**
-     * @var \Eltrino\OroCrmEbayBundle\Provider\Iterator\Order\InitialModeLoader
+     * @var \Eltrino\OroCrmEbayBundle\Provider\Iterator\Order\OrderLoader
      */
     private $ordersLoader;
 
-    public function __construct(InitialModeLoader $ordersLoader)
+    public function __construct(OrderLoader $ordersLoader)
     {
         $this->ordersLoader = $ordersLoader;
     }

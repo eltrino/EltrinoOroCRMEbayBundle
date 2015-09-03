@@ -24,7 +24,6 @@ use Eltrino\OroCrmEbayBundle\Entity\OrderTraits\OrderDetailsTrait;
 
 use Eltrino\OroCrmEbayBundle\Model\Order\OrderDetails;
 
-
 /**
  * Class Order
  *
@@ -85,7 +84,7 @@ class Order
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="OrderItem", mappedBy="order",cascade={"all"})
+     * @ORM\OneToMany(targetEntity="OrderItem", mappedBy="order",cascade={"all"}, orphanRemoval=true)
      */
     private $items;
 
@@ -108,8 +107,8 @@ class Order
      * @param $sellerUserId
      * @param OrderDetails $orderDetails
      * @param $items
-     * @param Customer $buyer
-     * @param null $createdTime
+     * @param User $buyer
+     * @param null $createdAt
      */
     public function __construct($ebayOrderId, $buyerUserId, $sellerUserId, OrderDetails $orderDetails,
                                 $items, User $buyer, $createdAt = null)

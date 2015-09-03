@@ -14,7 +14,6 @@
  */
 namespace Eltrino\OroCrmEbayBundle\Controller;
 
-use Eltrino\OroCrmEbayBundle\Ebay\EbayRestClientFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,8 +22,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use Oro\Bundle\IntegrationBundle\Entity\Channel;
 use Oro\Bundle\IntegrationBundle\Provider\ConnectorInterface;
-
-use Eltrino\OroCrmEbayBundle\Entity\EbayRestTransport;
 
 /**
  * @Route("/rest")
@@ -37,7 +34,7 @@ class EbayRestController extends Controller
     public function checkAction(Request $request)
     {
         $transport = $this->get('eltrino_ebay.ebay_rest_transport');
-        $data = null;
+        $data      = null;
 
         if ($id = $request->get('id', false)) {
             $data = $this->get('doctrine.orm.entity_manager')->find($transport->getSettingsEntityFQCN(), $id);
@@ -46,26 +43,9 @@ class EbayRestController extends Controller
         $form = $this->get('form.factory')
             ->createNamed('rest-check', $transport->getSettingsFormType(), $data, ['csrf_protection' => false]);
         $form->submit($request);
+        $transportEntity = $form->getData();
+        $transport->init($transportEntity);
 
-        /** @var EbayRestClientFactory $ebayRestClientFactory */
-        $ebayRestClientFactory = $this->get('eltrino_ebay.ebay_rest_client.factory');
-        $filtersFactory        = $this->get('eltrino_ebay.filters.factory');
-
-        $ebayRestClient = $ebayRestClientFactory->create(
-            $data->getWsdlUrl(),
-            $data->getDevId(),
-            $data->getAppId(),
-            $data->getCertId(),
-            $data->getAuthToken()
-        );
-
-        $filter = $filtersFactory->createCompositeFilter();
-        $result = $ebayRestClient->getCheckRestClient()->getTime($filter);
-
-        return new JsonResponse(
-            [
-                'success' => $result
-            ]
-        );
+        return new JsonResponse(['success' => $transport->getStatus()]);
     }
 }

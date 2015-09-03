@@ -19,6 +19,7 @@ use Doctrine\ORM\EntityManager;
 use Oro\Bundle\IntegrationBundle\Entity\Repository\ChannelRepository;
 use Oro\Bundle\ImportExportBundle\Serializer\Normalizer\DenormalizerInterface;
 
+use Eltrino\OroCrmEbayBundle\Entity\Order;
 use Eltrino\OroCrmEbayBundle\Model\Order\OrderFactory;
 use Eltrino\OroCrmEbayBundle\Provider\EbayOrderConnector;
 
