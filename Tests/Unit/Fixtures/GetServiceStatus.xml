@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GeteBayOfficialTimeResponse xmlns="urn:ebay:apis:eBLBaseComponents">
+    <Ack>Success</Ack>
+    <Build>859</Build>
+    <HardExpirationWarning> string </HardExpirationWarning>
+    <Timestamp> dateTime </Timestamp>
+    <Version> string </Version>
+</GeteBayOfficialTimeResponse>

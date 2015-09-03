@@ -23,6 +23,12 @@ class EltrinoOroCrmEbayBundle implements Migration
     public function up(Schema $schema, QueryBag $queries)
     {
         $table = $schema->getTable('oro_integration_transport');
+        if (!$table->hasColumn('wsdl_url')) {
+            $table->addColumn('wsdl_url', 'string', ['notnull' => false, 'length' => 255]);
+        }
+        if (!$table->hasColumn('sync_start_date')) {
+            $table->addColumn('sync_start_date', 'date', ['notnull' => false]);
+        }
         $table->addColumn('auth_token', 'string', ['notnull' => false, 'length' => 2048]);
         $table->addColumn('dev_id', 'string', ['notnull' => false, 'length' => 255]);
         $table->addColumn('app_id', 'string', ['notnull' => false, 'length' => 255]);

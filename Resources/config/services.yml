@@ -17,10 +17,6 @@ parameters:
     eltrino_ebay.user.factory.class:                                     Eltrino\OroCrmEbayBundle\Entity\UserFactory
     eltrino_ebay.address.factory.class:                                  Eltrino\OroCrmEbayBundle\Entity\AddressFactory
 
-    eltrino_ebay.rest_client.class:                                      Eltrino\OroCrmEbayBundle\Ebay\EbayRestClientImpl
-
-    eltrino_ebay.ebay_rest_client.factory_class:                         Eltrino\OroCrmEbayBundle\Ebay\EbayRestClientFactory
-
     eltrino_ebay.filters.factory_class:                                  Eltrino\OroCrmEbayBundle\Ebay\Filters\FiltersFactory
 
     eltrino_ebay.navigation.listener_class:                              Eltrino\OroCrmEbayBundle\EventListener\EbayNavigationListener
@@ -28,12 +24,20 @@ parameters:
     #writer
     eltrino_ebay.writer.ebay_buyer_writer.class:                         Eltrino\OroCrmEbayBundle\Writer\EbayBuyerWriter
 
+    eltrino_ebay.client.rest_client_factory.class:                       Eltrino\OroCrmEbayBundle\Ebay\Client\RestClientFactory
+
 services:
    # transport
     eltrino_ebay.ebay_rest_transport:
         class: %eltrino_ebay.ebay_rest_transport.class%
+        arguments:
+                    - @eltrino_ebay.client_rest_client_factory
+                    - @eltrino_ebay.filters.factory
         tags:
             - { name: oro_integration.transport, type: ebay_rest, channel_type: ebay}
+
+    eltrino_ebay.client_rest_client_factory:
+            class: %eltrino_ebay.client.rest_client_factory.class%
 
    # providers
     eltrino_ebay.provider.ebay_channel_type:
@@ -53,7 +57,7 @@ services:
         arguments:
           - @oro_importexport.context_registry
           - @oro_integration.provider.connector_context_mediator
-          - @eltrino_ebay.ebay_rest_client.factory
+          - @eltrino_ebay.client_rest_client_factory
           - @eltrino_ebay.filters.factory
         tags:
             - { name: oro_integration.connector, type: order, channel_type: ebay }
@@ -63,7 +67,7 @@ services:
         arguments:
           - @oro_importexport.context_registry
           - @oro_integration.provider.connector_context_mediator
-          - @eltrino_ebay.ebay_rest_client.factory
+          - @eltrino_ebay.client_rest_client_factory
           - @eltrino_ebay.filters.factory
         tags:
             - { name: oro_integration.connector, type: buyer, channel_type: ebay }
@@ -84,12 +88,6 @@ services:
 
     eltrino_ebay.address.factory:
         class: %eltrino_ebay.address.factory.class%
-
-    eltrino_ebay.rest_client:
-        class: %eltrino_ebay.rest_client.class%
-
-    eltrino_ebay.ebay_rest_client.factory:
-        class: %eltrino_ebay.ebay_rest_client.factory_class%
 
     eltrino_ebay.filters.factory:
         class: %eltrino_ebay.filters.factory_class%

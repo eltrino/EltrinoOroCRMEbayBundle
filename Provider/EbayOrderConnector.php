@@ -14,62 +14,40 @@
  */
 namespace Eltrino\OroCrmEbayBundle\Provider;
 
-use Eltrino\OroCrmEbayBundle\Ebay\EbayRestClientFactory;
-use Eltrino\OroCrmEbayBundle\Provider\Iterator\EbayDataIterator;
-use Eltrino\OroCrmEbayBundle\Provider\Iterator\Order\InitialModeLoader;
-use Eltrino\OroCrmEbayBundle\Provider\Iterator\Order\UpdateModeLoader;
-use Oro\Bundle\ImportExportBundle\Reader\IteratorBasedReader;
-use Oro\Bundle\IntegrationBundle\Provider\ConnectorInterface;
-use Oro\Bundle\IntegrationBundle\Provider\ConnectorContextMediator;
-use Oro\Bundle\ImportExportBundle\Context\ContextInterface;
-use Oro\Bundle\ImportExportBundle\Context\ContextRegistry;
+use Eltrino\OroCrmEbayBundle\Provider\Transport\EbayRestTransport;
+use Eltrino\OroCrmEbayBundle\Ebay\Client\RestClientFactory;
 use Eltrino\OroCrmEbayBundle\Ebay\Filters\FiltersFactory;
-use Eltrino\OroCrmEbayBundle\Provider\Iterator\OrderIterator;
-use OroCRM\Bundle\MagentoBundle\Provider\Iterator\UpdatedLoaderInterface;
-use Symfony\Component\HttpFoundation\ParameterBag;
+use Oro\Bundle\IntegrationBundle\Provider\AbstractConnector;
+use Oro\Bundle\IntegrationBundle\Entity\Repository;
+use Oro\Bundle\IntegrationBundle\Provider\ConnectorContextMediator;
+use Oro\Bundle\ImportExportBundle\Context\ContextRegistry;
 use Oro\Bundle\IntegrationBundle\Entity\Status;
 
-class EbayOrderConnector extends IteratorBasedReader implements ConnectorInterface
+class EbayOrderConnector extends AbstractConnector
 {
     const ORDER_TYPE = 'Eltrino\OroCrmEbayBundle\Entity\Order';
+    const TYPE       = 'order';
 
-    /**
-     * @var ContextRegistry
-     */
-    protected $contextRegistry;
-
-    /**
-     * @var ConnectorContextMediator
-     */
-    protected $contextMediator;
-
-    /**
-     * @var EbayRestClientFactory
-     */
-    private $ebayRestClientFactory;
-
-    /**
-     * @var \Eltrino\OroCrmEbayBundle\Ebay\Filters\FiltersFactory
-     */
-    private $filtersFactory;
+    /** @var EbayRestTransport */
+    protected $transport;
 
     /**
      * @param ContextRegistry $contextRegistry
      * @param ConnectorContextMediator $contextMediator
-     * @param EbayRestClientFactory $ebayRestClientFactory
+     * @param RestClientFactory $RestClientFactory
      * @param FiltersFactory $filtersFactory
      */
     public function __construct(ContextRegistry $contextRegistry, ConnectorContextMediator $contextMediator,
-                                EbayRestClientFactory $ebayRestClientFactory, FiltersFactory $filtersFactory)
+                                RestClientFactory $RestClientFactory, FiltersFactory $filtersFactory)
     {
         $this->contextRegistry = $contextRegistry;
         $this->contextMediator = $contextMediator;
-        $this->ebayRestClientFactory = $ebayRestClientFactory;
+        $this->ebayRestClientFactory = $RestClientFactory;
         $this->filtersFactory = $filtersFactory;
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getLabel()
     {
@@ -77,67 +55,7 @@ class EbayOrderConnector extends IteratorBasedReader implements ConnectorInterfa
     }
 
     /**
-     * Placeholder function for "akeneo/batch-bundle"
-     *
-     * @return $this
-     */
-    public function initialize()
-    {
-        return $this;
-    }
-
-    /**
-     * Placeholder function for "akeneo/batch-bundle"
-     *
-     * @return $this
-     */
-    public function flush()
-    {
-        return $this;
-    }
-
-    /**
-     * @param ContextInterface $context
-     */
-    protected function initializeFromContext(ContextInterface $context)
-    {
-        $channel = $this->contextMediator->getChannel($context);
-        $settings = $channel->getTransport()->getSettingsBag();
-
-        $ebayRestClient = $this->initializeEbayRestClient($settings);
-
-        /** @var Status $status */
-        $status = $channel
-            ->getStatusesForConnector($this->getType(), Status::STATUS_COMPLETED)
-            ->first();
-
-        $loader = null;
-        if (false !== $status) { // update_mode
-            $loader = new UpdateModeLoader($ebayRestClient, $this->filtersFactory, $status->getDate());
-        } else { // initial_mode
-            $loader = new InitialModeLoader($ebayRestClient, $this->filtersFactory, $settings->get('start_sync_date'));
-        }
-        $orderIterator = new EbayDataIterator($loader);
-        $this->setSourceIterator($orderIterator);
-    }
-
-    private function initializeEbayRestClient(ParameterBag $settings)
-    {
-        $ebayRestClient = $this->ebayRestClientFactory->create(
-            $settings->get('wsdl_url'),
-            $settings->get('dev_id'),
-            $settings->get('app_id'),
-            $settings->get('cert_id'),
-            $settings->get('auth_token')
-        );
-
-        return $ebayRestClient;
-    }
-
-    /**
-     * Returns entity name that will be used for matching "import processor"
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getImportEntityFQCN()
     {
@@ -145,9 +63,7 @@ class EbayOrderConnector extends IteratorBasedReader implements ConnectorInterfa
     }
 
     /**
-     * Returns job name for import
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getImportJobName()
     {
@@ -155,12 +71,29 @@ class EbayOrderConnector extends IteratorBasedReader implements ConnectorInterfa
     }
 
     /**
-     * Returns type name, the same as registered in service tag
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getType()
     {
-        return 'order';
+        return static::TYPE;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getConnectorSource()
+    {
+        $settings = $this->channel->getTransport()->getSettingsBag();
+
+        /** @var Status $status */
+        $status = $this->channel
+            ->getStatusesForConnector($this->getType(), Status::STATUS_COMPLETED)
+            ->first();
+
+        if (false !== $status) {
+            return $this->transport->getModOrders($status->getDate());
+        } else {
+            return $this->transport->getInitialOrders($settings->get('start_sync_date'));
+        }
     }
 }
