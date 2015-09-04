@@ -18,7 +18,7 @@ use Eltrino\OroCrmEbayBundle\Provider\EbayChannelType;
 
 class EbayChannelTypeTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var ChannelType */
+    /** @var EbayChannelType */
     private $channel;
 
     public function setUp()

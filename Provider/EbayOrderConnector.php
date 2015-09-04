@@ -32,6 +32,16 @@ class EbayOrderConnector extends AbstractConnector
     protected $transport;
 
     /**
+     * @var RestClientFactory
+     */
+    private $restClientFactory;
+
+    /**
+     * @var FiltersFactory
+     */
+    private $filtersFactory;
+
+    /**
      * @param ContextRegistry $contextRegistry
      * @param ConnectorContextMediator $contextMediator
      * @param RestClientFactory $RestClientFactory
@@ -42,7 +52,7 @@ class EbayOrderConnector extends AbstractConnector
     {
         $this->contextRegistry = $contextRegistry;
         $this->contextMediator = $contextMediator;
-        $this->ebayRestClientFactory = $RestClientFactory;
+        $this->restClientFactory = $RestClientFactory;
         $this->filtersFactory = $filtersFactory;
     }
 

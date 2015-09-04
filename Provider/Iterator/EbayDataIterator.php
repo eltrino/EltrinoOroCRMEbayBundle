@@ -46,7 +46,6 @@ class EbayDataIterator implements \Iterator
 
     /**
      * Check whether need to load extra elements
-     * @return bool
      */
     public function __construct(Loader $loader, $batchSize = self::LOAD_BATCH_SIZE)
     {
