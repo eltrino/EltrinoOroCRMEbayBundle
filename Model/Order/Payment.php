@@ -21,17 +21,17 @@ namespace Eltrino\OroCrmEbayBundle\Model\Order;
 class Payment
 {
     /**
-     * @var string
+     * @var float
      */
     private $amountPaid;
 
     /**
-     * @var string
+     * @var float
      */
     private $currencyId;
 
     /**
-     * @var string
+     * @var float
      */
     private $paymentMethods;
 
@@ -43,7 +43,7 @@ class Payment
     }
 
     /**
-     * @return string
+     * @return float
      */
     public function getAmountPaid()
     {
@@ -51,7 +51,7 @@ class Payment
     }
 
     /**
-     * @return string
+     * @return float
      */
     public function getCurrencyId()
     {
@@ -59,7 +59,7 @@ class Payment
     }
 
     /**
-     * @return string
+     * @return float
      */
     public function getPaymentMethods()
     {

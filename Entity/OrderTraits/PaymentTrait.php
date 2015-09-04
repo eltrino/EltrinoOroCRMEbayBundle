@@ -25,14 +25,14 @@ trait PaymentTrait
     private $amountPaid;
 
     /**
-     * @var string
+     * @var float
      *
      * @ORM\Column(name="currency_id", type="string", length=32, nullable=false)
      */
     private $currencyId;
 
     /**
-     * @var string
+     * @var float
      *
      * @ORM\Column(name="payment_methods", type="string", length=60, nullable=false)
      */

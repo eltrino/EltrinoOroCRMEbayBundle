@@ -41,6 +41,7 @@ class ModTimeRangeFilter implements Filter
     /**
      * @param $body string
      * @return mixed
+     * @throws
      */
     public function process($body)
     {

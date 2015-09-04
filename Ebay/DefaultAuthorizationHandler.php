@@ -38,7 +38,7 @@ class DefaultAuthorizationHandler implements AuthorizationHandler
      */
     private $authToken;
 
-    function __construct($devId, $appId, $certId, $authToken)
+    public function __construct($devId, $appId, $certId, $authToken)
     {
         $this->devId = $devId;
         $this->appId = $appId;
@@ -50,7 +50,7 @@ class DefaultAuthorizationHandler implements AuthorizationHandler
      * Retrieves dev id
      * @return string
      */
-    function getDevId()
+    public function getDevId()
     {
         return $this->devId;
     }
@@ -59,7 +59,7 @@ class DefaultAuthorizationHandler implements AuthorizationHandler
      * Retrieves app id
      * @return string
      */
-    function getAppId()
+    public function getAppId()
     {
         return $this->appId;
     }
@@ -68,7 +68,7 @@ class DefaultAuthorizationHandler implements AuthorizationHandler
      * Retrieves cert id
      * @return string
      */
-    function getCertId()
+    public function getCertId()
     {
         return $this->certId;
     }
@@ -78,7 +78,7 @@ class DefaultAuthorizationHandler implements AuthorizationHandler
      * @return string
      * @inheritdoc
      */
-    function getAuthToken()
+    public function getAuthToken()
     {
         return $this->authToken;
     }

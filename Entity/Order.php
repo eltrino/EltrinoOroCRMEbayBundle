@@ -101,6 +101,8 @@ class Order
      */
     private $orderDetails;
 
+    public $channelId;
+
     /**
      * @param $ebayOrderId
      * @param $buyerUserId

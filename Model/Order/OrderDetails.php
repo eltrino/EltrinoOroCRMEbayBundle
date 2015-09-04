@@ -24,12 +24,12 @@ class OrderDetails
     private $orderStatus;
 
     /**
-     * @var string
+     * @var float
      */
     private $subtotal;
 
     /**
-     * @var string
+     * @var float
      */
     private $total;
 
@@ -48,7 +48,7 @@ class OrderDetails
      */
     private $shipping;
 
-    function __construct($orderStatus, $subtotal, $total, $sellerEmail, Payment $payment, Shipping $shipping)
+    public function __construct($orderStatus, $subtotal, $total, $sellerEmail, Payment $payment, Shipping $shipping)
     {
         $this->orderStatus = $orderStatus;
         $this->subtotal = $subtotal;
@@ -75,7 +75,7 @@ class OrderDetails
     }
 
     /**
-     * @return string
+     * @return float
      */
     public function getSubtotal()
     {
@@ -83,7 +83,7 @@ class OrderDetails
     }
 
     /**
-     * @return string
+     * @return float
      */
     public function getTotal()
     {
