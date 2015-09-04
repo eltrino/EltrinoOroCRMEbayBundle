@@ -44,7 +44,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testMethods($method, $expected)
     {
-        $this->assertEquals($expected, $this->object->{$method}());
+        $this->assertEquals($expected, $this->object->{$method}('body'));
     }
 
     public function testGettersDataProvider()

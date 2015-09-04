@@ -32,7 +32,6 @@ class OrderLoader implements LoggerAwareInterface, Loader
     /**
      * @param RestClient $client
      * @param Filter     $firstFilter
-     * @param string     $nameSpace
      */
     public function __construct(RestClient $client, Filter $firstFilter)
     {
@@ -78,7 +77,7 @@ class OrderLoader implements LoggerAwareInterface, Loader
         $orders = [];
         if ($ordersXml->count() && $ordersXml->children()->count()) {
             foreach ($ordersXml->children() as $order) {
-                $EbayOrderId = (string)$order->EbayOrderId;
+                $EbayOrderId = (string)$order->OrderID;
                 if ($EbayOrderId) {
                     $orders[] = $order;
                 }

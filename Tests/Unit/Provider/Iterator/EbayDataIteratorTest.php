@@ -119,17 +119,12 @@ class EbayDataIteratorTest extends \PHPUnit_Framework_TestCase
         $this->loader
             ->expects($this->at(0))
             ->method('load')
-            ->will($this->returnValue($elements1));
+            ->willReturn($elements1);
 
         $this->loader
             ->expects($this->at(1))
             ->method('load')
-            ->will($this->returnValue($elements2));
-
-        $this->loader
-            ->expects($this->at(2))
-            ->method('load')
-            ->will($this->returnValue(array()));
+            ->willReturn($elements2);
 
         $elm1 = $this->iterator->current();
         $this->iterator->next();

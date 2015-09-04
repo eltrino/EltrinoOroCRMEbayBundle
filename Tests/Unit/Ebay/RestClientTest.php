@@ -39,13 +39,15 @@ class RestClientTest extends \PHPUnit_Framework_TestCase
 
     public function testSendRequest()
     {
-        //$listAction = RestClient::LIST_ORDER_ITEMS;
-        //$byNextTokenAction = RestClient::LIST_ORDER_ITEMS_BY_NEXT_TOKEN;
-        $reflection = new \ReflectionClass($this->object);
+        $checkAction = RestClient::GET_SERVICE_STATUS;
+        $getOrdersAction = RestClient::GET_SERVICE_STATUS;
+
+        $reflection       = new \ReflectionClass($this->object);
         $requestsCounters = $reflection->getProperty('requestsCounters');
         $requestsCounters->setAccessible(true);
-        /*$listRequest = new Request($listAction);
-        $byNextTokenRequest = new Request($byNextTokenAction);*/
+
+        $checkRequest     = new Request($checkAction);
+        $getOrdersRequest = new Request($getOrdersAction);
 
         $request = $this->getMockBuilder('Guzzle\Http\Message\EntityEnclosingRequestInterface')
             ->getMock();
@@ -60,16 +62,14 @@ class RestClientTest extends \PHPUnit_Framework_TestCase
             ->method('post')
             ->willReturn($request);
 
-        /*$this->assertEquals(
+        $this->assertEquals(
             'test',
-            $this->object->sendRequest($listRequest)
+            $this->object->sendRequest($checkRequest)
         );
 
         $this->assertEquals(
             'test',
-            $this->object->sendRequest($byNextTokenRequest)
+            $this->object->sendRequest($getOrdersRequest)
         );
-
-        $this->assertEquals(2, $requestsCounters->getValue($this->object)[$listAction]);*/
     }
 }
