@@ -50,6 +50,6 @@ class PagerFilterTest extends \PHPUnit_Framework_TestCase
     public function testProcessWhenIncorrectBodyGiven()
     {
         $filter = new PagerFilter(10, 1);
-        $processedBody = $filter->process("<?xml version='1.0'?><AnyDummyNode></AnyDummyNode>");
+        $filter->process("<?xml version='1.0'?><AnyDummyNode></AnyDummyNode>");
     }
 }

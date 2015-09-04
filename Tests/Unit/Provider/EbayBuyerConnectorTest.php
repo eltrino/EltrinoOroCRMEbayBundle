@@ -76,6 +76,7 @@ class EbayBuyerConnectorTest extends \PHPUnit_Framework_TestCase
             $this->contextRegistry, $this->contextMediator,
             $this->ebayRestClient, $this->filtersFactory
         );
-        $user = $connector->read();
+
+        $connector->read();
     }
 }
