@@ -126,7 +126,7 @@ class EbayDataIterator implements \Iterator
      */
     protected function loadElements()
     {
-        $elements = $this->loader->load($this->batchSize);
+        $elements = $this->loader->load();
         $loaded   = count($elements);
         $start    = $this->loaded;
         $this->loaded += $loaded;
