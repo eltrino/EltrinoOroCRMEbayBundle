@@ -236,9 +236,8 @@ class Order
     private function initOrderDetails()
     {
         if (is_null($this->orderDetails)) {
-            $payment  = $this->initPayment($this->amountPaid, $this->currencyId, $this->paymentMethods);
-            $shipping = $this->initShipping($this->salesTaxPercent, $this->salesTaxAmount, $this->shippingService,
-                $this->shippingServiceCost);
+            $payment  = $this->initPayment();
+            $shipping = $this->initShipping();
 
             $this->orderDetails = new OrderDetails($this->orderStatus, $this->subtotal, $this->total,
                 $this->sellerEmail, $payment, $shipping);

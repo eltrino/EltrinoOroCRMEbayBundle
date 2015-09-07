@@ -96,17 +96,6 @@ class EbayRestTransport implements TransportInterface
     }
 
     /**
-     * @param string $action
-     * @param array  $params
-     * @return array|mixed
-     * @throws \Symfony\Component\DependencyInjection\Exception\RuntimeException
-     */
-    public function call($action, $params = [])
-    {
-
-    }
-
-    /**
      * @return bool
      */
     public function getStatus()
