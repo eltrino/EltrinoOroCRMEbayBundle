@@ -37,7 +37,7 @@ class EbayBuyerConnector extends AbstractConnector
     protected $contextMediator;
 
     /**
-     * @var restClientFactory
+     * @var RestClientFactory
      */
     private $restClientFactory;
 

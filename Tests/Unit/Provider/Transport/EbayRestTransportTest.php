@@ -63,7 +63,6 @@ class EbayRestTransportTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $this->object = new EbayRestTransport($this->clientFactory, $this->filtersFactory);
-        $date   = new \DateTime('now', new \DateTimeZone('UTC'));
         $entity = new TransportEntity();
 
         $entity

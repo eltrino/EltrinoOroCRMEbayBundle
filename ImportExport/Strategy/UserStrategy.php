@@ -84,6 +84,7 @@ class UserStrategy implements StrategyInterface, ContextAwareInterface
         try {
             $this->processContact($user);
         } catch (\Exception $e) {
+            throw new \Exception('Errors occurred during contact process execution');
         }
 
         return $this->validateAndUpdateContext($user);

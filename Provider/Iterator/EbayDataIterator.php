@@ -46,7 +46,6 @@ class EbayDataIterator implements \Iterator
 
     /**
      * Check whether need to load extra elements
-     * @return bool
      */
     public function __construct(Loader $loader, $batchSize = self::LOAD_BATCH_SIZE)
     {
@@ -127,7 +126,7 @@ class EbayDataIterator implements \Iterator
      */
     protected function loadElements()
     {
-        $elements = $this->loader->load($this->batchSize);
+        $elements = $this->loader->load();
         $loaded   = count($elements);
         $start    = $this->loaded;
         $this->loaded += $loaded;

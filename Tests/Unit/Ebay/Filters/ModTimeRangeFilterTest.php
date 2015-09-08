@@ -48,6 +48,6 @@ class ModTimeRangeFilterTest extends \PHPUnit_Framework_TestCase
     public function testProcessWhenIncorrectBodyGiven()
     {
         $filter = new ModTimeRangeFilter(new \DateTime(), new \DateTime());
-        $processedBody = $filter->process("<?xml version='1.0'?><AnyDummyNode></AnyDummyNode>");
+        $filter->process("<?xml version='1.0'?><AnyDummyNode></AnyDummyNode>");
     }
 }

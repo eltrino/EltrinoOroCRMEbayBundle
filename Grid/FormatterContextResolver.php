@@ -26,7 +26,7 @@ class FormatterContextResolver
      */
     public static function getResolverCurrencyClosure()
     {
-        return function (ResultRecordInterface $record, $value, NumberFormatter $formatter) {
+        return function (ResultRecordInterface $record) {
             return [$record->getValue('currency_id')];
         };
     }

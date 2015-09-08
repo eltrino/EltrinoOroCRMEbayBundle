@@ -115,16 +115,6 @@ class OrderStrategy implements StrategyInterface, ContextAwareInterface
     }
 
     /**
-     * @param $entityName
-     *
-     * @return \Doctrine\ORM\EntityManager
-     */
-    private function getEntityManager($entityName)
-    {
-        return $this->strategyHelper->getEntityManager($entityName);
-    }
-
-    /**
      * @param string $entityName
      *
      * @return EntityRepository

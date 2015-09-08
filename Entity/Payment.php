@@ -17,18 +17,18 @@ namespace Eltrino\OroCrmEbayBundle\Entity;
 
 class Payment
 {
-    private $payidAmount;
+    private $payIdAmount;
 
-    function __construct($payidAmount)
+    public function __construct($payIdAmount)
     {
-        $this->payidAmount = $payidAmount;
+        $this->payIdAmount = $payIdAmount;
     }
 
     /**
      * @return mixed
      */
-    public function getPayidAmount()
+    public function getPayIdAmount()
     {
-        return $this->payidAmount;
+        return $this->payIdAmount;
     }
 }

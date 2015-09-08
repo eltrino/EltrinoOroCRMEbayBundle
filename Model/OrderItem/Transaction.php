@@ -22,7 +22,7 @@ class Transaction
     private $transactionId;
 
     /**
-     * @var string
+     * @var float
      */
     private $transactionPrice;
 
@@ -32,7 +32,7 @@ class Transaction
     private $currencyId;
 
     /**
-     * @var string
+     * @var float
      */
     private $totalTaxAmount;
 
@@ -53,7 +53,7 @@ class Transaction
     }
 
     /**
-     * @return string
+     * @return float
      */
     public function getTransactionPrice()
     {
@@ -61,7 +61,7 @@ class Transaction
     }
 
     /**
-     * @return string
+     * @return float
      */
     public function getTotalTaxAmount()
     {

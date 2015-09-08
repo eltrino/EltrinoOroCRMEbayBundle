@@ -30,6 +30,11 @@ class OrderLoader implements LoggerAwareInterface, Loader
     protected $firstFilter;
 
     /**
+     * @var RestClient
+     */
+    private $client;
+
+    /**
      * @param RestClient $client
      * @param Filter     $firstFilter
      */

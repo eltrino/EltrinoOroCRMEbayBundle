@@ -77,7 +77,7 @@ class OrderLoaderTest extends \PHPUnit_Framework_TestCase
             $orders[] = $order;
         }
 
-        $this->assertEquals([], $this->object->load(0));
-        $this->assertEquals($orders, $this->object->load(1));
+        $this->assertEquals([], $this->object->load());
+        $this->assertEquals($orders, $this->object->load());
     }
 }

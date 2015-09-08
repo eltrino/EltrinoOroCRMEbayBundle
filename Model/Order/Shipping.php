@@ -18,12 +18,12 @@ namespace Eltrino\OroCrmEbayBundle\Model\Order;
 class Shipping
 {
     /**
-     * @var string
+     * @var float
      */
     private $salesTaxPercent;
 
     /**
-     * @var string
+     * @var float
      */
     private $salesTaxAmount;
 
@@ -33,7 +33,7 @@ class Shipping
     private $shippingService;
 
     /**
-     * @var string
+     * @var float
      */
     private $shippingServiceCost;
 
@@ -54,7 +54,7 @@ class Shipping
     }
 
     /**
-     * @return string
+     * @return float
      */
     public function getSalesTaxPercent()
     {

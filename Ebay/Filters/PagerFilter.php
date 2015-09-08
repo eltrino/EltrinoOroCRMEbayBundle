@@ -32,8 +32,9 @@ class PagerFilter implements Filter
     /**
      * @param $body string
      * @return mixed
+     * @throws
      */
-    function process($body)
+    public function process($body)
     {
         $getOrdersRequestNode = new \SimpleXMLElement($body);
 
