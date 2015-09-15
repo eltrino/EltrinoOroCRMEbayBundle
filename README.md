@@ -52,4 +52,4 @@ You can follow the news for request [here][2]
 
 ## Contributing
 
-We welcome all kinds of contributions in the form of bug reporting, patches submition, feature requests or documentation enhancement. Please refer to our [guidelines for contributing](https://github.com/eltrino/EltrinoOroCRMEbayBundle/blob/master/Contributing.md) if you wish to be a part of the project.
+We welcome all kinds of contributions in the form of bug reporting, patches submitting, feature requests or documentation enhancement. Please refer to our [guidelines for contributing](https://github.com/eltrino/EltrinoOroCRMEbayBundle/blob/master/Contributing.md) if you wish to be a part of the project.
