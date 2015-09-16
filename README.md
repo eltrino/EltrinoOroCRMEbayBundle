@@ -6,7 +6,7 @@ Eltrino team is working on improvements for this bundle, as well as on support f
 
 ## Requirements
 
-- supports OroCRM version 1.3 or above; 
+- supports OroCRM version 1.7 or above;
 - Guzzle version 3.7.
 
 ## Installation
