@@ -10,6 +10,19 @@ use Akeneo\Bundle\BatchBundle\Item\InvalidItemException;
 
 class EbayBuyerWriter extends PersistentBatchWriter
 {
+
+    /**
+     * @var PersistentBatchWriter
+     */
+    public $ebayBatchWriter;
+
+    /**
+     * @param PersistentBatchWriter $persistentBatchWriter
+     */
+    public function __construct(PersistentBatchWriter $persistentBatchWriter)
+    {
+        $this->ebayBatchWriter = $persistentBatchWriter;
+    }
     /**
      * {@inheritdoc}
      */
@@ -25,6 +38,10 @@ class EbayBuyerWriter extends PersistentBatchWriter
             }
         }
 
-        parent::write($uniqueItems);
+        if(isset($this->stepExecution) && $this->stepExecution !== null) {
+            $this->ebayBatchWriter->setStepExecution($this->stepExecution);
+        }
+
+        $this->ebayBatchWriter->write($uniqueItems);
     }
 }

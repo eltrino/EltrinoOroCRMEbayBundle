@@ -168,6 +168,20 @@ class EbayRestTransport implements TransportInterface
     }
 
     /**
+     * @param \DateTime $from
+     * @return EbayDataIterator
+     */
+    public function getInitialUsers(\DateTime $from)
+    {
+        $now    = $this->getNowDate();
+        $from   = $this->validateFrom($from, $now);
+        $filter = $this
+            ->filtersFactory
+            ->createCreateTimeRangeFilter($from, $now);
+        return $this->getUsers($filter);
+    }
+
+    /**
      * @param Filter $filter
      * @return EbayDataIterator
      */

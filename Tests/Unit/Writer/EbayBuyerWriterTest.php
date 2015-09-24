@@ -28,45 +28,16 @@ class EbayBuyerWriterTest extends \PHPUnit_Framework_TestCase
     const TEST_USERS_REPETITION_COUNT = 3;
 
     /**
-     * @var \Doctrine\Bundle\DoctrineBundle\Registry
-     * @Mock Doctrine\Bundle\DoctrineBundle\Registry
+     * @var \Oro\Bundle\IntegrationBundle\ImportExport\Writer\PersistentBatchWriter
+     * @Mock Oro\Bundle\IntegrationBundle\ImportExport\Writer\PersistentBatchWriter
      */
-    private $registry;
-
-    /**
-     * @var \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher
-     * @Mock Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher
-     */
-    private $eventDispatcher;
-
-    /**
-     * @var \Oro\Bundle\ImportExportBundle\Context\ContextRegistry
-     * @Mock Oro\Bundle\ImportExportBundle\Context\ContextRegistry
-     */
-    private $contextRegistry;
-
-    /**
-     * @var \Psr\Log\LoggerInterface
-     * @Mock Psr\Log\LoggerInterface
-     */
-    private $logger;
+    private $persistentBatchWriter;
 
     /**
      * @var \Eltrino\OroCrmEbayBundle\Writer\EbayBuyerWriter
      */
     private $ebayBuyerWriter;
 
-    /**
-     * @var EntityManager
-     * @Mock Doctrine\ORM\EntityManager
-     */
-    private $em;
-
-    /**
-     * @var StepExecution
-     * @Mock Akeneo\Bundle\BatchBundle\Entity\StepExecution
-     */
-    private $stepExecution;
 
     public function setUp()
     {
@@ -89,24 +60,11 @@ class EbayBuyerWriterTest extends \PHPUnit_Framework_TestCase
             $nonUniqueUsers[] = $users[rand(0, self::TEST_USERS_COUNT - 1)];
         }
 
-        $this->registry
-            ->expects($this->atLeastOnce())
-            ->method('getManager')
-            ->will($this->returnValue($this->em));
+        $this->persistentBatchWriter
+            ->expects($this->once())
+            ->method('write');
 
-        $this->contextRegistry
-            ->expects($this->atLeastOnce())
-            ->method('getByStepExecution')
-            ->will($this->returnValue(new Context\Context([])));
-
-        $this->em
-            ->expects($this->exactly(self::TEST_USERS_COUNT))
-            ->method('persist');
-
-        $this->ebayBuyerWriter = new EbayBuyerWriter($this->registry, $this->eventDispatcher, $this->contextRegistry, $this->logger);
-        $this->stepExecution->setExecutionContext(new ExecutionContext());
-        $this->ebayBuyerWriter->setStepExecution($this->stepExecution);
-
+        $this->ebayBuyerWriter = new EbayBuyerWriter($this->persistentBatchWriter);
         $this->ebayBuyerWriter->write($nonUniqueUsers);
     }
 }

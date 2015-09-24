@@ -130,7 +130,7 @@ class EbayBuyerConnector extends AbstractConnector
         if (false !== $status) {
             return $this->transport->getModUsers($status->getDate());
         } else {
-            return $this->transport->getModUsers($settings->get('start_sync_date'));
+            return $this->transport->getInitialUsers($settings->get('start_sync_date'));
         }
     }
 }
