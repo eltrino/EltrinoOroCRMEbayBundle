@@ -24,7 +24,7 @@ before_install:
   - composer self-update
 
 install:
-  - composer install --prefer-source --profile
+  - composer install -o
 
 tools:
     external_code_coverage:
