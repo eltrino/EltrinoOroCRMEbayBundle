@@ -1,3 +1,3 @@
 bundles:
-    - { name: Eltrino\OroCrmEbayBundle\EltrinoOroCrmEbayBundle, priority: 20 }
+    - { name: Eltrino\OroCrmEbayBundle\EltrinoOroCrmEbayBundle, priority: 60 }
 
