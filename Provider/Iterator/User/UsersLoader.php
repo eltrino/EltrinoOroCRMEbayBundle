@@ -109,7 +109,7 @@ class UsersLoader implements Loader
             foreach ($each['ShippingAddress'] as $addressID => $addressParts) {
                 $address = $addresses->addChild('AddressID' . $addressID);
                 foreach ($addressParts as $name => $value) {
-                    $address->addChild($name, $value);
+                    $address->addChild($name, htmlspecialchars($value));
                 }
             }
             $usersXmlData[] = $userXmlData;

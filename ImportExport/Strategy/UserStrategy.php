@@ -84,7 +84,7 @@ class UserStrategy implements StrategyInterface, ContextAwareInterface
         try {
             $this->processContact($user);
         } catch (\Exception $e) {
-            throw new \Exception('Errors occurred during contact process execution');
+            throw new \Exception($e->getMessage());
         }
 
         return $this->validateAndUpdateContext($user);
@@ -119,7 +119,10 @@ class UserStrategy implements StrategyInterface, ContextAwareInterface
             }
 
             $country = $this->extractCountry($address->getCountryCode());
-            $region  = $this->extractRegion($country, $address->getStateOrProvince());
+            $region = null;
+            if (!is_null($country)) {
+                $region  = $this->extractRegion($country, $address->getStateOrProvince());
+            }
 
             $contactAddress = new ContactAddress();
             $contactAddress->setFirstName($address->getFirstName());
