@@ -11,24 +11,9 @@ Eltrino team is working on improvements for this bundle, as well as on support f
 
 ## Installation
 
-### Marketplace
+Please refer to the instruction described in [How to Manage OroPlatform Extensions][3] article. 
 
-Navigate to `System > Package Manager` to install it from [OroCRM Marketplace][1]
-
-### Composer
-
-Add as dependency in composer:
-```bash
-composer require eltrino/orocrm-ebay-bundle:dev-master
-```
-For this bundle to function properly, clear cache by issuing the following command:
-
-```php app/console cache:clear --no-warmup```
-
-Then run platform update:
-```bash
-php app/console oro:platform:update
-```
+Package/Extension name to use is `eltrino/orocrm-ebay-bundle
 
 In order to preserve data consistency, load data from the Buyer Connector first.
 This action facilitates loading of the correct user data to imported orders.
@@ -47,9 +32,10 @@ To achieve this, follow the provided instruction:
 We've created the feature request to enable connector ordering by the certain parameters to ensure the correct data loading order. As soon as (and if) these changes are implemented, this instruction will be updated.
 You can follow the news for request [here][2]
 
-[1]: http://www.orocrm.com/marketplace/oro-crm/package/orocrm-ebay-integration
-[2]: http://www.orocrm.com/forums/topic/ordering-the-integration-connectors-by-parameter
-
 ## Contributing
 
 We welcome all kinds of contributions in the form of bug reporting, patches submitting, feature requests or documentation enhancement. Please refer to our [guidelines for contributing](https://github.com/eltrino/EltrinoOroCRMEbayBundle/blob/master/Contributing.md) if you wish to be a part of the project.
+
+[1]: http://www.orocrm.com/marketplace/oro-crm/package/orocrm-ebay-integration
+[2]: http://www.orocrm.com/forums/topic/ordering-the-integration-connectors-by-parameter
+[3]: https://www.orocrm.com/documentation/current/cookbook/how-to-install-extension-from-command-line#using-the-package-manager
