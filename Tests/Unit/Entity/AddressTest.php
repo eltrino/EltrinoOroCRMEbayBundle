@@ -15,8 +15,9 @@
 namespace Eltrino\OroCrmEbayBundle\Tests\Unit\Entity;
 
 use Eltrino\OroCrmEbayBundle\Entity\Address;
+use PHPUnit\Framework\TestCase;
 
-class AddressTest extends \PHPUnit_Framework_TestCase
+class AddressTest extends TestCase
 {
     public function testEqual()
     {

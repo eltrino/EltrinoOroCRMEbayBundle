@@ -16,8 +16,9 @@ namespace Eltrino\OroCrmEbayBundle\Tests\Unit\Ebay\Client;
 
 use Eltrino\OroCrmEbayBundle\Ebay\Client\Request;
 use Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter;
+use PHPUnit\Framework\TestCase;
 
-class RequestTest extends \PHPUnit_Framework_TestCase
+class RequestTest extends TestCase
 {
     /** @var Request */
     protected $object;

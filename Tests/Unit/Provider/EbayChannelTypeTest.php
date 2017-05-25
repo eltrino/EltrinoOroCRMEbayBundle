@@ -15,8 +15,9 @@
 namespace Eltrino\OroCrmEbayBundle\Tests\Unit\Provider;
 
 use Eltrino\OroCrmEbayBundle\Provider\EbayChannelType;
+use PHPUnit\Framework\TestCase;
 
-class EbayChannelTypeTest extends \PHPUnit_Framework_TestCase
+class EbayChannelTypeTest extends TestCase
 {
     /** @var EbayChannelType */
     private $channel;

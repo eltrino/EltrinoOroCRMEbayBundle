@@ -24,7 +24,7 @@ namespace Eltrino\OroCrmEbayBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Oro\Bundle\IntegrationBundle\Model\IntegrationEntityTrait;
-use OroCRM\Bundle\ContactBundle\Entity\Contact;
+use Oro\Bundle\ContactBundle\Entity\Contact;
 
 /**
  * Class User
@@ -64,7 +64,7 @@ class User
 
     /**
      * @var Contact
-     * @ORM\OneToOne(targetEntity="OroCRM\Bundle\ContactBundle\Entity\Contact", cascade="persist")
+     * @ORM\OneToOne(targetEntity="Oro\Bundle\ContactBundle\Entity\Contact", cascade="persist")
      * @ORM\JoinColumn(name="cotact_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $contact;

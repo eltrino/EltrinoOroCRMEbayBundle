@@ -16,8 +16,9 @@ namespace Eltrino\OroCrmEbayBundle\Tests\Unit\Provider\Iterator;
 
 use Eltrino\OroCrmEbayBundle\Provider\Iterator\EbayDataIterator;
 use Eltrino\PHPUnit\MockAnnotations\MockAnnotations;
+use PHPUnit\Framework\TestCase;
 
-class EbayDataIteratorTest extends \PHPUnit_Framework_TestCase
+class EbayDataIteratorTest extends TestCase
 {
     /**
      * @var EbayDataIterator

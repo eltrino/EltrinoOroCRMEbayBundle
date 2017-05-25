@@ -17,8 +17,9 @@ namespace Eltrino\OroCrmEbayBundle\Tests\Unit\ImportExport\Strategy;
 use Eltrino\OroCrmEbayBundle\ImportExport\Strategy\OrderStrategy;
 use Doctrine\Common\Collections\ArrayCollection;
 use Eltrino\PHPUnit\MockAnnotations\MockAnnotations;
+use PHPUnit\Framework\TestCase;
 
-class OrderStrategyTest extends \PHPUnit_Framework_TestCase
+class OrderStrategyTest extends TestCase
 {
     /**
      * @var \Eltrino\OroCrmEbayBundle\Entity\Customer

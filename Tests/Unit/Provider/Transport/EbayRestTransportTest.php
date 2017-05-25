@@ -19,8 +19,9 @@ use Eltrino\OroCrmEbayBundle\Ebay\Filters\ModTimeRangeFilter;
 use Eltrino\OroCrmEbayBundle\Ebay\RestClient;
 use Eltrino\OroCrmEbayBundle\Provider\Transport\EbayRestTransport;
 use Eltrino\OroCrmEbayBundle\Entity\EbayRestTransport as TransportEntity;
+use PHPUnit\Framework\TestCase;
 
-class EbayRestTransportTest extends \PHPUnit_Framework_TestCase
+class EbayRestTransportTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject|RestClientFactory

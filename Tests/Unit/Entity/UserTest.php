@@ -16,8 +16,9 @@ namespace Eltrino\OroCrmEbayBundle\Tests\Unit\Entity;
 
 use Eltrino\OroCrmEbayBundle\Entity\Address;
 use Eltrino\OroCrmEbayBundle\Entity\User;
+use PHPUnit\Framework\TestCase;
 
-class UserTest extends \PHPUnit_Framework_TestCase
+class UserTest extends TestCase
 {
     public function testAddAddress()
     {

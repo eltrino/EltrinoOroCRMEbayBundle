@@ -19,9 +19,10 @@ use Eltrino\OroCrmEbayBundle\Entity\User;
 use Eltrino\OroCrmEbayBundle\ImportExport\Strategy\UserStrategy;
 use Oro\Bundle\AddressBundle\Entity\Country;
 use Oro\Bundle\AddressBundle\Entity\Region;
-use OroCRM\Bundle\ContactBundle\Entity\Contact;
+use Oro\Bundle\ContactBundle\Entity\Contact;
+use PHPUnit\Framework\TestCase;
 
-class UserStrategyTest extends \PHPUnit_Framework_TestCase
+class UserStrategyTest extends TestCase
 {
     /**
      * @var \Oro\Bundle\ImportExportBundle\Strategy\Import\ImportStrategyHelper

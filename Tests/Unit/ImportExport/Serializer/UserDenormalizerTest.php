@@ -23,8 +23,9 @@ use Eltrino\OroCrmEbayBundle\ImportExport\Serializer\UserDenormalizer;
 use Oro\Bundle\IntegrationBundle\Entity\Channel;
 use Oro\Bundle\IntegrationBundle\Entity\Repository\ChannelRepository;
 use Eltrino\PHPUnit\MockAnnotations\MockAnnotations;
+use PHPUnit\Framework\TestCase;
 
-class UserDenormalizerTest extends \PHPUnit_Framework_TestCase
+class UserDenormalizerTest extends TestCase
 {
     /**
      * @var ChannelRepository

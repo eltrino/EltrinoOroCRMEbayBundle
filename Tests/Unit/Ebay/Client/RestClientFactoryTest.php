@@ -18,8 +18,9 @@ use Eltrino\OroCrmEbayBundle\Ebay\Client\RestClientFactory;
 use Eltrino\OroCrmEbayBundle\Ebay\DefaultAuthorizationHandler;
 use Eltrino\OroCrmEbayBundle\Ebay\RestClient;
 use Guzzle\Http\Client;
+use PHPUnit\Framework\TestCase;
 
-class RestClientFactoryTest extends \PHPUnit_Framework_TestCase
+class RestClientFactoryTest extends TestCase
 {
     /** @var RestClientFactory */
     protected $object;

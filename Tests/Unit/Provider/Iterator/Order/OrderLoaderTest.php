@@ -18,8 +18,9 @@ use Eltrino\OroCrmEbayBundle\Ebay\Filters\Filter;
 use Eltrino\OroCrmEbayBundle\Ebay\RestClient;
 use Eltrino\OroCrmEbayBundle\Provider\Iterator\Order\OrderLoader;
 use Guzzle\Http\Message\Response;
+use PHPUnit\Framework\TestCase;
 
-class OrderLoaderTest extends \PHPUnit_Framework_TestCase
+class OrderLoaderTest extends TestCase
 {
     /** @var \PHPUnit_Framework_MockObject_MockObject|RestClient */
     protected $client;

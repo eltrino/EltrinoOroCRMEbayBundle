@@ -16,8 +16,9 @@ namespace Eltrino\OroCrmEbayBundle\Tests\Unit\Provider;
 
 use Eltrino\OroCrmEbayBundle\Provider\EbayOrderConnector;
 use Eltrino\PHPUnit\MockAnnotations\MockAnnotations;
+use PHPUnit\Framework\TestCase;
 
-class EbayOrderConnectorTest extends \PHPUnit_Framework_TestCase
+class EbayOrderConnectorTest extends TestCase
 {
     /**
      * @var \Oro\Bundle\ImportExportBundle\Context\ContextRegistry

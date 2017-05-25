@@ -15,8 +15,9 @@
 namespace Eltrino\OroCrmEbayBundle\Tests\Unit\Ebay\Filters;
 
 use Eltrino\OroCrmEbayBundle\Ebay\Filters\PagerFilter;
+use PHPUnit\Framework\TestCase;
 
-class PagerFilterTest extends \PHPUnit_Framework_TestCase
+class PagerFilterTest extends TestCase
 {
     /**
      * @expectedException \InvalidArgumentException

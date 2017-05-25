@@ -15,8 +15,9 @@
 namespace Eltrino\OroCrmEbayBundle\Tests\Unit\Ebay;
 
 use Eltrino\OroCrmEbayBundle\Ebay\DefaultAuthorizationHandler;
+use PHPUnit\Framework\TestCase;
 
-class DefaultAuthorizationHandlerTest extends \PHPUnit_Framework_TestCase
+class DefaultAuthorizationHandlerTest extends TestCase
 {
     const DUMMY_DEV_ID     = 'dummy_dev_id';
     const DUMMY_APP_ID     = 'dummy_app_id';

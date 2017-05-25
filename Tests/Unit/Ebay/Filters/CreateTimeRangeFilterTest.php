@@ -15,8 +15,9 @@
 namespace Eltrino\OroCrmEbayBundle\Tests\Unit\Ebay\Filters;
 
 use Eltrino\OroCrmEbayBundle\Ebay\Filters\CreateTimeRangeFilter;
+use PHPUnit\Framework\TestCase;
 
-class CreateTimeRangeFilterTest extends \PHPUnit_Framework_TestCase
+class CreateTimeRangeFilterTest extends TestCase
 {
     public function testProcess()
     {

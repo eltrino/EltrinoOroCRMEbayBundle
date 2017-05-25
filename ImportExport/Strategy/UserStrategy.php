@@ -33,9 +33,9 @@ use Oro\Bundle\ImportExportBundle\Context\ContextInterface;
 use Oro\Bundle\ImportExportBundle\Strategy\Import\ImportStrategyHelper;
 use Oro\Bundle\ImportExportBundle\Strategy\StrategyInterface;
 use Oro\Bundle\ImportExportBundle\Context\ContextAwareInterface;
-use OroCRM\Bundle\ContactBundle\Entity\Contact;
-use OroCRM\Bundle\ContactBundle\Entity\ContactAddress;
-use OroCRM\Bundle\ContactBundle\Entity\ContactPhone;
+use Oro\Bundle\ContactBundle\Entity\Contact;
+use Oro\Bundle\ContactBundle\Entity\ContactAddress;
+use Oro\Bundle\ContactBundle\Entity\ContactPhone;
 
 
 class UserStrategy implements StrategyInterface, ContextAwareInterface

@@ -15,8 +15,9 @@
 namespace Eltrino\OroCrmEbayBundle\Tests\Unit\Ebay\Filters;
 
 use Eltrino\OroCrmEbayBundle\Ebay\Filters\ModTimeRangeFilter;
+use PHPUnit\Framework\TestCase;
 
-class ModTimeRangeFilterTest extends \PHPUnit_Framework_TestCase
+class ModTimeRangeFilterTest extends TestCase
 {
     public function testProcess()
     {

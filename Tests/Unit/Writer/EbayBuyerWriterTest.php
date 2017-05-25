@@ -21,8 +21,9 @@ use Eltrino\OroCrmEbayBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Akeneo\Bundle\BatchBundle\Entity\StepExecution;
 use Oro\Bundle\ImportExportBundle\Context;
+use PHPUnit\Framework\TestCase;
 
-class EbayBuyerWriterTest extends \PHPUnit_Framework_TestCase
+class EbayBuyerWriterTest extends TestCase
 {
     const TEST_USERS_COUNT = 5;
     const TEST_USERS_REPETITION_COUNT = 3;

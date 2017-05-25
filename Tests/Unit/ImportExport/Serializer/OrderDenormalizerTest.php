@@ -17,8 +17,9 @@ namespace Eltrino\OroCrmEbayBundle\Tests\Unit\ImportExport\Serializer;
 use Eltrino\OroCrmEbayBundle\ImportExport\Serializer\OrderDenormalizer;
 use Eltrino\OroCrmEbayBundle\Provider\EbayOrderConnector;
 use Eltrino\PHPUnit\MockAnnotations\MockAnnotations;
+use PHPUnit\Framework\TestCase;
 
-class OrderDenormalizerTest extends \PHPUnit_Framework_TestCase
+class OrderDenormalizerTest extends TestCase
 {
     /**
      * @var \Eltrino\OroCrmEbayBundle\Model\Order\OrderFactory

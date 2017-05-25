@@ -16,8 +16,9 @@ namespace Eltrino\OroCrmEbayBundle\Tests\Unit\Provider\Iterator\User;
 
 use Eltrino\OroCrmEbayBundle\Provider\Iterator\User\UsersLoader;
 use Eltrino\PHPUnit\MockAnnotations\MockAnnotations;
+use PHPUnit\Framework\TestCase;
 
-class UsersLoaderTest extends \PHPUnit_Framework_TestCase
+class UsersLoaderTest extends TestCase
 {
     /**
      * @Mock Eltrino\OroCrmEbayBundle\Provider\Iterator\Order\OrderLoader
